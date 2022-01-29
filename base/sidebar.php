@@ -52,7 +52,19 @@
 
         <?php } ?>
 
-        <?php if ($_GET["id_database"] == "database_program" || $_GET["id_database"] == "database_logistik" || $_GET["id_database"] == "database_aset_yayasan" || $_GET["id_database"] == "database_uang_makan" || $_GET["id_database"] == "database_gaji_karyawan" || $_GET["id_database"] == "database_anggaran_lain" || $_GET["id_database"] == "database_maintenance" || $_GET["id_database"] == "database_operasional_yayasan" || $_GET["id_database"] == "database_pemasukanMedia" || $_GET["id_database"] == "database_harianMedia" || $_GET["id_database"] == "database_akunMedia") { ?>
+        <?php if (
+            $_GET["id_database"] == "database_program" || 
+            $_GET["id_database"] == "database_logistik" || 
+            $_GET["id_database"] == "database_aset_yayasan" || 
+            $_GET["id_database"] == "database_uang_makan" || 
+            $_GET["id_database"] == "database_gaji_karyawan" || 
+            $_GET["id_database"] == "database_anggaran_lain" || 
+            $_GET["id_database"] == "database_maintenance" || 
+            $_GET["id_database"] == "database_operasional_yayasan" || 
+            $_GET["id_database"] == "database_pemasukanMedia" || 
+            $_GET["id_database"] == "database_harianMedia" || 
+            $_GET["id_database"] == "database_akunMedia"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Database</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -120,7 +132,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -132,14 +143,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_aset_yayasan") { ?>
                 <li>
@@ -202,7 +205,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -214,14 +216,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_uang_makan") { ?>
                 <li>
@@ -284,8 +278,6 @@
                     </a>
                 </li>
 
-
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -297,14 +289,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_gaji_karyawan") { ?>
                 <li>
@@ -367,7 +351,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -379,14 +362,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_anggaran_lain") { ?>
                 <li>
@@ -449,7 +424,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -461,14 +435,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_maintenance") { ?>
                 <li>
@@ -531,7 +497,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -543,14 +508,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_operasional_yayasan") { ?>
                 <li>
@@ -613,7 +570,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -625,14 +581,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_pemasukanMedia") { ?>
 
@@ -696,7 +644,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -708,14 +655,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_harianMedia") { ?>
                 <li>
@@ -778,7 +717,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia" class="active">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -790,14 +728,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia" class="active">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_akunMedia") { ?>
                 <li>
@@ -927,16 +857,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
-                    </a>
-                </li>
-
-                <?php } ?>
-
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -949,13 +869,6 @@
                     </a>
                 </li>
 
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
                 <?php } ?>
 
                 <?php } else { ?>
@@ -1058,7 +971,6 @@
                     </a>
                 </li>
 
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
@@ -1070,14 +982,6 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
-                <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-                <?php } ?>
 
                 <?php } else { ?>
                 <li>
@@ -1171,10 +1075,7 @@
         </li>
 
         <?php } elseif (
-            $_SESSION["id_pengurus"] == "kepala_cabang" || 
-            $_SESSION["id_pengurus"] == "ketua_yayasan" || 
-            $_SESSION["id_pengurus"] == "manager_facebook" || 
-            $_SESSION["id_pengurus"] == "manager_instagram") { 
+            $_SESSION["id_pengurus"] == "ketua_yayasan") { 
         ?>
 
         <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
@@ -1775,8 +1676,11 @@
                 <?php } ?>
             </ul>
         </li>
-        <?php }  elseif ($_SESSION["id_pengurus"] == "facebook_depok" || $_SESSION["id_pengurus"] == "facebook_bogor" || $_SESSION["id_pengurus"] == "instagram") { ?>
-        <?php } elseif ($_SESSION["id_pengurus"] == "manager_facebook" || $_SESSION["id_pengurus"] == "manager_instagram") { ?>
+        <?php }  elseif (
+            $_SESSION["id_pengurus"] == "manager_facebook" ||
+            $_SESSION["id_pengurus"] == "facebook_depok"
+            ) { ?>
+
         <?php } else { ?>
         <li class="nav-item">
             <?php if ($_SESSION["id_pengurus"] == "admin_web") { ?>
@@ -1786,7 +1690,7 @@
             </a>
             <?php } ?>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_program">
                         <i class="bi bi-circle"></i><span>Grafik Program</span>
@@ -1853,7 +1757,12 @@
         <!-- End Charts Nav -->
 
         <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
-        <?php if ($_GET["id_checklist"] == "checklist_pengajuan" || $_GET["id_checklist"] == "checklist_verifikasi" || $_GET["id_checklist"] == "checklist_laporan") { ?>
+        <?php if (
+            $_GET["id_checklist"] == "checklist_pengajuan" || 
+            $_GET["id_checklist"] == "checklist_verifikasi" || 
+            $_GET["id_checklist"] == "checklist_laporan"
+            ) { ?>
+
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -1916,7 +1825,12 @@
             </ul>
         </li><!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanLogistik" || $_GET["id_checklist"] == "checklist_verifikasiLogistik" || $_GET["id_checklist"] == "checklist_laporanLogistik") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanLogistik" || 
+            $_GET["id_checklist"] == "checklist_verifikasiLogistik" || 
+            $_GET["id_checklist"] == "checklist_laporanLogistik"
+            ) { ?>
+
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -1979,7 +1893,11 @@
             </ul>
         </li><!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanAset" || $_GET["id_checklist"] == "checklist_verifikasiAset" || $_GET["id_checklist"] == "checklist_laporanAset") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanAset" || 
+            $_GET["id_checklist"] == "checklist_verifikasiAset" || 
+            $_GET["id_checklist"] == "checklist_laporanAset"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -2043,7 +1961,11 @@
         </li>
         <!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanUangmakan" || $_GET["id_checklist"] == "checklist_verifikasiUangmakan" || $_GET["id_checklist"] == "checklist_laporanUangmakan") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanUangmakan" || 
+            $_GET["id_checklist"] == "checklist_verifikasiUangmakan" || 
+            $_GET["id_checklist"] == "checklist_laporanUangmakan"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -2107,7 +2029,11 @@
         </li>
         <!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanGajikaryawan" || $_GET["id_checklist"] == "checklist_verifikasiGajikaryawan" || $_GET["id_checklist"] == "checklist_laporanGajikaryawan") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanGajikaryawan" || 
+            $_GET["id_checklist"] == "checklist_verifikasiGajikaryawan" || 
+            $_GET["id_checklist"] == "checklist_laporanGajikaryawan"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -2172,7 +2098,11 @@
         </li>
         <!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanAnggaranlain" || $_GET["id_checklist"] == "checklist_verifikasiAnggaranlain" || $_GET["id_checklist"] == "checklist_laporanAnggaranlain") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanAnggaranlain" || 
+            $_GET["id_checklist"] == "checklist_verifikasiAnggaranlain" || 
+            $_GET["id_checklist"] == "checklist_laporanAnggaranlain"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -2237,7 +2167,11 @@
         </li>
         <!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanMaintenance" || $_GET["id_checklist"] == "checklist_verifikasiMaintenance" || $_GET["id_checklist"] == "checklist_laporanMaintenance") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanMaintenance" || 
+            $_GET["id_checklist"] == "checklist_verifikasiMaintenance" || 
+            $_GET["id_checklist"] == "checklist_laporanMaintenance"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -2302,7 +2236,11 @@
         </li>
         <!-- End Checklist Nav -->
 
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanOperasional" || $_GET["id_checklist"] == "checklist_verifikasiOperasional" || $_GET["id_checklist"] == "checklist_laporanOperasional") { ?>
+        <?php } elseif (
+            $_GET["id_checklist"] == "checklist_pengajuanOperasional" || 
+            $_GET["id_checklist"] == "checklist_verifikasiOperasional" || 
+            $_GET["id_checklist"] == "checklist_laporanOperasional"
+            ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
