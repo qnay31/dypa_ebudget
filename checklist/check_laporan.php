@@ -108,25 +108,53 @@
                 <!-- Laporan  -->
                 <div class="col-12">
                     <div class="card">
-                        <?php if ($_GET["id_checklist"] == "checklist_pengajuan" || $_GET["id_checklist"] == "checklist_verifikasi" || $_GET["id_checklist"] == "checklist_laporan") { ?>
+                        <?php if (
+                            $_GET["id_checklist"] == "checklist_pengajuan" || 
+                            $_GET["id_checklist"] == "checklist_verifikasi" || 
+                            $_GET["id_checklist"] == "checklist_laporan"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekProgram.php'; ?>
 
-                        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanAset" || $_GET["id_checklist"] == "checklist_verifikasiAset" || $_GET["id_checklist"] == "checklist_laporanAset") { ?>
+                        <?php } elseif (
+                            $_GET["id_checklist"] == "checklist_pengajuanAset" || 
+                            $_GET["id_checklist"] == "checklist_verifikasiAset" || 
+                            $_GET["id_checklist"] == "checklist_laporanAset"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekManagement.php'; ?>
 
-                        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanUangmakan" || $_GET["id_checklist"] == "checklist_verifikasiUangmakan" || $_GET["id_checklist"] == "checklist_laporanUangmakan") { ?>
+                        <?php } elseif (
+                            $_GET["id_checklist"] == "checklist_pengajuanUangmakan" || 
+                            $_GET["id_checklist"] == "checklist_verifikasiUangmakan" || 
+                            $_GET["id_checklist"] == "checklist_laporanUangmakan"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekManagement.php'; ?>
 
-                        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanGajikaryawan" || $_GET["id_checklist"] == "checklist_verifikasiGajikaryawan" || $_GET["id_checklist"] == "checklist_laporanGajikaryawan") { ?>
+                        <?php } elseif (
+                            $_GET["id_checklist"] == "checklist_pengajuanGajikaryawan" || 
+                            $_GET["id_checklist"] == "checklist_verifikasiGajikaryawan" || 
+                            $_GET["id_checklist"] == "checklist_laporanGajikaryawan"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekManagement.php'; ?>
 
-                        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanAnggaranlain" || $_GET["id_checklist"] == "checklist_verifikasiAnggaranlain" || $_GET["id_checklist"] == "checklist_laporanAnggaranlain") { ?>
+                        <?php } elseif (
+                            $_GET["id_checklist"] == "checklist_pengajuanAnggaranlain" || 
+                            $_GET["id_checklist"] == "checklist_verifikasiAnggaranlain" || 
+                            $_GET["id_checklist"] == "checklist_laporanAnggaranlain"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekManagement.php'; ?>
 
-                        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanMaintenance" || $_GET["id_checklist"] == "checklist_verifikasiMaintenance" || $_GET["id_checklist"] == "checklist_laporanMaintenance") { ?>
+                        <?php } elseif (
+                            $_GET["id_checklist"] == "checklist_pengajuanMaintenance" || 
+                            $_GET["id_checklist"] == "checklist_verifikasiMaintenance" || 
+                            $_GET["id_checklist"] == "checklist_laporanMaintenance"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekManagement.php'; ?>
 
-                        <?php } elseif ($_GET["id_checklist"] == "checklist_pengajuanOperasional" || $_GET["id_checklist"] == "checklist_verifikasiOperasional" || $_GET["id_checklist"] == "checklist_laporanOperasional") { ?>
+                        <?php } elseif (
+                            $_GET["id_checklist"] == "checklist_pengajuanOperasional" || 
+                            $_GET["id_checklist"] == "checklist_verifikasiOperasional" || 
+                            $_GET["id_checklist"] == "checklist_laporanOperasional"
+                            ) { ?>
                         <?php include '../models/checklist/laporan_checklist/laporan_cekManagement.php'; ?>
 
                         <?php } else { ?>
