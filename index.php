@@ -2,15 +2,6 @@
 session_start();
 error_reporting(0);
 
-// cek cookie
-
-if (isset($_COOKIE["login"])) {
-    if ($_COOKIE["login"] == 'true') {
-        $_SESSION["halaman_utama"] = true;
-        
-    }
-}
-
 if (isset($_SESSION["halaman_utama"])) {
     header("Location: admin/$_SESSION[username].php");
     exit;
@@ -46,10 +37,10 @@ if (isset($_POST["login"]) ) {
         $_SESSION["halaman_utama"]      = true ;
 
         // set login
-        if (isset($_POST["remember"])) {
-            // buat cookie
-            setcookie('login', 'true', time() + 60 );
-        }
+        // if (isset($_POST["remember"])) {
+        //     // buat cookie
+        //     setcookie('login', 'true', time() + 60 );
+        // }
         
 		// buat session login dan username ADMIN
 		$_SESSION["id"]           = $row["id"];
