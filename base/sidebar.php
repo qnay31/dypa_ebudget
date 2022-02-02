@@ -1245,7 +1245,7 @@
                 <i class="bi bi-bar-chart"></i><span>Grafik</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
                 <?php if ($_GET["id_grafik"] == "grafik_program") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_program" class="active">
@@ -1788,7 +1788,14 @@
                     </a>
                 </li>
                 <?php } ?>
-                <?php } ?>
+
+                <?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_pemasukanMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Grafik Pemasukan Media</span>
+                    </a>
+                </li>
+                <?php }?>
             </ul>
         </li>
         <?php }  elseif (
@@ -1859,6 +1866,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Grafik Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <?php } elseif($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_pemasukanMedia">
                         <i class="bi bi-circle"></i><span>Grafik Pemasukan Media</span>
