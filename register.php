@@ -70,8 +70,7 @@ if (isset($_POST["daftar"]) ) {
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="nama"
                                         placeholder="Nama Lengkap" aria-label="Nama Lengkap"
-                                        aria-describedby="basic-addon1" id="alpabet"
-                                        style="text-transform: capitalize;">
+                                        aria-describedby="basic-addon1" style="text-transform: capitalize;">
                                 </div>
 
                                 <div class="form-group">
