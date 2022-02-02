@@ -54,7 +54,7 @@ function input_pengurus($data)
 	global $conn;
 
 	$ambil_nama     = htmlspecialchars($data["nama"]);
-	$nama     		= ucwords($data["nama"]);
+	$nama     		= ucwords(mysqli_real_escape_string($conn, $data["nama"]));
 	$id_pengurus    = $data["media"];
 	$cabang    		= $data["cabang"];
 	$posisi    		= $data["posisi"];
