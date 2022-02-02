@@ -348,31 +348,31 @@ $(document).ready(function () {
     $('#tabel-data_verifIncomeMedia').DataTable({
         "scrollX": true,
         columnDefs: [{
-            width: '15%',
+            width: 150,
             targets: 1
         }, {
-            width: '13%',
+            width: 200,
             targets: 2
         }, {
-            width: '5%',
+            width: 100,
             targets: 3
         }, {
-            width: '15%',
+            width: 200,
             targets: 4
         }, {
-            width: '15%',
+            width: 200,
             targets: 5
         }, {
-            width: '5%',
+            width: 40,
             targets: 6
         }, {
-            width: '15%',
+            width: 150,
             targets: 7
         }, {
-            width: '20%',
+            width: 150,
             targets: 8
         }, {
-            width: '20%',
+            width: 70,
             targets: 9
         }],
         "footerCallback": function (row, data, start, end, display) {
@@ -3354,6 +3354,170 @@ $(document).ready(function () {
             $(api.column(7).footer()).html(
                 'Rp. ' + rupiah + ''
             );
+        }
+    });
+
+    function Capitalize(str)
+    {  return str.replace (/\w\S*/g, 
+        function(txt)
+        {  return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); } );
+    }
+
+    // Admin CrossCheck
+    var table = $('#tabel-data_databaseCrossCheck').DataTable({
+        "scrollX": true,
+        "processing": true,
+        "serverSide": false,
+        "ajax": "../ajax/data_income.php",
+        "scrollCollapse": true,
+        "lengthMenu": [
+            [10, 25, 50, 100, -1],
+            [10, 25, 50, 100, "All"]
+        ],
+        dom: 'Plfrtip',
+        order: [
+            [7, 'desc']
+        ],
+        rowGroup: {
+            // Uses the 'row group' plugin
+            dataSrc: 7,
+            startRender: null,
+            endRender: function (rows, group) {
+                var collapsed = !!collapsedGroups[group];
+
+                rows.nodes().each(function (r) {
+                    r.style.display = collapsed ? 'none' : '';
+                });
+
+                var intVal = function (i) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\Rp,.]/g, '') * 1 :
+                        typeof i === 'number' ?
+                        i : 0;
+                };
+
+                var salary = rows
+                    .data()
+                    .pluck(9)
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                salary = $.fn.dataTable.render.number('.', '', 0).display(salary);
+
+
+                // Add category name to the <tr>. NOTE: Hardcoded colspan
+                return $('<tr/>')
+                    .append('<td> </td>')
+                    .append('<td colspan="8">' + group + ' (' + rows.count() + ') ' + '/ Income: ' + ' ' + salary + '</td>')
+                    .append('<td> ' + salary + ' </td>')
+            }
+        },
+        searchPanes: {
+            orderable: false
+        }, 
+        
+        columnDefs: [
+        {
+            "targets" : 0,
+            "sortable": false,
+            "render": function (data, type, row, meta) {
+                var no = meta.row + meta.settings._iDisplayStart + 1
+                return "<center>-</center>";
+            }
+        },{
+            width: 150,
+            targets: 1,
+            "render": function(data) {
+                return Capitalize(data);
+            }
+        }, {
+            width: 200,
+            targets: 2
+        }, {
+            width: 200,
+            targets: 3,
+            "render": function(data) {
+                return Capitalize(data);
+            }
+        }, {
+            width: 50,
+            targets: 4,
+            "render": function(data) {
+                return data == "OK" ? "<center><span class=\"badge bg-success\">"+data+"</span></center>" : "<center><span class=\"badge bg-danger\">"+data+"</span></center>"
+            }
+        }, {
+            width: 100,
+            targets: 5,
+            "render": function(data) {
+                var btn = "<center><a href=\"../models/base_admin/hapus_income.php?id_unik="+data+"\" onclick=\"return confirm('Data akan dihapus?')\" class=\"btn btn-danger btn-xs\"><i class=\"bi bi-trash\"></i></a></center>"
+                return btn;
+            }
+        }, {
+            width: 200,
+            targets: 6,
+            "render": function(data) {
+                return Capitalize(data);
+            }
+        }, {
+            width: 150,
+            targets: 7,
+            "render" : function(data) {
+                return "<center>"+data+"</center>"
+            }
+        }, {
+            width: 100,
+            targets: 8
+        }, {
+            width: 150,
+            targets: 9
+        }, {
+            searchPanes: {
+                show: true,
+                initCollapsed: true
+            },
+            targets: [1, 3, 6, 7, 8]
+        }, {
+            searchPanes: {
+                show: false
+            },
+            targets: [2, 4, 5, 9]
+        }],
+        "footerCallback": function (row, data, start, end, display) {
+            var api = this.api(),
+                data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function (i) {
+                return typeof i === 'string' ?
+                    i.replace(/[\Rp,.]/g, '') * 1 :
+                    typeof i === 'number' ?
+                    i : 0;
+            };
+
+            // Total over this page
+            pageTotal = api
+                .column(9, {
+                    page: 'current'
+                })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            var number_string = pageTotal.toString(),
+                sisa = number_string.length % 3,
+                rupiah = number_string.substr(0, sisa),
+                ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+            // Update footer
+            $(api.column(9).footer()).html(
+                'Rp. ' + rupiah + ''
+            );
+
         }
     });
     

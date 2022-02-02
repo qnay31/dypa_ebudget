@@ -85,24 +85,7 @@ if(isset($_POST['ubah_password']) ){
         <h1>Profil</h1>
         <nav>
             <ol class="breadcrumb">
-                <?php if ($_SESSION["posisi"] == "Logistik Gedung Management" || $_SESSION["posisi"] == "Logistik Gedung Taman" || $_SESSION["posisi"] == "Kepala Income") { ?>
-                <?php if ($id_management == "") { ?>
                 <li class="breadcrumb-item"><a href="<?= $_SESSION["username"] ?>.php">Dashboard</a></li>
-                <?php } else { ?>
-                <li class="breadcrumb-item"><a
-                        href="<?= $_SESSION["username"] ?>.php?id_management=<?= $id_management ?>">Dashboard</a></li>
-                <?php } ?>
-                <?php } elseif ($_SESSION["posisi"] == "Kepala Logistik") { ?>
-                <?php if ($id_kepLogistik == "") { ?>
-                <li class="breadcrumb-item"><a href="<?= $_SESSION["username"] ?>.php">Dashboard</a></li>
-                <?php } else { ?>
-                <li class="breadcrumb-item"><a
-                        href="<?= $_SESSION["username"] ?>.php?id_kepLogistik=<?= $id_kepLogistik ?>">Dashboard</a></li>
-                <?php } ?>
-                <?php } else { ?>
-                <li class="breadcrumb-item"><a href="<?= $_SESSION["username"] ?>.php">Dashboard</a></li>
-                <?php } ?>
-
                 <li class="breadcrumb-item active">Profil</li>
             </ol>
         </nav>
@@ -114,8 +97,8 @@ if(isset($_POST['ubah_password']) ){
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <img src="../assets/img/icons/<?= $profil ?>" alt="Profile" class="rounded-circle">
-                        <h2><?= $nama ?></h2>
-                        <h3><?= $_SESSION["posisi"] ?> <?= $_SESSION["cabang"] ?></h3>
+                        <h2><?= ucwords($nama) ?></h2>
+                        <h3><?= $_SESSION["posisi"] ?></h3>
                     </div>
                 </div>
             </div>

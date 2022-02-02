@@ -28,16 +28,18 @@
                     $no = 1;
                     while ($r = $q->fetch_assoc()) {
                     $bln       = substr($r['tanggal_tf'], 5,-3);
+                    $nama      = strtolower($r['pemegang']);
+                    $donatur      = strtolower($r['nama_donatur']);
                 ?>
 
                 <?php if ($r["status"] == "OK") { ?>
                 <?php } else { ?>
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['pemegang']) ?></td>
+                    <td style="text-align: center;"><?= ucwords($nama) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['nama_akun']) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
-                    <td><?= ucwords($r['nama_donatur']) ?></td>
+                    <td><?= ucwords($donatur) ?></td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tanggal_tf'])); ?> <?= $r["jam_tf"] ?></td>
                     <td style="text-align: center;"><?= ucwords($r['bank']) ?></td>
@@ -46,10 +48,12 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-primary"
                             href="../admin/<?= $_SESSION["username"] ?>.php?id_forms=edit_incomeMedia&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin anggaran ini mau diedit?!')">Edit</a> ||
+                            onclick="return confirm('Yakin anggaran ini mau diedit?!')">
+                            <i class="bi bi-pencil-square text-white"></i></a> ||
                         <a class="btn btn-danger"
                             href="../models/mediaSosial/hapus_income.php?id_hapus=<?= $r["nama_akun"] ?>&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin Income <?= $r[nama_akun] ?> ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin Income <?= $r[nama_akun] ?> ini mau dihapus?!')">
+                            <i class="bi bi-trash text-white"></i></a>
                     </td>
                     <td style="text-align: center;">
                         <span class="badge bg-warning">Pending</span>
@@ -59,7 +63,8 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-danger"
                             href="../models/mediaSosial/hapus_income.php?id_hapus=<?= $r["nama_akun"] ?>&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin Income <?= $r[nama_akun] ?> ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin Income <?= $r[nama_akun] ?> ini mau dihapus?!')">
+                            <i class="bi bi-trash text-white"></i></a>
                     </td>
                     <td style="text-align: center;">
                         <span class="badge bg-danger">Dibatalkan</span>

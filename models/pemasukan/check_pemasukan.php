@@ -28,14 +28,17 @@
                     $no = 1;
                     while ($r = $q->fetch_assoc()) {
                     $bln       = substr($r['tanggal_tf'], 5,-3);
+                    $nama      = strtolower($r['pemegang']);
+                    $donatur      = strtolower($r['nama_donatur']);
+                    
                 ?>
 
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['pemegang']) ?></td>
+                    <td style="text-align: center;"><?= ucwords($nama) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['nama_akun']) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
-                    <td><?= ucwords($r['nama_donatur']) ?></td>
+                    <td><?= ucwords($donatur) ?></td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tanggal_tf'])); ?> <?= $r["jam_tf"] ?></td>
                     <td style="text-align: center;"><?= ucwords($r['bank']) ?></td>
@@ -43,10 +46,12 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-success"
                             href="../verif/laporan/checkIncome.php?id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Income akan dikonfirmasi dan sudah valid??!')">Konfirmasi</a> ||
+                            onclick="return confirm('Income akan dikonfirmasi dan sudah valid??!')">
+                            <i class="bi bi-check-circle text-white"></i></a> ||
                         <a class="btn btn-danger"
                             href="../verif/laporan/batalIncome.php?id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Income akan dibatalkan karena tidak sesuai dan dihapus??!')">Batalkan</a>
+                            onclick="return confirm('Income akan dibatalkan karena tidak sesuai dan dihapus??!')">
+                            <i class="bi bi-x-circle text-white"></i></a>
 
                     </td>
                     <td style="text-align: center;">

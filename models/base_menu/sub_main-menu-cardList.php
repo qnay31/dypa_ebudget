@@ -143,14 +143,41 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
     // PEMASUKAN
 
     // media sosial
-    $bulan     = date("Y-m-d");
-    $bln       = substr($bulan, 5,-3);
+    $bulan      = date("Y-m-d");
+    $convert    = convertDateDBtoIndo($bulan);
+    $bln        = substr($convert, 3, -5); 
 
-    $incBulanan = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'OK' AND MONTH(tanggal_tf) = '$bln'");
+    $incBulanan = mysqli_query($conn, "SELECT * FROM 2022_data_income WHERE bulan = '$bln'");
     while($data_incBulanan = mysqli_fetch_array($incBulanan))
     {
         $i++;   
-        $d_incomeBulanan = $data_incBulanan['jumlah_tf'];
+        $d_incomeBulanan = $data_incBulanan['income_global'];
+        $total_incomeBulanan[$i] = $d_incomeBulanan;
+
+        $hasil_incomeBulanan = array_sum($total_incomeBulanan);
+    }
+
+    $inc1 = mysqli_query($conn, "SELECT * FROM 2022_data_income");
+    while($data_inc1 = mysqli_fetch_array($inc1))
+    {
+        $i++;   
+        $d_income1 = $data_inc1['income_global'];
+        $total_income1[$i] = $d_income1;
+
+        $hasil_income1 = array_sum($total_income1);
+    }
+
+} elseif ($_SESSION["id_pengurus"] == "kepala_income") {
+    // media sosial
+    $bulan     = date("Y-m-d");
+    $convert   = convertDateDBtoIndo($bulan);
+    $bln       = substr($convert, 3, -5); 
+
+    $incBulanan = mysqli_query($conn, "SELECT * FROM 2022_data_income WHERE bulan = '$bln'");
+    while($data_incBulanan = mysqli_fetch_array($incBulanan))
+    {
+        $i++;   
+        $d_incomeBulanan = $data_incBulanan['income_global'];
         $total_incomeBulanan[$i] = $d_incomeBulanan;
 
         $hasil_incomeBulanan = array_sum($total_incomeBulanan);
@@ -280,6 +307,43 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
                 </div>
                 <div class="ps-3">
                     <h6>Rp. <?= number_format($cashback_global,0,"." , ".") ?></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- End Card -->
+
+<?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+<!-- Card -->
+<div class="col-xxl-6 col-md-6">
+    <div class="card info-card customers-card">
+        <div class="card-body">
+            <h5 class="card-title">Pemasukan Media <span>| Bulan Ini</span></h5>
+
+            <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-credit-card"></i>
+                </div>
+                <div class="ps-3">
+                    <h6>Rp. <?= number_format($hasil_incomeBulanan,0,"." , ".") ?></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- End Card -->
+
+<!-- Card -->
+<div class="col-xxl-6 col-md-6">
+    <div class="card info-card customers-card">
+        <div class="card-body">
+            <h5 class="card-title">Pemasukan Media <span>| Per Tahum</span></h5>
+
+            <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-credit-card"></i>
+                </div>
+                <div class="ps-3">
+                    <h6>Rp. <?= number_format($hasil_income1,0,"." , ".") ?></h6>
                 </div>
             </div>
         </div>

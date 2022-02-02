@@ -28,7 +28,7 @@
                                 <input type="hidden" name="id" value="<?= $_SESSION["id"] ?>">
                                 <input type="hidden" name="link" value="<?= $_SESSION["id_pengurus"] ?>">
                                 <input type="hidden" name="posisi" value="<?= $_SESSION["posisi"] ?>">
-                                <input type="text" class="form-control" name="nama" value="<?= $_SESSION["nama"] ?>"
+                                <input type="text" class="form-control" name="nama" value="<?= ucwords($nama) ?>"
                                     readonly>
                             </div>
 
@@ -105,9 +105,6 @@
                 <option selected value="">- Pilih Salah Satu Bank -</option>
                 <option value="BRI">Bank BRI</option>
                 <option value="BNI">Bank BNI</option>
-                <option value="Cimb">Bank Cimb</option>
-                <option value="BCA">Bank BCA</option>
-                <option value="Mandiri">Bank Mandiri</option>
                 <option value="Dana">Dana</option>
                 <option value="OVO">OVO</option>
                 <option value="WU">WU</option>
@@ -121,8 +118,8 @@
         </div>
         <div class="input-group mb-4">
             <span class="input-group-text" id="basic-addon1"><b>Rp</b></span>
-            <input type="text" class="form-control admin_rp" name="transfer" maxlength="11"
-                placeholder="Jumlah Transfer" onkeypress="return hanyaAngka(event)" autocomplete="off" required
+            <input type="text" class="form-control admin_rp" name="transfer" maxlength="11" placeholder="250.000"
+                onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah transfer harus diisi')" oninput="this.setCustomValidity('')">
         </div>
         <div class="button">

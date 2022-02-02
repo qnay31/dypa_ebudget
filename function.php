@@ -227,7 +227,8 @@ $ip = get_client_ip();
 $date = date("Y-m-d H:i:s");
 
 $result = mysqli_query($conn, "INSERT INTO income_media VALUES('', '$link', '$id', '$_SESSION[nama]',
-'$akun', '$_SESSION[cabang]', '$namaDonatur', '$tanggal', '$jam', '$bank', '$income', 'Menunggu Verifikasi')");
+'$akun', '$_SESSION[cabang]', '$namaDonatur', '$tanggal', '$jam', '$bank', '$income', 'Menunggu Verifikasi',
+'Pending')");
 
 // input data ke database
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
@@ -1031,7 +1032,6 @@ $income = str_replace(' ', '', $anggar);
 $ip = get_client_ip();
 $date = date("Y-m-d H:i:s");
 
-if ($gedung == "Tanpa Resi") {
 $query = mysqli_query($conn, "SELECT tgl_pemasukan FROM 2022_incometanparesi WHERE tgl_pemasukan = '$tanggal' AND gedung
 = '$gedung' ");
 
@@ -1046,22 +1046,6 @@ return false;
 
 $result = mysqli_query($conn, "INSERT INTO 2022_incometanparesi VALUES('', '$link', '$kategori', '$_SESSION[posisi]',
 '$gedung', '$tanggal', $income, 'Menunggu Verifikasi')");
-
-} else {
-$query = mysqli_query($conn, "SELECT tgl_pemasukan FROM 2022_income WHERE tgl_pemasukan = '$tanggal' AND gedung
-= '$gedung' ");
-
-if (mysqli_fetch_assoc($query)) {
-
-echo "<script>
-alert('Tanggal dari gedung Ini sudah dilaporkan');
-</script>";
-
-return false;
-}
-$result = mysqli_query($conn, "INSERT INTO 2022_income VALUES('', '$link', '$kategori', '$_SESSION[posisi]',
-'$gedung', '$tanggal', $income, 'Menunggu Verifikasi')");
-}
 
 // input data ke database
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
@@ -1094,7 +1078,6 @@ $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESS
 '$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Mengubah laporan income terbaru')");
 
 // update_target
-if ($gedung == "Tanpa Resi") {
 if ($tanggal == $old_Tgl) {
 } else {
 $query = mysqli_query($conn, "SELECT tgl_pemasukan FROM 2022_incometanparesi WHERE tgl_pemasukan = '$tanggal' AND gedung
@@ -1116,203 +1099,7 @@ $update = mysqli_query($conn, "UPDATE `2022_incometanparesi` SET
 `income` ='$income'
 WHERE id = '$id' ");
 
-} else {
-if ($tanggal == $old_Tgl) {
-} else {
-$query = mysqli_query($conn, "SELECT tgl_pemasukan FROM 2022_income WHERE tgl_pemasukan = '$tanggal' AND gedung
-= '$gedung' ");
-
-if (mysqli_fetch_assoc($query)) {
-
-echo "<script>
-alert('Tanggal dari gedung ini sudah dilaporkan');
-</script>";
-
-return false;
-}
-}
-
-$update = mysqli_query($conn, "UPDATE `2022_income` SET
-`gedung` ='$gedung',
-`tgl_pemasukan` ='$tanggal',
-`income` ='$income'
-WHERE id = '$id' ");
-}
-
 // die(var_dump($update));
-return mysqli_affected_rows($conn);
-
-}
-
-// input cashback
-function input_cashback($data)
-{
-global $conn;
-
-$link = $data["link"];
-$kategori = htmlspecialchars($data["kategori"]);
-$tanggal = $data["tanggal"];
-$deskripsi = htmlspecialchars($data["deskripsi"]);
-$nom_acak = htmlspecialchars($data["income"]);
-$anggar = RemoveSpecialChar($nom_acak);
-$income = str_replace(' ', '', $anggar);
-$ip = get_client_ip();
-$date = date("Y-m-d H:i:s");
-
-$result = mysqli_query($conn, "INSERT INTO 2022_cashback VALUES('', '$link', '$kategori', '$_SESSION[posisi]',
-'$tanggal', '$deskripsi', '$income', 'Menunggu Verifikasi')");
-
-// input data ke database
-$result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
-'$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Menginput $kategori dengan keterangan $deskripsi')");
-
-// die(var_dump($simpan));
-return mysqli_affected_rows($conn);
-
-}
-
-// edit cashback
-function edit_cashback($data)
-{
-global $conn;
-
-$id = htmlspecialchars($data["id"]);
-$kategori = htmlspecialchars($data["kategori"]);
-$deskripsi = htmlspecialchars($data["deskripsi"]);
-$tanggal = $data["tanggal"];
-$lokasi = htmlspecialchars($data["deskripsi"]);
-$nom_acak = htmlspecialchars($data["income"]);
-$anggar = RemoveSpecialChar($nom_acak);
-$income = str_replace(' ', '', $anggar);
-$ip = get_client_ip();
-$date = date("Y-m-d H:i:s");
-
-$result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
-'$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Mengubah laporan cashbacknya ')");
-
-// update_target
-
-$update = mysqli_query($conn, "UPDATE `2022_cashback` SET
-`tgl_cashback` ='$tanggal',
-`deskripsi` ='$deskripsi',
-`cashback` ='$income'
-WHERE id = '$id' ");
-
-// die(var_dump($update));
-return mysqli_affected_rows($conn);
-
-}
-
-
-// input daily report
-function daily_report($data)
-{
-global $conn;
-
-$link = $data["link"];
-$divisi = $data["divisi"];
-$cabang = $data["cabang"];
-$posisi = htmlspecialchars($data["posisi"]);
-$tanggal = $data["tanggal"];
-$aktivitas = htmlspecialchars($data["aktivitas"]);
-$deskripsi = htmlspecialchars($data["deskripsi"]);
-$ip = get_client_ip();
-$date = date("Y-m-d H:i:s");
-
-$result = mysqli_query($conn, "INSERT INTO 2022_daily_report VALUES('', '$link', '$_SESSION[nama]', '$posisi',
-'$divisi', '$cabang', '$aktivitas', '$tanggal', '$deskripsi')");
-
-$query = mysqli_query($conn, "SELECT * FROM 2022_daily_report ORDER BY id DESC LIMIT 1 ");
-$hasil = mysqli_fetch_assoc($query);
-$id_hasil = $hasil["id"];
-
-// die(var_dump($id_hasil));
-
-$uploadsDir = '../assets/img/laporan/daily/';
-$allowedFileType = array('jpg', 'png', 'jpeg');
-
-// Velidate if files exist
-if (!empty(array_filter($_FILES['gambar']['name']))) {
-
-// Loop through file items
-foreach ($_FILES['gambar']['name'] as $id => $val) {
-// Get files upload path
-$fileName = $_FILES['gambar']['name'][$id];
-$ukuran = $_FILES['gambar']['size'][$id];
-$tempLocation = $_FILES['gambar']['tmp_name'][$id];
-
-// die(var_dump($tempLocation));
-$ekstensigambar = explode('.', $fileName);
-$ekstensigambar = strtolower(end($ekstensigambar));
-if (!in_array($ekstensigambar, $allowedFileType)) {
-echo "<script>
-alert('yang di upload bukan gambar');
-</script>";
-return false;
-}
-
-// cek ukuran terlalu bessar
-if ($ukuran > 100000000) {
-echo "<script>
-alert('ukuran terlalu besar Max 30MB');
-</script>";
-return false;
-}
-
-// generate nama batu gambar
-$namagambarbaru = uniqid();
-$namagambarbaru .= '.';
-$namagambarbaru .= $ekstensigambar;
-
-$targetFilePath = $uploadsDir . $namagambarbaru;
-
-
-// Add into MySQL database
-
-move_uploaded_file($tempLocation, $targetFilePath);
-
-$result3 = mysqli_query($conn, "INSERT INTO 2022_galeri_daily VALUES('', '$id_hasil', '$link', '$aktivitas',
-'$_SESSION[nama]',
-'$namagambarbaru')");
-}
-}
-
-// input data ke database
-$result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$posisi', '$ip',
-'$date', '$_SESSION[nama] Divisi $posisi Telah Menginput Daily Report $posisi dengan aktivitas $deskripsi')");
-
-// die(var_dump($simpan));
-return mysqli_affected_rows($conn);
-
-}
-
-// edit_daily
-function edit_daily($data)
-{
-global $conn;
-
-$id = htmlspecialchars($data["id"]);
-$tanggal = $data["tanggal"];
-$aktivitas = htmlspecialchars($data["aktivitas"]);
-$deskripsi = htmlspecialchars($data["deskripsi"]);
-$ip = get_client_ip();
-$date = date("Y-m-d H:i:s");
-
-$result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
-'$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Mengubah Daily Report Dari menjadi aktivitas $aktivitas dengan
-deskripsi
-$deskripsi')");
-
-// update_target
-$update = mysqli_query($conn, "UPDATE `2022_daily_report` SET
-`aktivitas` ='$aktivitas',
-`tgl_aktivitas` ='$tanggal',
-`deskripsi` ='$deskripsi'
-WHERE id = '$id' ");
-
-// die(var_dump($update));
-
-// die(var_dump($result));
 return mysqli_affected_rows($conn);
 
 }

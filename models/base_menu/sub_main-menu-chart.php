@@ -214,21 +214,7 @@
     </div>
 </div>
 
-<div class="col-xl-6 col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Grafik <span>/Income Media Per Gedung</span></h5>
-
-            <!-- Line Chart -->
-            <div class="chart-bar">
-                <canvas id="chartBar_sub_income"></canvas>
-            </div>
-            <!-- End Line Chart -->
-        </div>
-    </div>
-</div>
-
-<div class="col-xl-6 col-md-12">
+<div class="col-xl-12 col-md-12">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Grafik <span>/Income Non Resi</span></h5>

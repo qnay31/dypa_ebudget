@@ -14,6 +14,9 @@
         <div class="row">
             <!-- Left side columns pengajuan-->
             <div class="col-lg-12" id="form-pengajuan">
+                <div class="col-12">
+                    <?php include '../models/base_card/detail-management.php'; ?>
+                </div>
 
                 <!-- Laporan  -->
                 <div class="col-12">

@@ -63,6 +63,10 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
 
     $n_oy2        = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
     $operasional_yayasan2   = $n_oy2->num_rows;
+} elseif ($_SESSION["id_pengurus"] == "kepala_income") {
+    // income media sosial
+    $n_in      = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC");
+    $income    = $n_in->num_rows;
 
 } else {
     // program
@@ -96,10 +100,7 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
     // operasional yayasan
     $n_oy         = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
     $operasional_yayasan    = $n_oy->num_rows;
-
-    // income media sosial
-    $n_in      = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC");
-    $income    = $n_in->num_rows;
+    
 }
 
 ?>
@@ -108,16 +109,16 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
 <li class="nav-item dropdown">
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
         <i class="bi bi-bell"></i>
-        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income > 0) { ?>
+        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan > 0) { ?>
         <span
-            class="badge bg-primary badge-number"><?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income ?></span>
+            class="badge bg-primary badge-number"><?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan ?></span>
         <?php } ?>
     </a><!-- End Notification Icon -->
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ketua-yayasan">
-        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income > 0) { ?>
+        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan > 0) { ?>
         <li class="dropdown-header">
             Kamu mempunyai
-            <?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income ?>
+            <?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan ?>
             notifikasi baru
         </li>
 
@@ -259,6 +260,45 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
                 <div>
                     <h4>Pengajuan Operasional</h4>
                     <p>Ada <?= $operasional_yayasan ?> pengajuan perlu dilaporkan</p>
+                    <p><?= date("d-m-Y") ?></p>
+                </div>
+            </li>
+        </a>
+        <?php } ?>
+
+        <?php } else { ?>
+        <li class="dropdown-header">
+            Tidak ada notifikasi terbaru
+        </li>
+        <?php } ?>
+    </ul><!-- End Notification Dropdown Items -->
+</li><!-- End Notification Nav -->
+<?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+<li class="nav-item dropdown">
+    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+        <i class="bi bi-bell"></i>
+        <?php if ($income > 0) { ?>
+        <span class="badge bg-primary badge-number"><?= $income ?></span>
+        <?php } ?>
+    </a><!-- End Notification Icon -->
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ketua-yayasan">
+        <?php if ($income > 0) { ?>
+        <li class="dropdown-header">
+            Kamu mempunyai
+            <?= $income ?>
+            notifikasi baru
+        </li>
+
+        <?php if ($income > 0) { ?>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check">
+            <li class="notification-item"><span class="badge badge-danger badge-counter">New</span>
+                <i class="bi bi-credit-card text-warning"></i>
+                <div>
+                    <h4>Check Income</h4>
+                    <p>Ada <?= $income ?> income yang perlu dicek</p>
                     <p><?= date("d-m-Y") ?></p>
                 </div>
             </li>

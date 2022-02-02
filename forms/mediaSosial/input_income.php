@@ -5,7 +5,7 @@ if (isset($_POST["tambah"]) ) {
     $link = $_SESSION["username"];
         if(tambah_akun($_POST) > 0 ) {
             echo "<script>
-                    alert('akun baru berhasil ditambah');
+                    alert('Akun baru berhasil ditambah');
                     document.location.href = '$link.php?id_forms=input_income';
                 </script>";    
         } 

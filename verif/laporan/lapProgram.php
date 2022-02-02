@@ -79,41 +79,6 @@ while($r3 = mysqli_fetch_array($sql3))
     $hasil_terpakai3 = array_sum($total_terpakai3);
 }
 
-// program depok
-if (
-    $program == "Program Santunan Yatim" || 
-    $program == "Program Uang Saku Yatim" ||
-    $program == "Program Ceria Yatim" || 
-    $program == "Program Belanja Yatim" || 
-    $program == "Program Papan Yatim" || 
-    $program == "Program Bakti Sosial" || 
-    $program == "Program Makan Sehat Yatim" || 
-    $program == "Program Sembako Yatim" || 
-    $program == "Program Pesantren Yatim" || 
-    $program == "Gaji Kepala Sekolah" || 
-    $program == "Gaji Penjemput"
-    ) {
-    $q6  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE MONTH(tgl_pemakaian) = '$periode' AND laporan = 'Terverifikasi' AND program = '$program' ");
-    $sql6 = $q6;
-
-    while($r6 = mysqli_fetch_array($sql6))
-    {
-        $d_anggaran6 = $r6['dana_anggaran'];
-        $i++;
-        $total_anggaran6[$i] = $d_anggaran6;
-
-        $hasil_anggaran6 = array_sum($total_anggaran6);
-
-        $d_terpakai6 = $r6['dana_terpakai'];
-        $total_terpakai6[$i] = $d_terpakai6;
-
-        $hasil_terpakai6 = array_sum($total_terpakai6);
-    }
-}
-
-
-
-
 // cek nama
 $c_query = mysqli_query($conn, "SELECT bulan FROM 2022_data_program WHERE bulan = '$bulan' ");
 
@@ -136,7 +101,7 @@ if ($program == 'Program Pendidikan Yatim' && $cabang == 'Depok') {
             mysqli_query($conn, "UPDATE `2022_data_program` SET 
             `anggaran_kesehatan`           ='$hasil_anggaran2',
             `terpakai_kesehatan`           ='$hasil_terpakai2',
-            `anggaran_global`               ='$hasil_anggaran',
+            `anggaran_global`              ='$hasil_anggaran',
             `terpakai_global`               ='$hasil_terpakai'
             WHERE bulan = '$bulan' ");   
         }
@@ -145,8 +110,6 @@ if ($program == 'Program Pendidikan Yatim' && $cabang == 'Depok') {
     } else {
         if (mysqli_fetch_assoc($c_query)) {
             mysqli_query($conn, "UPDATE `2022_data_program` SET 
-            `anggaran_program_depok`        ='$hasil_anggaran6',
-            `terpakai_program_depok`        ='$hasil_terpakai6',
             `anggaran_global`               ='$hasil_anggaran',
             `terpakai_global`               ='$hasil_terpakai'
             WHERE bulan = '$bulan' ");   

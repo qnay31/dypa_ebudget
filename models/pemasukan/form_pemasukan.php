@@ -13,13 +13,7 @@
             <div class="form-text mb-2">
                 Income
             </div>
-            <select class="form-select" aria-label="Default select example" name="gedung" required
-                oninvalid="this.setCustomValidity('Pilih salah satu income')" oninput="this.setCustomValidity('')"
-                id="incomeHumas">
-                <option selected value="">Pilih Salah Satu Income</option>
-                <option value="Fecebook Depok">Income Fecebook Depok</option>
-                <option value="Tanpa Resi">Income Tanpa Resi</option>
-            </select>
+            <input type="text" name="gedung" class="form-control" value="Tanpa Resi" readonly>
         </div>
 
         <div class="mb-3">

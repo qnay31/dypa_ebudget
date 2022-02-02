@@ -3,12 +3,12 @@
 // ketua yayasan
 $kYas = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus = 'ketua_yayasan' ");
 
-// kepala cabang
-$kCab = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus = 'kepala_cabang' ");
 
 // management keuangan
 $kMuang = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus = 'management_keuangan' ");
 
+// kepala cabang
+$kInc = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus = 'kepala_income' ");
 
 // facebook depok
 // manager

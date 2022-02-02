@@ -23,6 +23,7 @@ $table = 'income_media';
 // Table's primary key
 $primaryKey = 'id';
  
+$where  = "status = 'OK' ";
 // Array of database columns which should be read and sent back to DataTables.
 // The `db` parameter represents the column name in the database, while the `dt`
 // parameter represents the DataTables column identifier. In this case simple
@@ -30,18 +31,16 @@ $primaryKey = 'id';
 $columns = array(
     array( 'db' => 'id', 'dt' => 0 ),
     array( 'db' => 'pemegang', 'dt' => 1 ),
-    array( 'db' => 'id', 'dt' => 2 ),
+    array( 
+        'db' => 'id_pengurus', 
+        'dt' => 2,
+        'formatter' => function($d, $row) {
+            $d = "Facebook Depok";
+            return $d;
+        } ),
     array( 'db' => 'nama_akun',  'dt' => 3 ),
-    array( 'db' => 'cabang',   'dt' => 4 ),
-    array(
-        'db'        => 'tanggal_tf',
-        'dt'        => 5,
-        'formatter' => function( $d, $row ) {
-            $convert = date( 'd F Y', strtotime($d));
-            $bulan   = substr($convert, 2);
-            return $bulan;
-        }
-    ),
+    array( 'db' => 'status',   'dt' => 4 ),
+    array( 'db' => 'id','dt' => 5,),
     array( 'db' => 'nama_donatur',     'dt' => 6 ),
     array(
         'db'        => 'tanggal_tf',
@@ -77,5 +76,5 @@ $sql_details = array(
 require( '../ssp.class.php' );
  
 echo json_encode(
-    SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+    SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns, $where )
 );

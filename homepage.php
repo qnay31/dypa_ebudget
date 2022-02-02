@@ -110,6 +110,18 @@ include 'base/header.php'
         include 'database/harianPemasukan.php';
     ?>
 
+    <!-- database crosscheck pemasukan media sosial harian-->
+    <?php } elseif ($_GET["id_database"] == "database_crossCheck") { ?>
+    <?php
+        include 'database/crossCheck.php';
+    ?>
+
+    <!-- database resi media sosial -->
+    <?php } elseif ($_GET["id_database"] == "database_resiMedia") { ?>
+    <?php
+        include 'database/resiMedia.php';
+    ?>
+
     <!-- form pengajuan -->
     <?php } elseif ($_GET["id_forms"] == "daftar_pengajuan") { ?>
     <?php

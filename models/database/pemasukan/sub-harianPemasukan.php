@@ -24,11 +24,13 @@
                     while ($r = $q->fetch_assoc()) {
                         $convert   = convertDateDBtoIndo($r['tanggal_tf']);
                         $bulan     = substr($convert, 2);
+                        $nama      = strtolower($r['pemegang']);
+                        $donatur   = strtolower($r['nama_donatur']);
                 ?>
 
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['pemegang']) ?></td>
+                    <td style="text-align: center;"><?= ucwords($nama) ?></td>
                     <td style="text-align: center;">
                         <?php if ($r["id_pengurus"] == "instagram") { ?>
                         Income Instagram
@@ -42,7 +44,7 @@
                     <td style="text-align: center;"><?= ucwords($r['nama_akun']) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
                     <td style="text-align: center;"><?= $bulan ?></td>
-                    <td><?= ucwords($r['nama_donatur']) ?></td>
+                    <td><?= ucwords($donatur) ?></td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tanggal_tf'])); ?></td>
                     <td style="text-align: center;"><?= ucwords($r['bank']) ?></td>

@@ -5,8 +5,6 @@ $q  = mysqli_query($conn, "SELECT * FROM income_media WHERE id_pengurus = '$_SES
 $q2  = mysqli_query($conn, "SELECT * FROM income_media WHERE id_pengurus = '$_SESSION[id_pengurus]' AND nomor_id = '$_SESSION[id]' AND status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC, jam_tf DESC");
 $s = $q2->num_rows;
 
-$q3  = mysqli_query($conn, "SELECT * FROM income_media WHERE id_pengurus = '$_SESSION[id_pengurus]' AND nomor_id = '$_SESSION[id]' AND status = 'OK' ORDER BY `tanggal_tf` DESC, jam_tf DESC");
-
 
 // die(var_dump($s));
 ?>
@@ -35,10 +33,6 @@ $q3  = mysqli_query($conn, "SELECT * FROM income_media WHERE id_pengurus = '$_SE
                 <div class="col-12">
                     <div class="card">
                         <?php include '../models/mediaSosial/verifikasi_income.php'; ?>
-                    </div>
-
-                    <div class="card">
-                        <?php include '../models/mediaSosial/verifSukses_income.php'; ?>
                     </div>
                 </div><!-- End Laporan  -->
             </div><!-- End Left side columns -->

@@ -67,6 +67,12 @@ $periode  = $_GET["id_p"];
 
             $hasil_income = array_sum($total_income);
         }
+
+        $uData = mysqli_query($conn, "UPDATE income_media SET 
+                            verif = 'Verif'
+                            WHERE 
+                            tanggal_tf = '$data[tgl_pemasukan]' AND status = 'OK' ");
+
     }
     
 
@@ -79,7 +85,7 @@ $periode  = $_GET["id_p"];
     
     // sub cabang pemasukan
     // celengan
-    if ($id_pengurus == 'management_keuangan' && $gedung == 'Fecebook Depok') {
+    if ($id_pengurus == 'kepala_income' && $gedung == 'Fecebook Depok') {
         if (mysqli_fetch_assoc($c_query)) {
                 $update2 = mysqli_query($conn, "UPDATE `2022_data_income` SET 
                 `income_global`  ='$hasil_income'

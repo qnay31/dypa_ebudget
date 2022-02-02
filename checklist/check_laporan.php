@@ -1,5 +1,9 @@
 <?php
-    if ($_GET["id_checklist"] == "checklist_pengajuan" || $_GET["id_checklist"] == "checklist_verifikasi" || $_GET["id_checklist"] == "checklist_laporan" || $_GET["id_checklist"] == "checklist_verifikasi" || $_GET["id_checklist"] == "checklist_laporan") {
+    if (
+        $_GET["id_checklist"] == "checklist_pengajuan" || 
+        $_GET["id_checklist"] == "checklist_verifikasi" || 
+        $_GET["id_checklist"] == "checklist_laporan"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Belum Laporan'  AND status = 'Pending'ORDER BY `tgl_pengajuan` DESC");
         $s = $q->num_rows;
         
@@ -9,7 +13,11 @@
         $q3  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_pengajuan` DESC");
         $s3 = $q3->num_rows;
     
-    } elseif ($_GET["id_checklist"] == "checklist_pengajuanAset" || $_GET["id_checklist"] == "checklist_verifikasiAset" || $_GET["id_checklist"] == "checklist_laporanAset") {
+    } elseif (
+        $_GET["id_checklist"] == "checklist_pengajuanAset" || 
+        $_GET["id_checklist"] == "checklist_verifikasiAset" || 
+        $_GET["id_checklist"] == "checklist_laporanAset"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_aset_yayasan WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
         $s = $q->num_rows;
         
@@ -19,7 +27,11 @@
         $q3  = mysqli_query($conn, "SELECT * FROM 2022_aset_yayasan WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
         $s3 = $q3->num_rows;
 
-    } elseif ($_GET["id_checklist"] == "checklist_pengajuanUangmakan" || $_GET["id_checklist"] == "checklist_verifikasiUangmakan" || $_GET["id_checklist"] == "checklist_laporanUangmakan") {
+    } elseif (
+        $_GET["id_checklist"] == "checklist_pengajuanUangmakan" || 
+        $_GET["id_checklist"] == "checklist_verifikasiUangmakan" || 
+        $_GET["id_checklist"] == "checklist_laporanUangmakan"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_uang_makan WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
         $s = $q->num_rows;
         
@@ -29,7 +41,11 @@
         $q3  = mysqli_query($conn, "SELECT * FROM 2022_uang_makan WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
         $s3 = $q3->num_rows;
     
-    } elseif ($_GET["id_checklist"] == "checklist_pengajuanGajikaryawan" || $_GET["id_checklist"] == "checklist_verifikasiGajikaryawan" || $_GET["id_checklist"] == "checklist_laporanGajikaryawan") {
+    } elseif (
+        $_GET["id_checklist"] == "checklist_pengajuanGajikaryawan" || 
+        $_GET["id_checklist"] == "checklist_verifikasiGajikaryawan" || 
+        $_GET["id_checklist"] == "checklist_laporanGajikaryawan"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_gaji_karyawan WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
         $s = $q->num_rows;
         
@@ -39,7 +55,11 @@
         $q3  = mysqli_query($conn, "SELECT * FROM 2022_gaji_karyawan WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
         $s3 = $q3->num_rows;
 
-    } elseif ($_GET["id_checklist"] == "checklist_pengajuanAnggaranlain" || $_GET["id_checklist"] == "checklist_verifikasiAnggaranlain" || $_GET["id_checklist"] == "checklist_laporanAnggaranlain") {
+    } elseif (
+        $_GET["id_checklist"] == "checklist_pengajuanAnggaranlain" || 
+        $_GET["id_checklist"] == "checklist_verifikasiAnggaranlain" || 
+        $_GET["id_checklist"] == "checklist_laporanAnggaranlain"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_anggaran_lain WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
         $s = $q->num_rows;
         
@@ -49,7 +69,11 @@
         $q3  = mysqli_query($conn, "SELECT * FROM 2022_anggaran_lain WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
         $s3 = $q3->num_rows;
 
-    } elseif ($_GET["id_checklist"] == "checklist_pengajuanMaintenance" || $_GET["id_checklist"] == "checklist_verifikasiMaintenance" || $_GET["id_checklist"] == "checklist_laporanMaintenance") {
+    } elseif (
+        $_GET["id_checklist"] == "checklist_pengajuanMaintenance" || 
+        $_GET["id_checklist"] == "checklist_verifikasiMaintenance" || 
+        $_GET["id_checklist"] == "checklist_laporanMaintenance"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_maintenance WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
         $s = $q->num_rows;
         
@@ -59,7 +83,11 @@
         $q3  = mysqli_query($conn, "SELECT * FROM 2022_maintenance WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
         $s3 = $q3->num_rows;
 
-    } elseif ($_GET["id_checklist"] == "checklist_pengajuanOperasional" || $_GET["id_checklist"] == "checklist_verifikasiOperasional" || $_GET["id_checklist"] == "checklist_laporanOperasional") {
+    } elseif (
+        $_GET["id_checklist"] == "checklist_pengajuanOperasional" || 
+        $_GET["id_checklist"] == "checklist_verifikasiOperasional" || 
+        $_GET["id_checklist"] == "checklist_laporanOperasional"
+        ) {
         $q  = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
         $s = $q->num_rows;
         

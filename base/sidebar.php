@@ -63,7 +63,9 @@
             $_GET["id_database"] == "database_operasional_yayasan" || 
             $_GET["id_database"] == "database_pemasukanMedia" || 
             $_GET["id_database"] == "database_harianMedia" || 
-            $_GET["id_database"] == "database_akunMedia"
+            $_GET["id_database"] == "database_akunMedia" ||
+            $_GET["id_database"] == "database_resiMedia" ||
+            $_GET["id_database"] == "database_crossCheck"
             ) { ?>
         <li class="nav-item">
             <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -871,6 +873,66 @@
 
                 <?php } ?>
 
+                <?php } elseif($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php if ($_GET["id_database"] == "database_pemasukanMedia") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+
+                <?php } elseif ($_GET["id_database"] == "database_harianMedia") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+
+                <?php } else { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck" class="active">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
+
                 <?php } else { ?>
                 <?php if ($_GET["id_database"] == "database_harianMedia") { ?>
                 <li>
@@ -882,6 +944,31 @@
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_resiMedia">
+                        <i class="bi bi-circle"></i><span>Resi Income</span>
+                    </a>
+                </li>
+
+                <?php } elseif ($_GET["id_database"] == "database_resiMedia") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
+                        <i class="bi bi-circle"></i><span>Laporan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_resiMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Resi Income</span>
                     </a>
                 </li>
 
@@ -897,6 +984,12 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_resiMedia">
+                        <i class="bi bi-circle"></i><span>Resi Income</span>
+                    </a>
+                </li>
                 <?php } ?>
                 <?php } ?>
             </ul>
@@ -910,7 +1003,7 @@
             </a>
             <?php } ?>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_program">
                         <i class="bi bi-circle"></i><span>Lap Global Program</span>
@@ -983,6 +1076,27 @@
                     </a>
                 </li>
 
+                <?php } elseif($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+
+
                 <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
@@ -995,6 +1109,13 @@
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_resiMedia">
+                        <i class="bi bi-circle"></i><span>Resi Income</span>
+                    </a>
+                </li>
+
                 <?php } ?>
             </ul>
         </li>
@@ -1031,17 +1152,10 @@
                     $_GET["id_forms"] == "edit_pengajuan" || 
                     $_GET["id_forms"] == "forms_laporan" || 
                     $_GET["id_forms"] == "edit_laporan" 
-                    ){ 
-            ?>
+                    ){ ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_forms=daftar_pengajuan" class="active">
                         <i class="bi bi-circle"></i><span>Pengajuan & Laporan</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media Sosial</span>
                     </a>
                 </li>
 
@@ -1051,12 +1165,6 @@
                     $_GET["id_forms"] == "edit_pemasukan" ||
                     $_GET["id_forms"] == "forms_verifPemasukan"
                     ) { ?>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_forms=daftar_pengajuan">
-                        <i class="bi bi-circle"></i><span>Pengajuan & Laporan</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check" class="active">
@@ -1074,9 +1182,7 @@
             </ul>
         </li>
 
-        <?php } elseif (
-            $_SESSION["id_pengurus"] == "ketua_yayasan") { 
-        ?>
+        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
 
         <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
         <li class="nav-item">
@@ -1089,7 +1195,15 @@
                         <i class="bi bi-circle"></i><span>Pengajuan & Laporan</span>
                     </a>
                 </li>
+            </ul>
+        </li>
 
+        <?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Form</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check">
                         <i class="bi bi-circle"></i><span>Pemasukan Media Sosial</span>
@@ -1097,6 +1211,7 @@
                 </li>
             </ul>
         </li>
+
         <?php } else { ?>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">

@@ -27,7 +27,7 @@
                                 </div>
                                 <input type="hidden" name="id" value="<?= $_SESSION["id"] ?>">
                                 <input type="hidden" name="link" value="<?= $_SESSION["id_pengurus"] ?>">
-                                <input type="text" class="form-control" name="nama" value="<?= $_SESSION["nama"] ?>"
+                                <input type="text" class="form-control" name="nama" value="<?= ucwords($nama) ?>"
                                     readonly>
                             </div>
 
