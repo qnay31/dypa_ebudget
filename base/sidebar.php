@@ -860,6 +860,12 @@
                 </li>
 
                 <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
                     </a>
