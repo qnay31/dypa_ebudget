@@ -13,7 +13,7 @@
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
                     <h6><?= ucwords($nama) ?></h6>
-                    <span><?= $_SESSION["posisi"] ?> <?= $_SESSION["cabang"] ?></span>
+                    <span><?= $_SESSION["posisi"] ?></span>
                 </li>
                 <li>
                     <hr class="dropdown-divider">
