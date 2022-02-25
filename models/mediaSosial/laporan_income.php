@@ -27,7 +27,7 @@
                                 </div>
                                 <input type="hidden" name="id" value="<?= $_SESSION["id"] ?>">
                                 <input type="hidden" name="link" value="<?= $_SESSION["id_pengurus"] ?>">
-                                <input type="text" class="form-control" name="nama" value="<?= ucwords($nama) ?>"
+                                <input type="text" class="form-control" name="nama" value="<?= $_SESSION["nama"] ?>"
                                     readonly>
                             </div>
 
@@ -35,7 +35,7 @@
                                 <span class="input-group-text" id="basic-addon1">Akun</span>
                                 <select class="form-select" name="akun" aria-label="Default select example" required
                                     oninvalid="this.setCustomValidity('Pilih salah satu akun')"
-                                    oninput="this.setCustomValidity('')">
+                                    oninput="this.setCustomValidity('')" id="akun">
                                     <option selected value="">- Pilih Salah Satu Akun -</option>
                                     <?php
                                         while ($data = mysqli_fetch_array($query)) { ?>
@@ -56,9 +56,27 @@
                                     oninput="this.setCustomValidity('')">
                             </div>
 
+                            <div class="form-group" id="teman"></div>
+
+                            <div class="form-group mb-3 keteranganTeman">
+                                <div class="form-text mb-2">
+                                    Keterangan Teman
+                                </div>
+                                <select class="form-select" name="kTeman" aria-label="Default select example" required
+                                    oninvalid="this.setCustomValidity('Pilih salah satu keterangan')"
+                                    oninput="this.setCustomValidity('')" id="kTeman">
+                                    <option selected value="">- Pilih Salah Satu Keterangan -</option>
+                                    <option value="Tambah Teman">Tambah Teman</option>
+                                    <option value="Hapus Teman">Hapus Teman</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group" id="keterangan">
+                            </div>
+
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><b>Total Serangan</b></span>
-                                <input type="text" class="form-control admin_rp" name="totalSerangan" maxlength="11"
+                                <input type="text" class="form-control" name="totalSerangan" id="rupiah" maxlength="11"
                                     placeholder="Total Penyerangan" onkeypress="return hanyaAngka(event)"
                                     autocomplete="off" required
                                     oninvalid="this.setCustomValidity('Jumlah serangan harus diisi')"
@@ -67,7 +85,7 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><b>Donatur</b></span>
-                                <input type="text" class="form-control admin_rp" name="donatur" maxlength="11"
+                                <input type="text" class="form-control" name="donatur" id="rupiah2" maxlength="11"
                                     placeholder="Total Donatur" onkeypress="return hanyaAngka(event)" autocomplete="off"
                                     required oninvalid="this.setCustomValidity('Jumlah donatur harus diisi')"
                                     oninput="this.setCustomValidity('')">
@@ -164,12 +182,17 @@
                     <th scope="col">Akun</th>
                     <th scope="col">Tgl Laporan</th>
                     <th scope="col">Menu</th>
+                    <th scope="col">Keterangan</th>
+                    <th scope="col">Total Teman</th>
+                    <th scope="col">Add Pertemanan</th>
+                    <th scope="col">Teman Baru</th>
+                    <th scope="col">Hapus Teman</th>
                     <th scope="col">Total Serangan</th>
                     <th scope="col">Respon</th>
                     <th scope="col">Minta Norek</th>
                     <th scope="col">Tanya Alamat</th>
                     <th scope="col">Insya Allah</th>
-                    <th scope="col">B. Bisa Bantu</th>
+                    <th scope="col">Belum Bisa</th>
                     <th scope="col">Tidak Respon</th>
                     <th scope="col">Donatur</th>
                     <th scope="col">Total Income</th>
@@ -191,11 +214,18 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-primary"
                             href="../admin/<?= $_SESSION["username"] ?>.php?id_forms=edit_laporanMedia&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Laporan ini mau diedit?!')">Edit</a> ||
+                            onclick="return confirm('Laporan ini mau diedit?!')"><i
+                                class="bi bi-pencil-square text-white"></i></a> ||
                         <a class="btn btn-danger"
                             href="../models/mediaSosial/hapus_laporan.php?id_hapus=<?= $r["nama_akun"] ?>&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin Laporan <?= $r[nama_akun] ?> ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin Laporan <?= $r[nama_akun] ?> ini mau dihapus?!')"><i
+                                class="bi bi-trash text-white"></i></a>
                     </td>
+                    <td style="text-align: center;"><?= ucwords($r['keterangan']) ?></td>
+                    <td style="text-align: center;"><?= number_format($r['jumlahTeman'],0,"." , ".") ?></td>
+                    <td style="text-align: center;"><?= number_format($r['jumlahAdd'],0,"." , ".") ?></td>
+                    <td style="text-align: center;"><?= number_format($r['temanBaru'],0,"." , ".") ?></td>
+                    <td style="text-align: center;"><?= number_format($r['hapusTeman'],0,"." , ".") ?></td>
                     <td style="text-align: center;"><?= number_format($r['totalSerangan'],0,"." , ".") ?></td>
                     <td style="text-align: center;"><?= number_format($r['respon'],0,"." , ".") ?></td>
                     <td style="text-align: center;"><?= number_format($r['minta_norek'],0,"." , ".") ?></td>
@@ -210,7 +240,10 @@
             </tbody>
             <tfoot>
                 <tr style="text-align: center;">
-                    <th colspan="6">Total</th>
+                    <th colspan="8">Total</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>

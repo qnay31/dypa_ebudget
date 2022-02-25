@@ -37,6 +37,9 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
     }
 }
 
+if ($_SESSION["id_pengurus"] == "facebook_depok") {
+    $_SESSION["media"] = $_GET["id_database"];
+}
 
 ?>
 <!DOCTYPE html>
@@ -405,7 +408,7 @@ include 'base/header.php'
     ?>
 
     <?php } else { ?>
-    <?php if ($_GET["id_akun"] == "") { ?>
+    <?php if ($_GET["id_accountKey"] == "") { ?>
     <?php
         include 'base/main-menu.php';
     ?>

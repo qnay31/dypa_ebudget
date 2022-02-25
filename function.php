@@ -290,6 +290,21 @@ $link = $data["link"];
 $nama = htmlspecialchars($data["nama"]);
 $akun = htmlspecialchars(mysqli_real_escape_string($conn, $data["akun"]));
 $tanggal = $data["tanggal"];
+
+$t_dataTeman = htmlspecialchars($data["dataTeman"]);
+$a_dataTeman = RemoveSpecialChar($t_dataTeman);
+$dataTeman = str_replace(' ', '', $a_dataTeman);
+
+$t_dataTemanBaru = htmlspecialchars($data["dataTemanBaru"]);
+$a_dataTemanBaru = RemoveSpecialChar($t_dataTemanBaru);
+$dataTemanBaru = str_replace(' ', '', $a_dataTemanBaru);
+
+$keterangan = htmlspecialchars($data["kTeman"]);
+
+$t_temanAdd = htmlspecialchars($data["temanAdd"]);
+$a_temanAdd = RemoveSpecialChar($t_temanAdd);
+$temanAdd = str_replace(' ', '', $a_temanAdd);
+
 $t_serangan = htmlspecialchars($data["totalSerangan"]);
 $a_serangan = RemoveSpecialChar($t_serangan);
 $serangan = str_replace(' ', '', $a_serangan);
@@ -340,9 +355,23 @@ alert('Akun ini sebelumnya sudah dilaporkan pada tanggal yang dilaporkan');
 return false;
 }
 
+if ($keterangan == "Tambah Teman") {
+$temanBaru = $dataTemanBaru - $dataTeman;
 $result = mysqli_query($conn, "INSERT INTO laporan_media VALUES('', '$link', '$id', '$_SESSION[posisi]',
-'$nama', '$akun', '$tanggal', '$serangan', '$donatur', '$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu',
-'$tRespon', '$income')");
+'$nama', '$akun', '$tanggal', '$keterangan', '$dataTemanBaru', '$temanAdd', '$temanBaru', '', '$serangan', '$donatur',
+'$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income')");
+
+} elseif ($keterangan == "Hapus Teman") {
+$hapusTeman = $dataTemanBaru-$dataTeman;
+$result = mysqli_query($conn, "INSERT INTO laporan_media VALUES('', '$link', '$id', '$_SESSION[posisi]',
+'$nama', '$akun', '$tanggal', '$keterangan', '$dataTemanBaru', '', '', '$hapusTeman', '$serangan', '$donatur',
+'$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income')");
+// die(var_dump($result));
+} else {
+$result = mysqli_query($conn, "INSERT INTO laporan_media VALUES('', '$link', '$id', '$_SESSION[posisi]',
+'$nama', '$akun', '$tanggal', '', '$dataTeman', '', '', '', '$serangan', '$donatur', '$respon',
+'$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income')");
+}
 
 // input data ke database
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
@@ -362,6 +391,21 @@ $id = $data["id_unik"];
 $link = $data["link"];
 $akun = htmlspecialchars(mysqli_real_escape_string($conn, $data["akun"]));
 $tanggal = $data["tanggal"];
+
+$t_dataTeman = htmlspecialchars($data["dataTeman"]);
+$a_dataTeman = RemoveSpecialChar($t_dataTeman);
+$dataTeman = str_replace(' ', '', $a_dataTeman);
+
+$t_dataTemanBaru = htmlspecialchars($data["dataTemanBaru"]);
+$a_dataTemanBaru = RemoveSpecialChar($t_dataTemanBaru);
+$dataTemanBaru = str_replace(' ', '', $a_dataTemanBaru);
+
+$keterangan = htmlspecialchars($data["kTeman"]);
+
+$t_temanAdd = htmlspecialchars($data["temanAdd"]);
+$a_temanAdd = RemoveSpecialChar($t_temanAdd);
+$temanAdd = str_replace(' ', '', $a_temanAdd);
+
 $t_serangan = htmlspecialchars($data["totalSerangan"]);
 $a_serangan = RemoveSpecialChar($t_serangan);
 $serangan = str_replace(' ', '', $a_serangan);
@@ -401,8 +445,14 @@ $income = str_replace(' ', '', $anggar);
 $ip = get_client_ip();
 $date = date("Y-m-d H:i:s");
 
+if ($keterangan == "Tambah Teman") {
+$temanBaru = $dataTemanBaru - $dataTeman;
 $update = mysqli_query($conn, "UPDATE `laporan_media` SET
 `tgl_laporan` ='$tanggal',
+`keterangan` ='$keterangan',
+`jumlahTeman` ='$dataTemanBaru',
+`jumlahAdd` ='$temanAdd',
+`temanBaru` ='$temanBaru',
 `totalSerangan` ='$serangan',
 `donatur`= '$donatur',
 `respon` ='$respon',
@@ -413,6 +463,40 @@ $update = mysqli_query($conn, "UPDATE `laporan_media` SET
 `tidak_respon`= '$tRespon',
 `total_income`= '$income'
 WHERE id = '$id' ");
+
+} elseif ($keterangan == "Hapus Teman") {
+$hapusTeman = $dataTemanBaru-$dataTeman;
+$update = mysqli_query($conn, "UPDATE `laporan_media` SET
+`tgl_laporan` ='$tanggal',
+`jumlahTeman` ='$dataTemanBaru',
+`jumlahAdd` ='$temanAdd',
+`hapusTeman` ='$hapusTeman',
+`totalSerangan` ='$serangan',
+`donatur`= '$donatur',
+`respon` ='$respon',
+`alamat` ='$alamat',
+`insya_allah`= '$insya_allah',
+`minta_norek`= '$norek',
+`belumbisa_bantu`= '$bbBantu',
+`tidak_respon`= '$tRespon',
+`total_income`= '$income'
+WHERE id = '$id' ");
+
+} else {
+$update = mysqli_query($conn, "UPDATE `laporan_media` SET
+`tgl_laporan` ='$tanggal',
+`jumlahTeman` ='$dataTeman',
+`totalSerangan` ='$serangan',
+`donatur`= '$donatur',
+`respon` ='$respon',
+`alamat` ='$alamat',
+`insya_allah`= '$insya_allah',
+`minta_norek`= '$norek',
+`belumbisa_bantu`= '$bbBantu',
+`tidak_respon`= '$tRespon',
+`total_income`= '$income'
+WHERE id = '$id' ");
+}
 
 // input data ke database
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',

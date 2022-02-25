@@ -46,9 +46,14 @@ $akun_depok = mysqli_num_rows($AFB_depok2);
                         </ul>
 
                         <div class="tab-content pt-2">
+                            <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
                             <?php include '../models/profil/dataPengurus/admin.php' ?>
 
                             <?php include '../models/profil/dataPengurus/fb_depok.php'; ?>
+
+                            <?php } else { ?>
+                            <?php include '../models/profil/dataPengurus/fb_depok.php'; ?>
+                            <?php } ?>
                         </div><!-- End Bordered Tabs -->
                     </div>
                 </div>

@@ -42,6 +42,14 @@
             </a>
         </li>
 
+        <?php } elseif ($_GET["id_accountKey"] == true) { ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= $_SESSION["username"] ?>.php">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
         <?php } else { ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= $_SESSION["username"] ?>.php">
@@ -2594,10 +2602,17 @@
                 <span>Log aktivitas</span>
             </a>
         </li>
+        <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= $_SESSION["username"] ?>.php?id_profil=dataPengurus">
+                <i class="bi bi-people"></i>
+                <span>Data Pengurus</span>
+            </a>
+        </li>
         <?php } ?>
         <!-- End data member Page Nav -->
 
-        <?php } elseif ($_GET["id_profil"] == "dataPengurus") { ?>
+        <?php } elseif ($_GET["id_profil"] == "dataPengurus" || $_GET["id_accountKey"] == true) { ?>
         <li class="nav-item">
             <a class="nav-link collapsed" href="<?= $_SESSION["username"] ?>.php?id_profil=myProfil">
                 <i class="bi bi-person"></i>
@@ -2605,6 +2620,7 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
+        <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= $_SESSION["username"] ?>.php?id_profil=dataPengurus">
                 <i class="bi bi-people"></i>
@@ -2618,6 +2634,15 @@
                 <span>Log aktivitas</span>
             </a>
         </li>
+
+        <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
+        <li class="nav-item">
+            <a class="nav-link" href="<?= $_SESSION["username"] ?>.php?id_profil=dataPengurus">
+                <i class="bi bi-people"></i>
+                <span>Data Pengurus</span>
+            </a>
+        </li><!-- End data member Page Nav -->
+        <?php } ?>
 
         <?php } elseif ($_GET["id_profil"] == "logActivity") { ?>
         <li class="nav-item">
@@ -2663,6 +2688,14 @@
                 <span>Log aktivitas</span>
             </a>
         </li>
+
+        <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= $_SESSION["username"] ?>.php?id_profil=dataPengurus">
+                <i class="bi bi-people"></i>
+                <span>Data Pengurus</span>
+            </a>
+        </li><!-- End data member Page Nav -->
         <?php } ?>
         <!-- End Log Activity Page Nav -->
         <?php } ?>

@@ -32,6 +32,41 @@ $("#logistikGedung").change(function() {
     });
 });
 
+$("#akun").change(function() {
+    // variabel dari nilai combo box 
+    var akun = $("#akun").val();
+    // console.log(id_kendaraan);
+    // Menggunakan ajax untuk mengirim dan dan menerima data dari server
+    $.ajax({
+        type: "POST",
+        dataType: "html",
+        url: "../list_pertemanan.php",
+        data: "akun=" + akun,
+        success: function(data) {
+            $("#teman").html(data);
+            // $("#keterangan").html(data);
+            // $("#tanggal").html(data);
+        }
+    });
+});
+
+$("#kTeman").change(function() {
+    // variabel dari nilai combo box 
+    var kTeman = $("#kTeman").val();
+    // console.log(id_kendaraan);
+    // Menggunakan ajax untuk mengirim dan dan menerima data dari server
+    $.ajax({
+        type: "POST",
+        dataType: "html",
+        url: "../list_keteranganTeman.php",
+        data: "kTeman=" + kTeman,
+        success: function(data) {
+            $("#keterangan").html(data);
+            // $("#tanggal").html(data);
+        }
+    });
+});
+
 $(document).on('change', '.file-input', function() {
 
     var filesCount = $(this)[0].files.length;

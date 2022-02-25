@@ -19,7 +19,10 @@
     .buttons-collection,
     .profile .nav-item,
     .revenue-card .akun,
+    .incomeMedia .bulanan,
+    .incomeMedia .tahunan,
     .customers-card .akun,
+    .dashboard .nav-item,
     #akunMedia .btn-danger,
     #form-pengajuan .list-group,
     #profile-overview .col-lg-9,
@@ -96,6 +99,9 @@
     .buttons-excel,
     .buttons-collection,
     .profile .nav-item,
+    .incomeMedia .bulanan,
+    .dashboard .nav-item,
+    .incomeMedia .tahunan,
     .revenue-card .akun,
     .customers-card .akun,
     #akunMedia .btn-danger,
@@ -160,7 +166,10 @@
     .table-responsive .btn-success,
     .modal-footer .btn-secondary,
     .buttons-excel,
+    .incomeMedia .bulanan,
+    .incomeMedia .tahunan,
     .buttons-collection,
+    .dashboard .nav-item,
     .profile .nav-item,
     .revenue-card .akun,
     .customers-card .akun,
@@ -341,4 +350,21 @@
 
 .viewData:hover {
     color: white;
+}
+
+.incomeMedia a {
+    text-decoration: underline;
+}
+
+.incomeMedia {
+    padding: 0 1.2em;
+}
+
+.incomeMedia .tahunan {
+    text-align: right;
+}
+
+.tabNav {
+    justify-content: center;
+    display: flex;
 }

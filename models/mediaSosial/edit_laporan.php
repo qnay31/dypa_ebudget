@@ -26,9 +26,51 @@
                 value="<?= $data["tgl_laporan"] ?>">
         </div>
 
+        <?php if ($data["keterangan"] == "") { ?>
+
+        <?php } else { ?>
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1"><b>Teman Sebelumnya</b></span>
+            <input type="text" class="form-control admin_rp" name="dataTeman" value="<?= $dataOld; ?>" readonly>
+        </div>
+
+        <?php } ?>
+
+        <?php if ($data["keterangan"] == "") { ?>
+
+        <?php } else { ?>
+        <div class="form-group mb-3">
+            <div class="form-text mb-2">
+                Keterangan
+            </div>
+            <input type="text" class="form-control" name="kTeman" value="<?= $data["keterangan"] ?>" readonly>
+        </div>
+        <?php } ?>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><b>Teman saat ini</b></span>
+            <input type="text" class="form-control admin_rp" name="dataTemanBaru" maxlength="11"
+                placeholder="Total Teman" onkeypress="return hanyaAngka(event)" autocomplete="off" required
+                oninvalid="this.setCustomValidity('Jumlah Teman harus diisi')" oninput="this.setCustomValidity('')"
+                value="<?= number_format($data["jumlahTeman"],0,"." , ".") ?>">
+        </div>
+
+        <?php if ($data["keterangan"] == "Tambah Teman") { ?>
+        <input type="hidden" name="kTeman" value="<?= $data["keterangan"]; ?>">
+        <div class="input-group mb-3 keteranganTeman">
+            <span class="input-group-text" id="basic-addon1"><b>Jumlah Add Pertemanan</b></span>
+            <input type="text" class="form-control admin_rp" name="temanAdd" maxlength="11"
+                placeholder="Total Add Pertemanan" onkeypress="return hanyaAngka(event)" autocomplete="off" required
+                oninvalid="this.setCustomValidity('Jumlah add pertemanan harus diisi')"
+                oninput="this.setCustomValidity('')" value="<?= number_format($data["jumlahAdd"],0,"." , ".") ?>">
+        </div>
+
+        <?php } else { ?>
+        <?php } ?>
+
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Total Serangan</b></span>
-            <input type="text" class="form-control admin_rp" name="totalSerangan" maxlength="11"
+            <input type="text" class="form-control" name="totalSerangan" id="rupiah" maxlength="11"
                 placeholder="Total Penyerangan" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah serangan harus diisi')" oninput="this.setCustomValidity('')"
                 value="<?= number_format($data["totalSerangan"],0,"." , ".") ?>">
@@ -36,15 +78,15 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Donatur</b></span>
-            <input type="text" class="form-control admin_rp" name="donatur" maxlength="11" placeholder="Total Donatur"
-                onkeypress="return hanyaAngka(event)" autocomplete="off" required
+            <input type="text" class="form-control" name="donatur" id="rupiah2" maxlength="11"
+                placeholder="Total Donatur" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah donatur harus diisi')" oninput="this.setCustomValidity('')"
                 value="<?= number_format($data["donatur"],0,"." , ".") ?>">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Respon</b></span>
-            <input type="text" class="form-control admin_rp" name="respon" maxlength="11" placeholder="Total Respon"
+            <input type="text" class="form-control" name="respon" id="rupiah3" maxlength="11" placeholder="Total Respon"
                 onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah respon harus diisi')" oninput="this.setCustomValidity('')"
                 value="<?= number_format($data["respon"],0,"." , ".") ?>">
@@ -52,7 +94,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Menanyakan Alamat</b></span>
-            <input type="text" class="form-control admin_rp" name="alamat" maxlength="11"
+            <input type="text" class="form-control" name="alamat" id="rupiah4" maxlength="11"
                 placeholder="Total Nanya Alamat" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah alamat harus diisi')" oninput="this.setCustomValidity('')"
                 value="<?= number_format($data["alamat"],0,"." , ".") ?>">
@@ -60,7 +102,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Insya Allah</b></span>
-            <input type="text" class="form-control admin_rp" name="insya_allah" maxlength="11"
+            <input type="text" class="form-control" name="insya_allah" id="rupiah5" maxlength="11"
                 placeholder="Total Insya Allah" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah insya allah harus diisi')"
                 oninput="this.setCustomValidity('')" value="<?= number_format($data["insya_allah"],0,"." , ".") ?>">
@@ -68,15 +110,15 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Minta Norek</b></span>
-            <input type="text" class="form-control admin_rp" name="norek" maxlength="11" placeholder="Total Minta Norek"
-                onkeypress="return hanyaAngka(event)" autocomplete="off" required
+            <input type="text" class="form-control" name="norek" id="rupiah6" maxlength="11"
+                placeholder="Total Minta Norek" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah minta norek harus diisi')"
                 oninput="this.setCustomValidity('')" value="<?= number_format($data["minta_norek"],0,"." , ".") ?>">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Belum Bisa Bantu</b></span>
-            <input type="text" class="form-control admin_rp" name="bbBantu" maxlength="11"
+            <input type="text" class="form-control" name="bbBantu" id="rupiah7" maxlength="11"
                 placeholder="Total Belum Bisa Bantu" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah belum bisa bantu harus diisi')"
                 oninput="this.setCustomValidity('')" value="<?= number_format($data["belumbisa_bantu"],0,"." , ".") ?>">
@@ -84,7 +126,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Tidak Respon</b></span>
-            <input type="text" class="form-control admin_rp" name="tRespon" maxlength="11"
+            <input type="text" class="form-control" name="tRespon" id="rupiah8" maxlength="11"
                 placeholder="Total Tidak Respon" onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Jumlah tidak respon harus diisi')"
                 oninput="this.setCustomValidity('')" value="<?= number_format($data["tidak_respon"],0,"." , ".") ?>">
@@ -92,7 +134,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><b>Total Income (Rp)</b></span>
-            <input type="text" class="form-control admin_rp" name="income" maxlength="11" placeholder="Total Income"
+            <input type="text" class="form-control" name="income" id="rupiah9" maxlength="11" placeholder="Total Income"
                 onkeypress="return hanyaAngka(event)" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Total income harus diisi')" oninput="this.setCustomValidity('')"
                 value="<?= number_format($data["total_income"],0,"." , ".") ?>">
