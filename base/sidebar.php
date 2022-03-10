@@ -1899,7 +1899,7 @@
 
         <!-- End Charts Nav -->
 
-        <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
+        <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web") { ?>
         <?php if (
             $_GET["id_checklist"] == "checklist_pengajuan" || 
             $_GET["id_checklist"] == "checklist_verifikasi" || 

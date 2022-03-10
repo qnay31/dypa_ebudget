@@ -51,7 +51,7 @@ if ($key_admin == "akunEbudget") {
             }
         }
     } else {
-        # code...
+        
     }
     
 
@@ -61,6 +61,19 @@ if ($key_admin == "akunEbudget") {
     $q  = mysqli_query($conn, "SELECT * FROM $key_admin ORDER BY `pemegang` DESC");
     $j_view     = strtoupper($key_admin);
     $admin_judul = "$j_view";
+
+    if (isset($_POST["changeName"]) ) {
+        $link = $_SESSION["username"];
+        if(changeName($_POST) > 0 ) {
+            echo "<script>
+                alert('Data Berhasil diperbarui');
+                document.location.href = '$link.php?id_adminKey=$key_admin';
+            </script>";            
+        } 
+            else {
+            echo mysqli_error($conn);
+        }
+    }
 
 } elseif ($key_admin == "income" || $key_admin == "incometanparesi") {
     $j_view     = strtoupper($key_admin);
@@ -74,6 +87,8 @@ if ($key_admin == "akunEbudget") {
     $q  = mysqli_query($conn, "SELECT * FROM $key_admin  ORDER BY `tgl_laporan` DESC");
     $j_view     = strtoupper($key_admin);
     $admin_judul = "DATA $j_view";
+
+} elseif ($key_admin == "logActivity") {
 
 } else {
     $q  = mysqli_query($conn, "SELECT * FROM 2022_$key_admin ORDER BY `tgl_dibuat` DESC");
@@ -107,14 +122,27 @@ if ($key_admin == "akunEbudget") {
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td><?= $r['id_pengurus'] ?></td>
                     <td><?= ucwords($r['nama']) ?></td>
-                    <td><?= ucwords($r['cabang']) ?></td>
+                    <td>
+                        <?= ucwords($r['cabang']) ?>
+                        <?php if ($r["id_pengurus"] == "facebook_depok" || $r["id_pengurus"] == "facebook_bogor" || $r["id_pengurus"] == "instagram") { ?>
+                        <a href="../models/base_admin/switchCabang.php?id_unik=<?= $r['id'] ?>">
+                            <?php if ($r['cabang'] == "Depok") { ?>
+                            <i class="bi bi-arrow-left-right" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="ganti" onclick="return confirm('Ganti Cabang ke Bogor?!')"></i>
+
+                            <?php } else { ?>
+                            <i class="bi bi-arrow-left-right" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="ganti" onclick="return confirm('Ganti Cabang ke Depok?!')"></i>
+                            <?php } ?>
+                        </a>
+                        <?php } ?>
+                    </td>
                     <td><?= $r['username'] ?></td>
                     <td><?= ucwords($r['posisi']) ?></td>
                     <td style="text-align: center;">
-                        <a href=""><i class="bi bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit"></i></a>&nbsp;|&nbsp;
-                        <a href=""><i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Hapus"></i></a>
+                        <a href="../models/base_admin/hapus_ebudget.php?id_unik=<?= $r['id'] ?>"><i class="bi bi-trash"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                onclick="return confirm('Yakin data ini mau dihapus?!')"></i></a>
                     </td>
                 </tr>
                 <?php } ?>
@@ -201,7 +229,7 @@ if ($key_admin == "akunEbudget") {
                                 title="Edit Laporan"></i></a>&nbsp;|
 
                         <a href="../models/forms/hapus_laporan/hapus_lapProgram.php?id_unik=<?= $r['id'] ?>&id_p=<?= $bln2 ?>"
-                            onclick="return confirm('Yakin Laporan ini mau dihapus?!')"" data-bs-toggle=" modal"
+                            onclick="return confirm('Yakin Laporan ini mau dihapus?!')" data-bs-toggle=" modal"
                             data-bs-target="#hapus_<?= $r["id"] ?>"><i class="bi bi-trash" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Hapus Laporan"></i></a>
 
@@ -432,13 +460,16 @@ if ($key_admin == "akunEbudget") {
                     <td><?= $r['nama_akun'] ?></td>
                     <td><?= ucwords($r['posisi']) ?></td>
                     <td>
-                        <a href=""><i class="bi bi-pencil" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit"></i></a>&nbsp;|&nbsp;
-                        <a href=""><i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Hapus"></i></a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#akun_<?= $r["id"] ?>"><i class="bi bi-pencil"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i></a>&nbsp;|&nbsp;
+                        <a href="../models/base_admin/hapus_akunMedia.php?id_unik=<?= $r['nomor_id'] ?>"><i
+                                class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                onclick="return confirm('Yakin data ini mau dihapus?!')"></i></a>
                     </td>
                 </tr>
+                <?php include '../modal/mediaSosial/akun.php'; ?>
                 <?php } ?>
+
             </tbody>
         </table>
 
@@ -500,7 +531,7 @@ if ($key_admin == "akunEbudget") {
                     <th scope="col" class="search">Dipegang Oleh</th>
                     <th scope="col">Menu</th>
                     <th scope="col" class="search">Nama Akun</th>
-                    <th scope="col" class="search">Cabang</th>
+                    <th scope="col" class="search">Status</th>
                     <th scope="col" class="search">Periode</th>
                     <th scope="col" class="search">Nama Donatur</th>
                     <th scope="col" class="search">Tanggal Transfer</th>
@@ -588,6 +619,24 @@ if ($key_admin == "akunEbudget") {
                     <th></th>
                 </tr>
             </tfoot>
+        </table>
+
+        <?php } elseif ($key_admin == "logActivity") { ?>
+        <table id="tabel-adminLog" class="table table-striped table-bordered nowrap">
+            <thead>
+                <tr style="text-align: center;">
+                    <th scope="col">Menu</th>
+                    <th scope="col" class="search">Nama</th>
+                    <th scope="col" class="search">Posisi</th>
+                    <th scope="col">Ip Address</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Pukul</th>
+                    <th scope="col">Riwayat</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
         </table>
 
         <?php } else { ?>

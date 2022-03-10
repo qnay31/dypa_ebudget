@@ -67,6 +67,25 @@ $("#kTeman").change(function() {
     });
 });
 
+$(".namaChange").change(function() {
+    // variabel dari nilai combo box 
+    var id = $(this).data("id")
+    var namaChange = $(".name"+ id).val();
+    // console.log(id_kendaraan);
+    // Menggunakan ajax untuk mengirim dan dan menerima data dari server
+    $.ajax({
+        type: "POST",
+        dataType: "html",
+        url: "../list_ID.php",
+        data: "namaChange=" + namaChange,
+        success: function(data) {
+            var tesA = $("#akun_" + id +" "+ ".changeID" + id).html(data);
+            console.log(tesA);
+            // $("#tanggal").html(data);
+        }
+    });
+});
+
 $(document).on('change', '.file-input', function() {
 
     var filesCount = $(this)[0].files.length;

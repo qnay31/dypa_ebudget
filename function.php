@@ -485,7 +485,7 @@ WHERE id = '$id' ");
 } else {
 $update = mysqli_query($conn, "UPDATE `laporan_media` SET
 `tgl_laporan` ='$tanggal',
-`jumlahTeman` ='$dataTeman',
+`jumlahTeman` ='$dataTemanBaru',
 `totalSerangan` ='$serangan',
 `donatur`= '$donatur',
 `respon` ='$respon',
@@ -1219,6 +1219,48 @@ WHERE id = '$id' ");
 return mysqli_affected_rows($conn);
 }
 
+// Change AKun
+function changeName($data)
+{
+global $conn;
+
+$nama = htmlspecialchars(mysqli_real_escape_string($conn, $data["nama"]));
+$oldId = htmlspecialchars(mysqli_real_escape_string($conn, $data["oldId"]));
+$namaAkun = htmlspecialchars(mysqli_real_escape_string($conn, $data["namaAkun"]));
+$namaChange = htmlspecialchars(mysqli_real_escape_string($conn, $data["namaChange"]));
+$changeID = htmlspecialchars(mysqli_real_escape_string($conn, $data["changeID"]));
+
+$qAkunName = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id = '$changeID' AND nama = '$namaChange'");
+$nAkunName = $qAkunName -> num_rows;
+// die(var_dump($nAkunName));
+if ($nAkunName === 1) {
+// update_target
+$update = mysqli_query($conn, "UPDATE `income_media` SET
+nomor_id = '$changeID',
+`pemegang` ='$namaChange'
+WHERE nama_akun = '$namaAkun' ");
+
+$update2 = mysqli_query($conn, "UPDATE `laporan_media` SET
+nomor_id = '$changeID',
+`pemegang` ='$namaChange'
+WHERE nama_akun = '$namaAkun' ");
+
+$update3 = mysqli_query($conn, "UPDATE `data_akun` SET
+nomor_id = '$changeID',
+`pemegang` = '$namaChange'
+WHERE nama_akun = '$namaAkun' ");
+
+} else {
+echo "<script>
+alert('ID pengurus yang diinput tidak sesuai');
+</script>";
+
+return false;
+}
+
+// die(var_dump($update));
+return mysqli_affected_rows($conn);
+}
 
 
 ?>
