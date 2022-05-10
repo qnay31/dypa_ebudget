@@ -19,7 +19,13 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= $_SESSION["username"] ?>.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="<?= $_SESSION["username"] ?>.php">Dashboard</a></li>
+                <?php if ($_GET["id_adminKey"] == "") { ?>
+                <li class="breadcrumb-item">Dashboard</li>
+
+                <?php } else { ?>
+                <li class="breadcrumb-item active"><?= ucwords($_GET["id_adminKey"]); ?></li>
+                <?php } ?>
+
                 <?php if ($_GET["id_laporan"] == "laporan_media") { ?>
                 <li class="breadcrumb-item active">Laporan Media</li>
                 <?php } ?>

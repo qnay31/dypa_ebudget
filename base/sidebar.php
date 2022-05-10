@@ -1196,7 +1196,7 @@
             </ul>
         </li>
 
-        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
+        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web") { ?>
 
         <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
         <li class="nav-item">
@@ -1899,7 +1899,7 @@
 
         <!-- End Charts Nav -->
 
-        <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web") { ?>
+        <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
         <?php if (
             $_GET["id_checklist"] == "checklist_pengajuan" || 
             $_GET["id_checklist"] == "checklist_verifikasi" || 
@@ -2512,6 +2512,9 @@
         <!-- End Checklist Nav -->
 
         <?php } else { ?>
+        <?php if ($_SESSION["id_pengurus"] == "admin_web") { ?>
+
+        <?php } else { ?>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -2573,6 +2576,8 @@
 
             </ul>
         </li><!-- End Checklist Nav -->
+        <?php } ?>
+
         <?php } ?>
         <?php } ?>
 

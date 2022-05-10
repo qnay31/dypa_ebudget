@@ -1,46 +1,56 @@
 <?php 
 session_start();
 error_reporting(0);
+require 'function.php';
+
+if (isset($_COOKIE["login"])) {
+    $username = $_COOKIE["login"];
+    
+    $qLogin = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE username = '$username'");
+    if (mysqli_num_rows($qLogin) === 1) {
+        $data = mysqli_fetch_assoc($qLogin);
+        // die(var_dump($data));
+        $_SESSION["halaman_utama"]      = true ;
+        $_SESSION["id"]           = $data["id"];
+		$_SESSION["id_pengurus"]  = $data["id_pengurus"];
+        $_SESSION["nama"]         = $data["nama"];
+        $_SESSION["cabang"]       = $data["cabang"];
+        $_SESSION["username"]     = $data["username"];
+        $_SESSION["profil"]       = $data["profil"];
+        $_SESSION["password"]     = $data["password"];
+        $_SESSION["posisi"]       = $data["posisi"];
+
+        header("Location: admin/$_SESSION[username].php");
+    } else {
+        header("Location: logout.php");
+    }
+    exit;
+}
 
 if (isset($_SESSION["halaman_utama"])) {
     header("Location: admin/$_SESSION[username].php");
     exit;
 }
 
-require 'function.php';
 
 $date   = date("Y-m-d H:i:s");
 $ip     = get_client_ip();
 
 if (isset($_POST["login"]) ) {
-
     $username   = $_POST ["username"];
     $password   = $_POST ["password"];
-
     $result = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE username = '$username' " );
 //cek username database
-        // die(var_dump($username));
         if (mysqli_num_rows($result) === 1 ) {
 
-
           // cek password database
-
         $row = mysqli_fetch_assoc($result);
-    // die(var_dump($row));
-
         
         if (password_verify($password, $row["password"]) ) {
 
           // set session
-
             if($row['username'] == "$username"){
         $_SESSION["halaman_utama"]      = true ;
-
-        // set login
-        // if (isset($_POST["remember"])) {
-        //     // buat cookie
-        //     setcookie('login', 'true', time() + 60 );
-        // }
         
 		// buat session login dan username ADMIN
 		$_SESSION["id"]           = $row["id"];
@@ -51,18 +61,16 @@ if (isset($_POST["login"]) ) {
         $_SESSION["profil"]       = $row["profil"];
         $_SESSION["password"]     = $row["password"];
         $_SESSION["posisi"]       = $row["posisi"];
-
-        // die(var_dump($data));
+        
+        setcookie('login', $_SESSION['username'], time() + 43200 );
 
         mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip', '$date', '$_SESSION[nama] Telah Login Halaman $_SESSION[posisi]')");
 		header("Location: admin/$_SESSION[username].php");
 
         }
 
-
             exit; 
         }
-
 
     }
 
