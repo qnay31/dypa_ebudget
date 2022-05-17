@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
+if ($_SESSION["id_pengurus"] == "management_keuangan") {
     // program
     $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_pengajuan` DESC");
     $s = $q->num_rows;
@@ -49,25 +49,12 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
     $n_main2        = mysqli_query($conn, "SELECT * FROM 2022_maintenance WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
     $maintenance2   = $n_main2->num_rows;
 
-    // income media sosial
-    $n_inMedia      = mysqli_query($conn, "SELECT * FROM 2022_income WHERE status = 'Menunggu Verifikasi' ORDER BY `tgl_pemasukan` DESC");
-    $incomeMedia    = $n_inMedia->num_rows;
-    
-    // non resi
-    $n_inNonresi      = mysqli_query($conn, "SELECT * FROM 2022_incometanparesi WHERE status = 'Menunggu Verifikasi' ORDER BY `tgl_pemasukan` DESC");
-    $incomeNonresi    = $n_inNonresi->num_rows;
-
     // operasional yayasan
     $n_oy         = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'Pending' ORDER BY `tgl_dibuat` DESC");
     $operasional_yayasan    = $n_oy->num_rows;
 
     $n_oy2        = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
     $operasional_yayasan2   = $n_oy2->num_rows;
-} elseif ($_SESSION["id_pengurus"] == "kepala_income") {
-    // income media sosial
-    $n_in      = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC");
-    $income    = $n_in->num_rows;
-
 } else {
     // program
     $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_pengajuan` DESC");
@@ -100,25 +87,28 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
     // operasional yayasan
     $n_oy         = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
     $operasional_yayasan    = $n_oy->num_rows;
+
+    $n_in      = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC");
+    $income    = $n_in->num_rows;
     
 }
 
 ?>
 
-<?php if ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
+<?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
 <li class="nav-item dropdown">
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
         <i class="bi bi-bell"></i>
-        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan > 0) { ?>
+        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income > 0) { ?>
         <span
-            class="badge bg-primary badge-number"><?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan ?></span>
+            class="badge bg-primary badge-number"><?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income ?></span>
         <?php } ?>
     </a><!-- End Notification Icon -->
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ketua-yayasan">
-        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan > 0) { ?>
+        <?php if ($s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income > 0) { ?>
         <li class="dropdown-header">
             Kamu mempunyai
-            <?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan ?>
+            <?= $s+$logistik+$aset+$uang_makan+$gaji_karyawan+$anggaran_lain+$maintenance+$operasional_yayasan+$income ?>
             notifikasi baru
         </li>
 
@@ -273,79 +263,24 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan") {
         <?php } ?>
     </ul><!-- End Notification Dropdown Items -->
 </li><!-- End Notification Nav -->
-<?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
-<li class="nav-item dropdown">
-    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-        <i class="bi bi-bell"></i>
-        <?php if ($income > 0) { ?>
-        <span class="badge bg-primary badge-number"><?= $income ?></span>
-        <?php } ?>
-    </a><!-- End Notification Icon -->
-    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ketua-yayasan">
-        <?php if ($income > 0) { ?>
-        <li class="dropdown-header">
-            Kamu mempunyai
-            <?= $income ?>
-            notifikasi baru
-        </li>
-
-        <?php if ($income > 0) { ?>
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check">
-            <li class="notification-item"><span class="badge badge-danger badge-counter">New</span>
-                <i class="bi bi-credit-card text-warning"></i>
-                <div>
-                    <h4>Check Income</h4>
-                    <p>Ada <?= $income ?> income yang perlu dicek</p>
-                    <p><?= date("d-m-Y") ?></p>
-                </div>
-            </li>
-        </a>
-        <?php } ?>
-
-        <?php } else { ?>
-        <li class="dropdown-header">
-            Tidak ada notifikasi terbaru
-        </li>
-        <?php } ?>
-    </ul><!-- End Notification Dropdown Items -->
-</li><!-- End Notification Nav -->
 
 <!-- End Notification Nav -->
-<?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
+<?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
 <li class="nav-item dropdown">
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
         <i class="bi bi-bell"></i>
-        <?php if ($s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$operasional_yayasan+$operasional_yayasan2+$incomeMedia+$incomeNonresi > 0) { ?>
+        <?php if ($s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$operasional_yayasan+$operasional_yayasan2 > 0) { ?>
         <span
-            class="badge bg-primary badge-number"><?= $s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$incomeHumas+$operasional_yayasan+$operasional_yayasan2+$incomeMedia+$incomeNonresi ?></span>
+            class="badge bg-primary badge-number"><?= $s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$incomeHumas+$operasional_yayasan+$operasional_yayasan2 ?></span>
         <?php } ?>
     </a><!-- End Notification Icon -->
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ketua-yayasan">
-        <?php if ($s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$operasional_yayasan+$operasional_yayasan2+$incomeMedia+$incomeNonresi > 0) { ?>
+        <?php if ($s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$operasional_yayasan+$operasional_yayasan2 > 0) { ?>
         <li class="dropdown-header">
             Kamu mempunyai
-            <?= $s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$operasional_yayasan+$operasional_yayasan2+$incomeMedia+$incomeNonresi ?>
+            <?= $s+$s2+$logistik+$logistik2+$aset+$aset2+$uang_makan+$uang_makan2+$gaji_karyawan+$gaji_karyawan2+$anggaran_lain+$anggaran_lain2+$maintenance+$maintenance2+$operasional_yayasan+$operasional_yayasan2 ?>
             notifikasi baru
         </li>
-
-        <?php if ($incomeMedia+$incomeNonresi > 0) { ?>
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-            <li class="notification-item"><span class="badge badge-danger badge-counter">New</span>
-                <i class="bi bi-credit-card text-warning"></i>
-                <div>
-                    <h4>Pemasukan Media</h4>
-                    <p>Ada <?= $incomeMedia+$incomeNonresi ?> Pemasukan perlu disetujui</p>
-                    <p><?= date("d-m-Y") ?></p>
-                </div>
-            </li>
-        </a>
-        <?php } ?>
 
         <?php if ($s > 0) { ?>
         <li>

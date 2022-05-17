@@ -39,7 +39,8 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-success"
                             href="../verif/anggaran/angProgram.php?id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Data anggaran sudah sesuai dan konfirmasi sekarang?')">Konfirmasi</a>
+                            onclick="return confirm('Data anggaran sudah sesuai dan konfirmasi sekarang?')"><i
+                                class="bi bi-check-lg text-white"></i></a>
                     </td>
                     <td>Rp. <?= number_format($r['dana_anggaran'],0,"." , ".") ?></td>
                 </tr>

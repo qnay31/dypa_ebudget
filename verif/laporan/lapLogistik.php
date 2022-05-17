@@ -55,9 +55,6 @@ $c_query = mysqli_query($conn, "SELECT bulan FROM 2022_data_logistik WHERE bulan
             WHERE bulan = '$bulan' ");
         }
 
-    
-    
-
 // die(var_dump($update));
 if ($update == false ) {
     echo "<script>

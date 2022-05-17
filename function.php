@@ -526,7 +526,7 @@ $date = date("Y-m-d H:i:s");
 
 // input data ke database
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$posisi', '$ip',
-'$date', '$_SESSION[nama] Divisi $program Telah Menginput Anggaran $program dengan perencanaan $deskripsi')");
+'$date', '$_SESSION[nama] Divisi $posisi Telah Menginput Anggaran $program dengan perencanaan $deskripsi')");
 
 $result = mysqli_query($conn, "INSERT INTO 2022_program VALUES('', '$link', '$posisi', '$cabang', '$program',
 '$tanggal', '$deskripsi', $anggaran, '', '', '', 'Pending', 'Belum Laporan')");

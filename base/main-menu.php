@@ -2,7 +2,7 @@
     <div class="pagetitle">
 
 
-        <?php if ($_SESSION["posisi"] == "Kepala Cabang") { ?>
+        <?php if ($_SESSION["id_pengurus"] == "facebook_depok") { ?>
 
         <h1>Dashboard Laporan Media Sosial</h1>
         <?php

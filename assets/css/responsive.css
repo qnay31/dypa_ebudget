@@ -352,6 +352,13 @@
     color: white;
 }
 
+.detail-bulanan {
+    font-size: .9em;
+    color: black;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
 .incomeMedia a {
     text-decoration: underline;
 }

@@ -74,10 +74,6 @@ $periode  = $_GET["id_p"];
                             tanggal_tf = '$data[tgl_pemasukan]' AND status = 'OK' ");
 
     }
-    
-
-    
-
     $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip', '$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Mengkonfirmasi Laporan $kategori dengan income dari gedung $gedung')");
     
     // cek nama

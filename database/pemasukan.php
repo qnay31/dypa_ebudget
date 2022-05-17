@@ -1,10 +1,7 @@
 <?php
-    if ($_GET["id_income"] == "") {
-        $q  = mysqli_query($conn, "SELECT * FROM 2022_income WHERE status = 'Terverifikasi' ORDER BY `tgl_pemasukan` DESC");
-    } else {
-        $q  = mysqli_query($conn, "SELECT * FROM 2022_incometanparesi WHERE status = 'Terverifikasi' ORDER BY `tgl_pemasukan` DESC");
-    }
+    $_SESSION["id_income"] = $_GET["id_income"];
 ?>
+
 
 <main id="main" class="main">
     <div class="pagetitle">
@@ -22,6 +19,17 @@
         <div class="row">
             <!-- Left side columns pengajuan-->
             <div class="col-lg-12" id="form-pengajuan">
+
+                <?php if ($_GET["id_periode"] == "") { ?>
+
+                <?php } else { ?>
+                <!-- periode -->
+                <div class="col-12">
+                    <div class="card">
+                        <?php include '../models/database/pemasukan/periode.php'; ?>
+                    </div>
+                </div>
+                <?php } ?>
 
                 <!-- Laporan  -->
                 <div class="col-12">

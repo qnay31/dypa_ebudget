@@ -169,7 +169,7 @@ $c_query = mysqli_query($conn, "SELECT bulan FROM 2022_data_$id_verif WHERE bula
 
 // sub cabang kategori
 if ($id_verif == "aset_yayasan") {
-    if ($id_pengurus == 'management_keuangan' && $jenis == 'Pembangunan') {
+    if ($jenis == 'Pembangunan') {
         if (mysqli_fetch_assoc($c_query)) {
             $tes = mysqli_query($conn, "UPDATE `2022_data_$id_verif` SET 
                 `anggaran_pembangunan`       ='$hasil_anggaran2',
@@ -179,7 +179,7 @@ if ($id_verif == "aset_yayasan") {
                 WHERE bulan = '$bulan' ");
             }
     
-    } elseif ($id_pengurus == 'management_keuangan' && $jenis == 'Pembelian Barang') {
+    } elseif ($jenis == 'Pembelian Barang') {
         if (mysqli_fetch_assoc($c_query)) {
             mysqli_query($conn, "UPDATE `2022_data_$id_verif` SET 
             `anggaran_pembelian`       ='$hasil_anggaran3',

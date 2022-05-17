@@ -15,7 +15,7 @@ $nama       = strtolower($home_data['nama']);
 // die(var_dump($nama));
 $profil     = $home_data['profil'];
 
-if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") {
+if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income") {
     $id_management  = $_GET["id_dataManagement"];
     if ($id_management == "aset_yayasan") {
         $judul = "Aset Yayasan";

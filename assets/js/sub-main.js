@@ -1,4 +1,19 @@
-$("#management").change(function() {
+document.addEventListener("DOMContentLoaded", function () {
+    var splide = new Splide('#splide', {
+        speed: number = 2000,
+        perPage: 3,
+        gap: '1.4rem',
+        breakpoints: {
+            765: {
+                perPage: 1,
+            },
+        }
+    });
+
+    splide.mount();
+});
+
+$("#management").change(function () {
     // variabel dari nilai combo box 
     var management = $("#management").val();
     // console.log(id_kendaraan);
@@ -8,14 +23,14 @@ $("#management").change(function() {
         dataType: "html",
         url: "../list_management.php",
         data: "management=" + management,
-        success: function(data) {
+        success: function (data) {
             $("#bagian").html(data);
             // $("#tanggal").html(data);
         }
     });
 });
 
-$("#logistikGedung").change(function() {
+$("#logistikGedung").change(function () {
     // variabel dari nilai combo box 
     var logistikGedung = $("#logistikGedung").val();
     // console.log(id_kendaraan);
@@ -25,14 +40,14 @@ $("#logistikGedung").change(function() {
         dataType: "html",
         url: "../list_logistik.php",
         data: "logistikGedung=" + logistikGedung,
-        success: function(data) {
+        success: function (data) {
             $("#cabang").html(data);
             // $("#tanggal").html(data);
         }
     });
 });
 
-$("#akun").change(function() {
+$("#akun").change(function () {
     // variabel dari nilai combo box 
     var akun = $("#akun").val();
     // console.log(id_kendaraan);
@@ -42,7 +57,7 @@ $("#akun").change(function() {
         dataType: "html",
         url: "../list_pertemanan.php",
         data: "akun=" + akun,
-        success: function(data) {
+        success: function (data) {
             $("#teman").html(data);
             // $("#keterangan").html(data);
             // $("#tanggal").html(data);
@@ -50,7 +65,7 @@ $("#akun").change(function() {
     });
 });
 
-$("#kTeman").change(function() {
+$("#kTeman").change(function () {
     // variabel dari nilai combo box 
     var kTeman = $("#kTeman").val();
     // console.log(id_kendaraan);
@@ -60,17 +75,17 @@ $("#kTeman").change(function() {
         dataType: "html",
         url: "../list_keteranganTeman.php",
         data: "kTeman=" + kTeman,
-        success: function(data) {
+        success: function (data) {
             $("#keterangan").html(data);
             // $("#tanggal").html(data);
         }
     });
 });
 
-$(".namaChange").change(function() {
+$(".namaChange").change(function () {
     // variabel dari nilai combo box 
     var id = $(this).data("id")
-    var namaChange = $(".name"+ id).val();
+    var namaChange = $(".name" + id).val();
     // console.log(id_kendaraan);
     // Menggunakan ajax untuk mengirim dan dan menerima data dari server
     $.ajax({
@@ -78,15 +93,15 @@ $(".namaChange").change(function() {
         dataType: "html",
         url: "../list_ID.php",
         data: "namaChange=" + namaChange,
-        success: function(data) {
-            var tesA = $("#akun_" + id +" "+ ".changeID" + id).html(data);
+        success: function (data) {
+            var tesA = $("#akun_" + id + " " + ".changeID" + id).html(data);
             console.log(tesA);
             // $("#tanggal").html(data);
         }
     });
 });
 
-$(document).on('change', '.file-input', function() {
+$(document).on('change', '.file-input', function () {
 
     var filesCount = $(this)[0].files.length;
 
@@ -101,13 +116,13 @@ $(document).on('change', '.file-input', function() {
 
 
 
-    if (typeof(FileReader) != "undefined") {
+    if (typeof (FileReader) != "undefined") {
         var dvPreview = $("#divImageMediaPreview");
         dvPreview.html("");
-        $($(this)[0].files).each(function() {
+        $($(this)[0].files).each(function () {
             var file = $(this);
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 var img = $("<img />");
                 img.attr("style", "width: 100%; padding: 10px");
                 img.attr("src", e.target.result);
@@ -120,13 +135,13 @@ $(document).on('change', '.file-input', function() {
     }
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    var readURL = function(input) {
+    var readURL = function (input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 $('.profile-pic').attr('src', e.target.result);
             }
 
@@ -134,11 +149,11 @@ $(document).ready(function() {
         }
     }
 
-    $(".file-upload").on('change', function() {
+    $(".file-upload").on('change', function () {
         readURL(this);
     });
 
-    $(".upload-button").on('click', function() {
+    $(".upload-button").on('click', function () {
         $(".file-upload").click();
     });
 });

@@ -40,7 +40,8 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-success"
                             href="<?= $_SESSION["username"] ?>.php?id_forms=forms_laporan&id_dataManagement=logistik&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Semua tugas selesai, siap laporkan !!')">Laporan</a>
+                            onclick="return confirm('Anggaran telah diacc, siap laporkan !!')"><i
+                                class="bi bi-journal-check text-white"></i></a>
                     </td>
                     <?php } elseif ($r['status_b'] == "OK") { ?>
                     <td style=" text-align: center;">
@@ -50,10 +51,11 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-primary"
                             href="../admin/<?= $_SESSION["username"] ?>.php?id_forms=edit_pengajuan&id_dataManagement=logistik&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin anggaran ini mau diedit?!')">Edit</a> || <a
-                            class="btn btn-danger"
+                            onclick="return confirm('Yakin anggaran ini mau diedit?!')"><i
+                                class="bi bi-pencil text-white"></i></a> || <a class="btn btn-danger"
                             href="../models/forms/hapus_pengajuan/hapus_logistik.php?id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin anggaran ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin anggaran ini mau dihapus?!')"><i
+                                class="bi bi-trash text-white"></i></a>
                     </td>
                     <?php } ?>
                     <td>Rp. <?= number_format($r['dana_anggaran'],0,"." , ".") ?></td>

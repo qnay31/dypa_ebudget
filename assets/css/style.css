@@ -14,7 +14,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: rgb(0, 131, 11);
   color: #444444;
 }
 
@@ -63,7 +63,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -76,7 +76,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: rgb(105, 105, 105);
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -90,7 +90,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #6776f4;
+  background: rgb(105, 105, 105);
   color: #fff;
 }
 
@@ -353,25 +353,25 @@ h6 {
 .breadcrumb {
   font-size: 14px;
   font-family: "Nunito", sans-serif;
-  color: #899bbd;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #ffffff;
   transition: 0.3s;
 }
 
 .breadcrumb a:hover {
-  color: #51678f;
+  color: #ffffff;
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: #ffffff;
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -418,7 +418,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: rgb(0, 131, 11);
   font-family: "Nunito", sans-serif;
 }
 
@@ -724,7 +724,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: rgb(0, 131, 11);
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -734,7 +734,7 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: rgb(0, 131, 11);
 }
 
 .sidebar-nav .nav-link.collapsed {
@@ -747,12 +747,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: rgb(0, 131, 11);
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: rgb(0, 131, 11);
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -790,11 +790,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: rgb(0, 131, 11);
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+  background-color: rgb(0, 131, 11);
 }
 
 /*--------------------------------------------------------------
@@ -975,7 +975,7 @@ h6 {
 }
 
 #form-pengajuan nav ul li a.active {
-  color: #555;
+  color: rgb(255, 255, 255);
 }
 
 #form-pengajuan nav ul li a {
@@ -995,7 +995,7 @@ h6 {
 }
 
 #form-pengajuan nav ul li a:hover {
-  color: #555;
+  color: rgb(255, 255, 255);
 }
 
 
@@ -1030,12 +1030,12 @@ h6 {
   padding: 20px 0;
   font-size: 14px;
   transition: all 0.3s;
-  border-top: 1px solid #cddfff;
+  border-top: 1px solid #7c7c7c;
 }
 
 .footer .copyright {
   text-align: center;
-  color: #012970;
+  color: #ffffff;
 }
 
 .disabled,

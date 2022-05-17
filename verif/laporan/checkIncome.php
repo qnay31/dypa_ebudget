@@ -62,10 +62,10 @@ if ($iStatus == "Terverifikasi") {
 
 if ($numIncome === 1 && $status == "OK") {
     $upIncome = mysqli_query($conn, "UPDATE `2022_income` SET 
-                `id_pengurus`   ='$_SESSION[id_pengurus]',
+                `id_pengurus`   ='kepala_income',
                 `kategori`      ='Media Sosial',
-                `posisi`        ='$_SESSION[posisi]',
-                `gedung`        ='Fecebook Depok',
+                `posisi`        ='Kepala Income',
+                `gedung`        ='Facebook Depok',
                 `tgl_pemasukan` ='$tanggal',
                 `income`        ='$hasil_income',
                 `status`        ='Pending'

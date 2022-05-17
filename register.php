@@ -74,8 +74,8 @@ if (isset($_POST["daftar"]) ) {
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" name="posisi"
-                                        value="Facebook Depok" readonly>
+                                    <input type="hidden" name="posisi" value="Facebook Depok">
+                                    <input type="text" class="form-control form-control-user" value="Facebook" readonly>
                                     <input type="hidden" name="cabang" value="Depok">
                                     <input type="hidden" name="media" value="facebook_depok">
                                 </div>

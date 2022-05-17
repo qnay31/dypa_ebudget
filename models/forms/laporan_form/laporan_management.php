@@ -164,10 +164,11 @@
                     <td><?= ucwords($r['pemakaian']) ?></td>
                     <td style="text-align: center;"><a class="btn btn-primary"
                             href="../admin/<?= $_SESSION["username"] ?>.php?id_dataManagement=<?= $id_management ?>&id_forms=edit_laporan&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin laporan ini mau diedit?!')">Edit</a> || <a
-                            class="btn btn-danger"
+                            onclick="return confirm('Yakin laporan ini mau diedit?!')"><i
+                                class="bi bi-pencil text-white"></i></a> || <a class="btn btn-danger"
                             href="../models/forms/hapus_laporan/hapus_lapManagement.php?id_dataManagement=<?= $id_management ?>&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin anggaran ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin anggaran ini mau dihapus?!')"><i
+                                class="bi bi-trash text-white"></i></a>
 
                     </td>
                     <td style="text-align: center;">

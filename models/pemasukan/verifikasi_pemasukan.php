@@ -97,10 +97,17 @@
                     <td style=" text-align: center;">
                         <a class="btn btn-primary"
                             href="../admin/<?= $_SESSION["username"] ?>.php?id_forms=edit_pemasukan&incomeId=nonResi&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin pemasukan ini mau diedit?!')">Edit</a> ||
+                            onclick="return confirm('Yakin pemasukan ini mau diedit?!')"><i
+                                class="bi bi-pencil text-white"></i></a> ||
                         <a class="btn btn-danger"
                             href="../models/pemasukan/hapus_pemasukan.php?incomeId=nonResi&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin pemasukan ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin pemasukan ini mau dihapus?!')"><i
+                                class="bi bi-trash text-white"></i></a> ||
+                        <a class="btn btn-success"
+                            href="../models/pemasukan/lapor_pemasukan.php?incomeId=nonResi&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
+                            onclick="return confirm('Laporan akan dikirim dan sudah yakin ?!')" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Kirim">
+                            <i class="bi bi-box-arrow-right text-white"></i></a>
                     </td>
                     <td>Rp. <?= number_format($r['income'],0,"." , ".") ?></td>
                 </tr>

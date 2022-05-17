@@ -48,7 +48,8 @@
                     <td style="text-align: center;">
                         <a class="btn btn-success"
                             href="../verif/laporan/lapProgram.php?id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Laporan sudah selesai dan sudah yakin??!')">Konfirmasi</a>
+                            onclick="return confirm('Laporan sudah selesai dan sudah yakin??!')"><i
+                                class="bi bi-check-lg text-white"></i></a>
                     </td>
                     <td>Rp. <?= number_format($terpakai,0,"." , ".") ?></td>
                     <td>Rp. <?= number_format($sisa,0,"." , ".") ?></td>

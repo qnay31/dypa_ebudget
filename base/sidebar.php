@@ -80,7 +80,7 @@
                 <i class="bi bi-menu-button-wide"></i><span>Database</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "kepala_cabang" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <?php if ($_GET["id_database"] == "database_program") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_program" class="active">
@@ -148,11 +148,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_aset_yayasan") { ?>
                 <li>
@@ -221,11 +233,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_uang_makan") { ?>
                 <li>
@@ -294,11 +318,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_gaji_karyawan") { ?>
                 <li>
@@ -367,11 +403,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_anggaran_lain") { ?>
                 <li>
@@ -440,11 +488,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_maintenance") { ?>
                 <li>
@@ -513,11 +573,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_operasional_yayasan") { ?>
                 <li>
@@ -586,11 +658,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_pemasukanMedia") { ?>
 
@@ -660,11 +744,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_harianMedia") { ?>
                 <li>
@@ -733,11 +829,23 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } elseif ($_GET["id_database"] == "database_akunMedia") { ?>
                 <li>
@@ -806,11 +914,108 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia" class="active">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
+
+                <?php } elseif ($_GET["id_database"] == "database_crossCheck") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_program">
+                        <i class="bi bi-circle"></i><span>Lap Global Program</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_logistik">
+                        <i class="bi bi-circle"></i><span>Lap Global Logistik</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=aset_yayasan&id_database=database_aset_yayasan">
+                        <i class="bi bi-circle"></i><span>Lap Global Aset</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=uang_makan&id_database=database_uang_makan">
+                        <i class="bi bi-circle"></i><span>Lap Global Uang Makan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=gaji_karyawan&id_database=database_gaji_karyawan">
+                        <i class="bi bi-circle"></i><span>Lap Global Gaji Karyawan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=anggaran_lain&id_database=database_anggaran_lain">
+                        <i class="bi bi-circle"></i><span>Lap Global Biaya Lainnya</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=maintenance&id_database=database_maintenance">
+                        <i class="bi bi-circle"></i><span>Lap Global Maintenance</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=operasional_yayasan&id_database=database_operasional_yayasan">
+                        <i class="bi bi-circle"></i><span>Lap Global Operasional</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
+                    </a>
+                </li>
+
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
+                        <i class="bi bi-circle"></i><span>Laporan Akun</span>
+                    </a>
+                </li>
+                <?php } ?>
+
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck" class="active">
+                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
+                    </a>
+                </li>
+                <?php } ?>
 
                 <?php } else { ?>
                 <li>
@@ -879,72 +1084,24 @@
                     </a>
                 </li>
 
+                <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+
+                <?php } else { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
                         <i class="bi bi-circle"></i><span>Laporan Akun</span>
                     </a>
                 </li>
-
                 <?php } ?>
 
-                <?php } elseif($_SESSION["id_pengurus"] == "kepala_income") { ?>
-
-                <?php if ($_GET["id_database"] == "database_pemasukanMedia") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia" class="active">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-
+                <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
+                <?php } ?>
 
-                <?php } elseif ($_GET["id_database"] == "database_harianMedia") { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia" class="active">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
-                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
-                    </a>
-                </li>
-
-                <?php } else { ?>
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
-                        <i class="bi bi-circle"></i><span>Lap Pemasukan Akun</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck" class="active">
-                        <i class="bi bi-circle"></i><span>Crosscheck Income</span>
-                    </a>
-                </li>
                 <?php } ?>
 
                 <?php } else { ?>
@@ -1093,6 +1250,60 @@
                 <?php } elseif($_SESSION["id_pengurus"] == "kepala_income") { ?>
 
                 <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_program">
+                        <i class="bi bi-circle"></i><span>Lap Global Program</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_logistik">
+                        <i class="bi bi-circle"></i><span>Lap Global Logistik</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=aset_yayasan&id_database=database_aset_yayasan">
+                        <i class="bi bi-circle"></i><span>Lap Global Aset</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=uang_makan&id_database=database_uang_makan">
+                        <i class="bi bi-circle"></i><span>Lap Global Uang Makan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=gaji_karyawan&id_database=database_gaji_karyawan">
+                        <i class="bi bi-circle"></i><span>Lap Global Gaji Karyawan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=anggaran_lain&id_database=database_anggaran_lain">
+                        <i class="b`i bi-circle"></i><span>Lap Global Biaya Lainnya</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=maintenance&id_database=database_maintenance">
+                        <i class="bi bi-circle"></i><span>Lap Global Maintenance</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_dataManagement=operasional_yayasan&id_database=database_operasional_yayasan">
+                        <i class="bi bi-circle"></i><span>Lap Global Operasional</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
                         <i class="bi bi-circle"></i><span>Lap Pemasukan Media</span>
                     </a>
@@ -1173,12 +1384,24 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check">
+                        <i class="bi bi-circle"></i><span>Pemasukan Media Sosial</span>
+                    </a>
+                </li>
+
                 <?php } elseif (
                     $_GET["id_forms"] == "forms_check" || 
                     $_GET["id_forms"] == "forms_pemasukan" ||
                     $_GET["id_forms"] == "edit_pemasukan" ||
                     $_GET["id_forms"] == "forms_verifPemasukan"
                     ) { ?>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_forms=daftar_pengajuan">
+                        <i class="bi bi-circle"></i><span>Pengajuan & Laporan</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check" class="active">
@@ -1196,9 +1419,9 @@
             </ul>
         </li>
 
-        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web") { ?>
+        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
 
-        <?php } elseif ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
+        <?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Form</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -1209,15 +1432,7 @@
                         <i class="bi bi-circle"></i><span>Pengajuan & Laporan</span>
                     </a>
                 </li>
-            </ul>
-        </li>
 
-        <?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Form</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_forms=forms_check">
                         <i class="bi bi-circle"></i><span>Pemasukan Media Sosial</span>
@@ -1259,7 +1474,7 @@
                 <i class="bi bi-bar-chart"></i><span>Grafik</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <?php if ($_GET["id_grafik"] == "grafik_program") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_program" class="active">
@@ -1826,7 +2041,7 @@
             </a>
             <?php } ?>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+                <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_grafik=grafik_program">
                         <i class="bi bi-circle"></i><span>Grafik Program</span>
@@ -1899,7 +2114,7 @@
 
         <!-- End Charts Nav -->
 
-        <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
+        <?php if ($_SESSION["id_pengurus"] == "management_keuangan") { ?>
         <?php if (
             $_GET["id_checklist"] == "checklist_pengajuan" || 
             $_GET["id_checklist"] == "checklist_verifikasi" || 
@@ -1956,12 +2171,6 @@
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanOperasional">
                         <i class="bi bi-circle"></i><span>Checklist Operasional</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
                     </a>
                 </li>
 
@@ -2027,12 +2236,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
-                    </a>
-                </li>
-
             </ul>
         </li><!-- End Checklist Nav -->
 
@@ -2091,12 +2294,6 @@
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanOperasional">
                         <i class="bi bi-circle"></i><span>Checklist Operasional</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
                     </a>
                 </li>
 
@@ -2159,12 +2356,6 @@
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanOperasional">
                         <i class="bi bi-circle"></i><span>Checklist Operasional</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
                     </a>
                 </li>
 
@@ -2231,12 +2422,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
-                    </a>
-                </li>
-
             </ul>
         </li>
         <!-- End Checklist Nav -->
@@ -2297,12 +2482,6 @@
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanOperasional">
                         <i class="bi bi-circle"></i><span>Checklist Operasional</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
                     </a>
                 </li>
 
@@ -2369,12 +2548,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
-                    </a>
-                </li>
-
             </ul>
         </li>
         <!-- End Checklist Nav -->
@@ -2438,78 +2611,8 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
-                    </a>
-                </li>
-
             </ul>
         </li><!-- End Checklist Nav -->
-
-        <?php } elseif ($_GET["id_checklist"] == "checklist_pemasukanMedia") { ?>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-target="#checklist-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-check"></i><span>Checklist</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="checklist-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuan">
-                        <i class="bi bi-circle"></i><span>Checklist Program</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanLogistik">
-                        <i class="bi bi-circle"></i><span>Checklist Logistik</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanAset">
-                        <i class="bi bi-circle"></i><span>Checklist Aset</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanUangmakan">
-                        <i class="bi bi-circle"></i><span>Checklist Uang Makan</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanGajikaryawan">
-                        <i class="bi bi-circle"></i><span>Checklist Gaji Karyawan</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanAnggaranlain">
-                        <i class="bi bi-circle"></i><span>Checklist Biaya Lainnya</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanMaintenance">
-                        <i class="bi bi-circle"></i><span>Checklist Maintenance</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanOperasional">
-                        <i class="bi bi-circle"></i><span>Checklist Operasional</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia" class="active">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-        <!-- End Checklist Nav -->
 
         <?php } else { ?>
         <?php if ($_SESSION["id_pengurus"] == "admin_web") { ?>
@@ -2565,12 +2668,6 @@
                 <li>
                     <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pengajuanOperasional">
                         <i class="bi bi-circle"></i><span>Checklist Operasional</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_checklist=checklist_pemasukanMedia">
-                        <i class="bi bi-circle"></i><span>Pemasukan Media</span>
                     </a>
                 </li>
 

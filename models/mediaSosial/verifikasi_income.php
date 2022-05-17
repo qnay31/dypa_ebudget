@@ -4,6 +4,8 @@
         <div class="text-center">
             <label for="">
                 <b style="color: black;">Tabel Verifikasi Income Media Sosial</b>
+                <a class="btn btn-success" href="<?= $_SESSION["username"] ?>.php?id_database=database_resiMedia">
+                    <i class="bi bi-journal-arrow-down text-white"></i></a>
                 <hr>
             </label>
         </div>

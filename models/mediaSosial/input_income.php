@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="button">
-                                <input type="submit" name="tambah" class="btn btn-primary w-100" value="Tambah AKun">
+                                <input type="submit" name="tambah" class="btn btn-primary w-100" value="Tambah Akun">
                             </div>
                         </form>
                     </div>
