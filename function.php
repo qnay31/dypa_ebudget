@@ -230,9 +230,11 @@ $result = mysqli_query($conn, "INSERT INTO income_media VALUES('', '$link', '$id
 '$akun', '$_SESSION[cabang]', '$namaDonatur', '$tanggal', '$jam', '$bank', '$income', 'Menunggu Verifikasi',
 'Pending')");
 
+$today = date('d-m-Y', strtotime($tanggal));
+
 // input data ke database
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip',
-'$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Menginput income akun $akun hari ini')");
+'$date', '$_SESSION[nama] Divisi $_SESSION[posisi] Telah Menginput income akun $akun tanggal $today')");
 
 // die(var_dump($simpan));
 return mysqli_affected_rows($conn);

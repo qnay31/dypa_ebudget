@@ -1,14 +1,3 @@
-<?php
-
-if ($_SESSION["id_pengurus"] == "facebook_depok") {
-    $q  = mysqli_query($conn, "SELECT * FROM income_media WHERE pemegang = '$nama' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC");  
-    
-} else {
-    $q  = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC");
-}
-
-?>
-
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Database</h1>

@@ -344,6 +344,32 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
     $pemasukanMediaT = $hasil_income+$hasil_resi1;
     $pemasukanYayasanGlobal = $pemasukanMediaT+$cashback_global;
 
+} elseif ($_SESSION["id_pengurus"] == "manager_facebook") {
+    $i = 1;
+    
+    $incBulanan = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'OK' AND MONTH(tanggal_tf) = '$bln'");
+    while($data_incBulanan = mysqli_fetch_array($incBulanan))
+    {
+        $i++;   
+        $d_incomeBulanan = $data_incBulanan['jumlah_tf'];
+        $total_incomeBulanan[$i] = $d_incomeBulanan;
+
+        $hasil_incomeBulanan = array_sum($total_incomeBulanan);
+        // die(var_dump($hasil_incomeBulanan));
+    }
+
+    // die(var_dump($akun));
+    $inc = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'OK'");
+    while($data_inc = mysqli_fetch_array($inc))
+    {
+        $i++;   
+        $d_income = $data_inc['jumlah_tf'];
+        $total_income[$i] = $d_income;
+
+        $hasil_income = array_sum($total_income);
+
+    }
+
 } else {
     $bulan     = date("Y-m-d");
     $bln       = substr($bulan, 5,-3);

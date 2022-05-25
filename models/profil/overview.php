@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-lg-3 col-md-4 label">Company</div>
-        <div class="col-lg-9 col-md-8">Yayasan Alkirom Amanah</div>
+        <div class="col-lg-9 col-md-8">Yayasan Dompet Yatim Piatu Amanah</div>
     </div>
 
     <div class="row">

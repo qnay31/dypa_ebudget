@@ -24,7 +24,7 @@ $table = 'laporan_media';
 // Table's primary key
 $primaryKey = 'id';
 
-if ($_SESSION["id_pengurus"] == "management_keuangan") {
+if ($_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "manager_facebook") {
         $where = "id_pengurus = 'facebook_depok' ORDER BY `tgl_laporan` DESC";
 
 } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan") {

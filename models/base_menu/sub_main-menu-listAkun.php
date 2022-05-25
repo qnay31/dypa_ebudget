@@ -1,17 +1,13 @@
 <?php 
-if ($_SESSION["username"] == "kepala_cabang") {
     $pengurus   = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus = 'facebook_depok' ORDER BY `nama` ASC");
-    
-} else {
-    $pengurus   = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus = '$_SESSION[username]' ORDER BY `nama` ASC");
-}
 
+    $nPengurus  = $pengurus->num_rows;
 ?>
 <!-- Card -->
 <div class="col-xxl-12">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <h5 class="card-title">Data Pengurus & Akun</span></h5>
+            <h5 class="card-title">Data Pengurus & Akun (<?= $nPengurus; ?>)</span></h5>
             <div class="row">
                 <!-- Card -->
                 <?php 
@@ -52,9 +48,39 @@ if ($_SESSION["username"] == "kepala_cabang") {
                                 </div>
                             </div>
                         </span>
-                        <a class="viewData"
-                            href="<?= $_SESSION["username"] ?>.php?id_laporan=laporan_media&id_akun=<?= $data["id"] ?>">Lihat
-                            Data</a>
+                        <div class="incomeMedia">
+                            <div class="row">
+                                <div class="col-6 bulanan">
+                                    <?php
+                                        $bulan     = date("Y-m-d");
+                                        $bln       = substr($bulan, 5,-3);
+                                        $qIncomeBulanan = mysqli_query($conn, "SELECT pemegang, SUM(jumlah_tf) AS total_tf FROM income_media WHERE pemegang = '$data[nama]' AND MONTH(tanggal_tf) = '$bln' AND status = 'OK' GROUP BY pemegang ");
+
+                                        $qIncome = mysqli_query($conn, "SELECT pemegang, SUM(jumlah_tf) AS total_tf FROM income_media WHERE pemegang = '$data[nama]' AND status = 'OK' GROUP BY pemegang "); ?>
+
+                                    <?php
+                                $no = 1;
+                                while ($dataIncome = mysqli_fetch_array($qIncomeBulanan)) { 
+                                    ?>
+                                    <a
+                                        href="<?= $_SESSION["username"] ?>.php?id_accountKey=<?= $data['id'] ?>&id_bulan=<?= $bln ?>">
+                                        Bulan Ini : <?= number_format($dataIncome["total_tf"],0,"." , ".") ?> →</a>
+                                    <?php } ?>
+                                </div>
+
+                                <div class="col-6 tahunan">
+                                    <?php
+                                $no = 1;
+                                while ($dataIncome = mysqli_fetch_array($qIncome)) { 
+                                    ?>
+                                    <a href="<?= $_SESSION["username"] ?>.php?id_accountKey=<?= $data['id'] ?>">
+                                        Per Tahun : <?= number_format($dataIncome["total_tf"],0,"." , ".") ?> →
+                                    </a>
+                                    <?php } ?>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <?php } ?>

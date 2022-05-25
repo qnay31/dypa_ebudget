@@ -42,7 +42,7 @@
             </a>
         </li>
 
-        <?php } elseif ($_GET["id_accountKey"] == true) { ?>
+        <?php } elseif ($_GET["id_accountKey"] == true && $_SESSION["id_pengurus"] == "ketua_yayasan") { ?>
         <li class="nav-item">
             <a class="nav-link collapsed" href="<?= $_SESSION["username"] ?>.php">
                 <i class="bi bi-grid"></i>
@@ -1104,6 +1104,65 @@
 
                 <?php } ?>
 
+                <?php } elseif ($_SESSION["id_pengurus"] == "manager_facebook") { ?>
+                <?php if ($_GET["id_database"] == "database_akunMedia") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Lap Akun Global</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Harian</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Rincian Pemasukan</span>
+                    </a>
+                </li>
+
+                <?php } elseif ($_GET["id_database"] == "database_pemasukanMedia") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
+                        <i class="bi bi-circle"></i><span>Lap Akun Global</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Harian</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Rincian Pemasukan</span>
+                    </a>
+                </li>
+
+                <?php } else { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
+                        <i class="bi bi-circle"></i><span>Lap Akun Global</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Harian</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia" class="active">
+                        <i class="bi bi-circle"></i><span>Rincian Pemasukan</span>
+                    </a>
+                </li>
+                <?php } ?>
+
                 <?php } else { ?>
                 <?php if ($_GET["id_database"] == "database_harianMedia") { ?>
                 <li>
@@ -1321,6 +1380,24 @@
                     </a>
                 </li>
 
+                <?php } elseif ($_SESSION["id_pengurus"] == "manager_facebook") { ?>
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_akunMedia">
+                        <i class="bi bi-circle"></i><span>Lap Akun Global</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_pemasukanMedia">
+                        <i class="bi bi-circle"></i><span>Lap Pemasukan Harian</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_harianMedia">
+                        <i class="bi bi-circle"></i><span>Rincian Pemasukan</span>
+                    </a>
+                </li>
 
                 <?php } else { ?>
                 <li>
@@ -1419,7 +1496,7 @@
             </ul>
         </li>
 
-        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web" || $_SESSION["id_pengurus"] == "management_keuangan") { ?>
+        <?php } elseif ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "manager_facebook") { ?>
 
         <?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
         <li class="nav-item">

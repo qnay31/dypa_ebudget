@@ -21,7 +21,7 @@
                     <div class="col-xxl-4 col-md-4">
                         <div class="card info-card revenue-card">
                             <div class="card-body bg">
-                                <h5 class="card-title"><?= $data_AFB_depok["posisi"] ?></h5>
+                                <h5 class="card-title">Facebook</h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">

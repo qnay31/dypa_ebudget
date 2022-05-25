@@ -23,27 +23,7 @@ $table = 'income_media';
 // Table's primary key
 $primaryKey = 'id';
 
-if ($_SESSION["id_pengurus"] == "facebook_depok" || $_SESSION["id_pengurus"] == "facebook_bogor" || $_SESSION["id_pengurus"] == "instagram") {
-    $where = "nomor_id = '$_SESSION[id]' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
-
-} elseif ($_SESSION["id_pengurus"] == "kepala_cabang" || $_SESSION["username"] == "facebook_bogor") {
-    if ($_SESSION["bulan"] == "") {
-        $where = "cabang = '$_SESSION[cabang]' AND id_pengurus = 'facebook_bogor' AND nomor_id = '$_SESSION[keyAccount]' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
-        
-    } else {
-        $where = "cabang = '$_SESSION[cabang]' AND nomor_id = '$_SESSION[keyAccount]' AND MONTH(tanggal_tf) = '$_SESSION[bulan]' AND id_pengurus = 'facebook_bogor' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
-    }
-
-} elseif ($_SESSION["id_pengurus"] == "manager_instagram") {
-    if ($_SESSION["bulan"] == "") {
-        $where = "cabang = '$_SESSION[cabang]' AND id_pengurus = 'instagram' AND nomor_id = '$_SESSION[keyAccount]' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
-        
-    } else {
-        $where = "cabang = '$_SESSION[cabang]' AND nomor_id = '$_SESSION[keyAccount]' AND MONTH(tanggal_tf) = '$_SESSION[bulan]' AND id_pengurus = 'instagram' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
-    }
-    
-
-} elseif ($_SESSION["id_pengurus"] == "manager_facebook") {
+if ($_SESSION["id_pengurus"] == "manager_facebook") {
     if ($_SESSION["bulan"] == "") {
         $where = "cabang = '$_SESSION[cabang]' AND id_pengurus = 'facebook_depok' AND nomor_id = '$_SESSION[keyAccount]' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
     
