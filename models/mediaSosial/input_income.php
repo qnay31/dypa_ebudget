@@ -105,6 +105,8 @@
                 <option selected value="">- Pilih Salah Satu Bank -</option>
                 <option value="BRI">Bank BRI</option>
                 <option value="BNI">Bank BNI</option>
+                <option value="Mandiri">Bank Mandiri</option>
+                <option value="BCA">Bank BCA</option>
                 <option value="Dana">Dana</option>
                 <option value="OVO">OVO</option>
                 <option value="WU">WU</option>

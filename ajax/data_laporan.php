@@ -27,7 +27,7 @@ $primaryKey = 'id';
 if ($_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "manager_facebook") {
         $where = "id_pengurus = 'facebook_depok' ORDER BY `tgl_laporan` DESC";
 
-} elseif ($_SESSION["id_pengurus"] == "ketua_yayasan") {
+} elseif ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "admin_web") {
     $where = "id_pengurus NOT LIKE 'A%' ORDER BY `tgl_laporan` DESC";
 
 } else {

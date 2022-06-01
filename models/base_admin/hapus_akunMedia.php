@@ -6,11 +6,11 @@ require '../../function.php';
 
 $unik     = $_GET["id_unik"];
 
-$query  = mysqli_query($conn, "SELECT * FROM data_akun WHERE nomor_id = '$unik'");
+$query  = mysqli_query($conn, "SELECT * FROM data_akun WHERE id = '$unik'");
 $data   = mysqli_fetch_assoc($query);
 $akun   = $data["nama_akun"];
 // die(var_dump($akun));
-$query2 = mysqli_query($conn, "DELETE FROM `data_akun` WHERE nomor_id = '$unik' AND nama_akun = '$akun' ");
+$query2 = mysqli_query($conn, "DELETE FROM `data_akun` WHERE id = '$unik' AND nama_akun = '$akun' ");
 
 if ($query2 == true) {
     echo "<script>

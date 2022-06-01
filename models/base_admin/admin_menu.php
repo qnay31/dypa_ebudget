@@ -162,9 +162,14 @@ if ($key_admin == "akunEbudget") {
                     <td><?= $r['username'] ?></td>
                     <td><?= ucwords($r['posisi']) ?></td>
                     <td style="text-align: center;">
+                        <?php if ($r["id_pengurus"] == "facebook_depok") { ?>
                         <a href="../models/base_admin/hapus_ebudget.php?id_unik=<?= $r['id'] ?>"><i class="bi bi-trash"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
                                 onclick="return confirm('Yakin data ini mau dihapus?!')"></i></a>
+
+                        <?php } else { ?>
+                        -
+                        <?php } ?>
                     </td>
                 </tr>
                 <?php } ?>
@@ -593,7 +598,7 @@ if ($key_admin == "akunEbudget") {
                     <td>
                         <a href="" data-bs-toggle="modal" data-bs-target="#akun_<?= $r["id"] ?>"><i class="bi bi-pencil"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i></a>&nbsp;|&nbsp;
-                        <a href="../models/base_admin/hapus_akunMedia.php?id_unik=<?= $r['nomor_id'] ?>"><i
+                        <a href="../models/base_admin/hapus_akunMedia.php?id_unik=<?= $r['id'] ?>"><i
                                 class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
                                 onclick="return confirm('Yakin data ini mau dihapus?!')"></i></a>
                     </td>
@@ -682,7 +687,7 @@ if ($key_admin == "akunEbudget") {
         </table>
 
         <?php } elseif ($key_admin == "laporan_media") { ?>
-        <table id="tabel-admin_lapMedia" class="table table-bordered">
+        <table id="tabel-database_lapMedia" class="table table-bordered">
             <thead>
                 <tr style="text-align: center;">
                     <th scope="col">No</th>
