@@ -16,6 +16,68 @@ $(document).ready(function () {
         reverse: true
     });
 
+    if (readCookie("login") == "leader_2" || readCookie("login") == "leader_fb") {
+        $('#namaPengurus').select2({
+            placeholder: "- Pilih nama pengurus -",
+            allowClear: true,
+            language: "id"
+        });
+    }
+
+    function readCookie(name) {
+        name += '=';
+        for (var ca = document.cookie.split(/;\s*/), i = ca.length - 1; i >= 0; i--)
+            if (!ca[i].indexOf(name))
+                return ca[i].replace(name, '');
+    }
+
+    $('.chk_boxes1').click(function () {
+        if ($(this).is(':checked')) {
+            $(this).closest('tr').addClass('removeRow');
+        } else {
+            $(this).closest('tr').removeClass('removeRow');
+        }
+    });
+
+
+    $('#btn_delete').click(function () {
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+            var id = [];
+
+            $(':checkbox:checked').each(function (i) {
+                id[i] = $(this).val();
+            });
+
+            if (id.length === 0) {
+                alert("Pilih minimal satu data");
+            } else {
+                $.ajax({
+                    url: '../teaming/deleteTeam.php',
+                    method: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function () {
+                        for (var i = 0; i < id.length; i++) {
+                            $('tr#' + id[i] + '').fadeOut('slow');
+                        }
+                    }
+                });
+            }
+        } else {
+            return false;
+        }
+    });
+
+    $('.check_all').click(function () {
+        $('.chk_boxes1').prop('checked', this.checked);
+        if ($(this).is(':checked')) {
+            $('.check').addClass('removeRow');
+        } else {
+            $('.check').removeClass('removeRow');
+        }
+    });
+
     // modal laporan program
     $('.view_data_program').click(function () {
         var data_id = $(this).data("id")
@@ -4251,4 +4313,121 @@ $(document).ready(function () {
             orderData: [1, 5]
         }],
     });
+
+    if (readCookie("login") == "leader_2" || readCookie("login") == "leader_fb") {
+        $("#tabel-dataTeamMedia").DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: false,
+            dom: "Plfrtip",
+            ajax: "../ajax/data_pengurus.php",
+            deferRender: true,
+            'createdRow': function (row, data, dataIndex) {
+                $(row).addClass('check');
+            },
+            // "autoWidth": true,
+            columnDefs: [{
+                targets: 0,
+                render: function (data, type, row, meta) {
+                    var no = meta.row + meta.settings._iDisplayStart + 1;
+                    return "<center>" + no + "</center>";
+                },
+            }, {
+                targets: 1,
+                width: 200,
+                searchPanes: {
+                    show: false,
+                },
+                render: function (data) {
+                    return Capitalize(data);
+                },
+            }, {
+                targets: 2,
+                searchPanes: {
+                    show: false,
+                },
+                render: function (data) {
+                    return "<center>-</center>";
+                }
+            }, {
+                targets: 3,
+                width: 200,
+                searchPanes: {
+                    show: false,
+                },
+                render: function (data) {
+                    return "<center>Facebook</center>";
+                },
+            }, {
+                targets: 4,
+                width: 150,
+                searchPanes: {
+                    show: true,
+                    initCollapsed: true,
+                    orderable: false,
+                },
+            }, {
+                orderable: false,
+                targets: 5,
+                width: 50,
+                render: function (data) {
+                    return '<center><input type="checkbox" name="id[]" class="form-check-input chk_boxes1" value="' + data + '"/></center>';
+                },
+            }],
+        });
+    } else {
+        $("#tabel-dataTeamMedia").DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: false,
+            dom: "Plfrtip",
+            ajax: "../ajax/data_pengurus.php",
+            deferRender: true,
+            'createdRow': function (row, data, dataIndex) {
+                $(row).addClass('check');
+            },
+            // "autoWidth": true,
+            columnDefs: [{
+                targets: 0,
+                render: function (data, type, row, meta) {
+                    var no = meta.row + meta.settings._iDisplayStart + 1;
+                    return "<center>" + no + "</center>";
+                },
+            }, {
+                targets: 1,
+                width: 200,
+                searchPanes: {
+                    show: false,
+                },
+                render: function (data) {
+                    return Capitalize(data);
+                },
+            }, {
+                targets: 2,
+                searchPanes: {
+                    show: false,
+                },
+                render: function (data) {
+                    return "<center>-</center>";
+                },
+            }, {
+                targets: 3,
+                width: 200,
+                searchPanes: {
+                    show: false,
+                },
+                render: function (data) {
+                    return "<center>Facebook</center>";
+                },
+            }, {
+                targets: 4,
+                width: 150,
+                searchPanes: {
+                    show: true,
+                    initCollapsed: true,
+                    orderable: false,
+                },
+            }],
+        });
+    }
 });

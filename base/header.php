@@ -44,6 +44,10 @@
     <link rel="stylesheet" href="../assets/css/splide.min.css">
     <?php } ?>
 
+    <?php if ($_GET["idTeam"] == "teamMedia") { ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css">
+    <?php } ?>
+
     <!-- searchPane -->
     <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.4.0/css/searchPanes.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap5.min.css">

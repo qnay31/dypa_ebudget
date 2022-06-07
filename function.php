@@ -156,7 +156,7 @@ return false;
 
 // input data ke database
 $result = mysqli_query($conn, "INSERT INTO data_akun VALUES('', '$id_pengurus', '$id', '$nama', '$akunName',
-'$_SESSION[cabang]', '$posisi')");
+'$_SESSION[cabang]', '$posisi', '')");
 
 $result2 = mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$nama', '$posisi', '$ip',
 '$date', '$nama Telah Membuat Akun media sosial dengan nama akun $akunName')");
@@ -1334,5 +1334,39 @@ return false;
 return mysqli_affected_rows($conn);
 }
 
+function createTeam($data) {
+global $conn;
+
+$team = htmlspecialchars(mysqli_real_escape_string($conn, $data["team"]));
+$nama = $data["namaList"];
+
+foreach ($nama as $listName) {
+
+$qdataTeam = mysqli_query($conn, "SELECT * FROM data_akun WHERE pemegang = '$listName'");
+$dataTeam = mysqli_fetch_assoc($qdataTeam);
+$id_pengurus = $dataTeam["id_pengurus"];
+$pemegang = $dataTeam["pemegang"];
+$posisi = $dataTeam["posisi"];
+$dataTeam = $dataTeam["team"];
+
+if ($dataTeam == "") {
+} else {
+if ($dataTeam !== $team) {
+echo "<script>
+alert('Data tim sudah ada, harap pilih $dataTeam');
+</script>";
+
+return false;
+}
+}
+$result = mysqli_query($conn,
+"UPDATE data_akun SET
+`team` = '$team'
+WHERE `pemegang` = '$listName'");
+}
+
+return mysqli_affected_rows($conn);
+
+}
 
 ?>

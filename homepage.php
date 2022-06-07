@@ -77,6 +77,12 @@ include 'base/header.php'
         include 'database/program.php';
     ?>
 
+    <!-- team media -->
+    <?php } elseif ($_GET["idTeam"] == "teamMedia" || $_GET["idTeam"] == "changeMedia") { ?>
+    <?php
+        include 'teaming/team_media.php';
+    ?>
+
     <!-- database global -->
     <?php } elseif ($_GET["id_database"] == "database_global") { ?>
     <?php
