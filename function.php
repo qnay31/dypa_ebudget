@@ -1301,11 +1301,16 @@ $oldId = htmlspecialchars(mysqli_real_escape_string($conn, $data["oldId"]));
 $namaAkun = htmlspecialchars(mysqli_real_escape_string($conn, $data["namaAkun"]));
 $namaChange = htmlspecialchars(mysqli_real_escape_string($conn, $data["namaChange"]));
 $changeID = htmlspecialchars(mysqli_real_escape_string($conn, $data["changeID"]));
+$team = htmlspecialchars(mysqli_real_escape_string($conn, $data["team"]));
 
 $qAkunName = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id = '$changeID' AND nama = '$namaChange'");
 $nAkunName = $qAkunName -> num_rows;
-// die(var_dump($nAkunName));
-if ($nAkunName === 1) {
+
+$qTeamAkun = mysqli_query($conn, "SELECT * FROM data_akun WHERE nomor_id = '$oldId' AND pemegang = '$nama'");
+$dTeamAkun = mysqli_fetch_assoc($qTeamAkun);
+
+$dataTeam = $dTeamAkun["team"];
+if ($nAkunName === 1 && $dataTeam == $team) {
 // update_target
 $update = mysqli_query($conn, "UPDATE `income_media` SET
 nomor_id = '$changeID',
@@ -1319,12 +1324,13 @@ WHERE nama_akun = '$namaAkun' ");
 
 $update3 = mysqli_query($conn, "UPDATE `data_akun` SET
 nomor_id = '$changeID',
-`pemegang` = '$namaChange'
+`pemegang` = '$namaChange',
+`team` = '$team'
 WHERE nama_akun = '$namaAkun' ");
 
 } else {
 echo "<script>
-alert('ID pengurus yang diinput tidak sesuai');
+alert('ID dan team pengurus yang diinput tidak sesuai');
 </script>";
 
 return false;

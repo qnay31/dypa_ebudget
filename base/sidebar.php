@@ -69,7 +69,7 @@
         <?php } ?>
 
         <?php if (
-            $_SESSION["id_pengurus"] == "facebook_depok"
+            $_SESSION["id_pengurus"] == "facebook_depok" || $_SESSION["id_pengurus"] == "admin_web"
             ) { ?>
 
         <?php } else { ?>

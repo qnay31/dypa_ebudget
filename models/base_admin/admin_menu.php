@@ -578,6 +578,7 @@ if ($key_admin == "akunEbudget") {
                     <th scope="col">Cabang</th>
                     <th scope="col">Nama Akun</th>
                     <th scope="col">Posisi</th>
+                    <th scope="col">Team</th>
                     <th scope="col">Menu</th>
                 </tr>
             </thead>
@@ -592,9 +593,23 @@ if ($key_admin == "akunEbudget") {
                     <td><?= ucwords($r['pemegang']) ?></td>
                     <td>
                         <?= ucwords($r['cabang']) ?>
+                        <?php if ($r["id_pengurus"] == "facebook_depok" || $r["id_pengurus"] == "facebook_bogor" || $r["id_pengurus"] == "instagram") { ?>
+                        <a
+                            href="../models/base_admin/switchCabang.php?id_unik=<?= $r['nomor_id'] ?>&idCabang=akunMedia&namaAkun=<?= $r['nama_akun'] ?>">
+                            <?php if ($r['cabang'] == "Depok") { ?>
+                            <i class="bi bi-arrow-left-right" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="ganti" onclick="return confirm('Ganti Cabang ke Bogor?!')"></i>
+
+                            <?php } else { ?>
+                            <i class="bi bi-arrow-left-right" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="ganti" onclick="return confirm('Ganti Cabang ke Depok?!')"></i>
+                            <?php } ?>
+                        </a>
+                        <?php } ?>
                     </td>
                     <td><?= $r['nama_akun'] ?></td>
                     <td><?= ucwords($r['posisi']) ?></td>
+                    <td><?= ucwords($r['team']) ?></td>
                     <td>
                         <a href="" data-bs-toggle="modal" data-bs-target="#akun_<?= $r["id"] ?>"><i class="bi bi-pencil"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"></i></a>&nbsp;|&nbsp;
@@ -605,7 +620,6 @@ if ($key_admin == "akunEbudget") {
                 </tr>
                 <?php include '../modal/mediaSosial/akun.php'; ?>
                 <?php } ?>
-
             </tbody>
         </table>
 

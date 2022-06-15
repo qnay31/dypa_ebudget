@@ -1,6 +1,5 @@
 <?php
-
-$query  = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus LIKE 'facebook%' ORDER BY `nama` ASC");
+$query  = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus LIKE 'facebook%' OR id_pengurus LIKE 'instagram%' ORDER BY `posisi` ASC, nama ASC");
 
 ?>
 <!-- Modal -->
@@ -30,6 +29,18 @@ $query  = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus LIK
 
                         <div class="form-group mb-3">
                             <div class="form-text mb-2">
+                                Team
+                            </div>
+                            <?php if ($r["team"] == "") { ?>
+                            <input type="text" class="form-control" value="Belum terdaftar dalam team" readonly>
+
+                            <?php } else { ?>
+                            <input type="text" class="form-control" value="<?= $r["team"] ?>" readonly>
+                            <?php } ?>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="form-text mb-2">
                                 Nama Akun
                             </div>
                             <input type="text" class="form-control" name="namaAkun" value="<?= $r["nama_akun"] ?>"
@@ -49,8 +60,8 @@ $query  = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus LIK
                                 <option selected value="">- Pilih Salah Satu Nama -</option>
                                 <?php
                                 while ($data = mysqli_fetch_array($query)) { ?>
-                                <option value="<?php echo $data['nama'];?>">
-                                    <?php echo ucwords($data['nama']) ?>
+                                <option value="<?= $data['nama'];?>">
+                                    <?= ucwords($data['nama']) ?> (<?= $data['posisi']; ?>)
                                 </option>
 
                                 <?php } ?>
@@ -67,6 +78,18 @@ $query  = mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE id_pengurus LIK
                                 placeholder="Isi ID pengurus" required
                                 oninvalid="this.setCustomValidity('ID pengurus tidak boleh kosong')"
                                 oninput="this.setCustomValidity('')">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Team</span>
+                            <select class="form-select" name="team" aria-label="Default select example" required
+                                oninvalid="this.setCustomValidity('Tim tidak boleh kosong')"
+                                oninput="this.setCustomValidity('')">
+                                <option selected value="">- Pilih Salah Satu Team - </option>
+                                <option value="">Tidak Ada Team</option>
+                                <option value="Facebook Tajur">Team Facebook Tajur</option>
+                                <option value="Facebook Bogor">Team Facebook Bogor</option>
+                            </select>
                         </div>
 
                         <div class=" button">
