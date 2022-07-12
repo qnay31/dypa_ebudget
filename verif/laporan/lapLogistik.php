@@ -9,7 +9,7 @@ $periode  = $_GET["id_p"];
 $query      = mysqli_query($conn, "SELECT * FROM 2022_logistik WHERE id = '$unik' AND MONTH(tgl_pemakaian) = '$periode' ");
 $data       = mysqli_fetch_assoc($query);
 $logistik   = $data["logistik"];
-$deskripsi  = mysqli_real_escape_string($conn, $data["deskripsi_pemakaian"]);
+$deskripsi  = $data["deskripsi_pemakaian"];
 $cabang     = $data["cabang"];
 $id_pengurus   = $data["id_pengurus"];
 $ip         = get_client_ip();
@@ -44,16 +44,74 @@ while($r = mysqli_fetch_array($sql))
     $hasil_terpakai = array_sum($total_terpakai);
 }
 
+// logistik tajur
+$q2  = mysqli_query($conn, "SELECT * FROM 2022_logistik WHERE MONTH(tgl_pemakaian) = '$periode' AND laporan = 'Terverifikasi' AND cabang = 'Tajur' ");
+
+$sql2 = $q2;
+while($r2 = mysqli_fetch_array($sql2))
+{
+    $d_anggaran2 = $r2['dana_anggaran'];
+    $i++;
+    $total_anggaran2[$i] = $d_anggaran2;
+
+    $hasil_anggaran2 = array_sum($total_anggaran2);
+
+    $d_terpakai2 = $r2['dana_terpakai'];
+    $total_terpakai2[$i] = $d_terpakai2;
+
+    $hasil_terpakai2 = array_sum($total_terpakai2);
+}
+
+// logistik bogor
+$q3  = mysqli_query($conn, "SELECT * FROM 2022_logistik WHERE MONTH(tgl_pemakaian) = '$periode' AND laporan = 'Terverifikasi' AND cabang = 'Bogor' ");
+
+$sql3 = $q3;
+while($r3 = mysqli_fetch_array($sql3))
+{
+    $d_anggaran3 = $r3['dana_anggaran'];
+    $i++;
+    $total_anggaran3[$i] = $d_anggaran3;
+
+    $hasil_anggaran3 = array_sum($total_anggaran3);
+
+    $d_terpakai3 = $r3['dana_terpakai'];
+    $total_terpakai3[$i] = $d_terpakai3;
+
+    $hasil_terpakai3 = array_sum($total_terpakai3);
+}
+
+
 // cek nama
 $c_query = mysqli_query($conn, "SELECT bulan FROM 2022_data_logistik WHERE bulan = '$bulan' ");
 
-// logistik
+// sub cabang logistik
+// pendidikan depok
+if ($cabang == 'Tajur') {
     if (mysqli_fetch_assoc($c_query)) {
         $tes = mysqli_query($conn, "UPDATE `2022_data_logistik` SET 
+            `anggaran_logistik_tajur`       ='$hasil_anggaran2',
+            `terpakai_logistik_tajur`       ='$hasil_terpakai2',
             `anggaran_global`               ='$hasil_anggaran',
             `terpakai_global`               ='$hasil_terpakai'
             WHERE bulan = '$bulan' ");
         }
+
+        // die(var_dump($c_query));
+        // kesehatan depok
+    } elseif ($cabang == 'Bogor') {
+        if (mysqli_fetch_assoc($c_query)) {
+            mysqli_query($conn, "UPDATE `2022_data_logistik` SET 
+            `anggaran_logistik_bogor`       ='$hasil_anggaran3',
+            `terpakai_logistik_bogor`       ='$hasil_terpakai3',
+            `anggaran_global`               ='$hasil_anggaran',
+            `terpakai_global`               ='$hasil_terpakai'
+            WHERE bulan = '$bulan' ");   
+        }
+        
+    }
+
+    
+    
 
 // die(var_dump($update));
 if ($update == false ) {

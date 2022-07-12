@@ -30,7 +30,14 @@
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td style="text-align: center;"><?= ucwords($r['logistik']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['posisi']) ?></td>
+                    <td style="text-align: center;">
+                        <?php if ($r['posisi'] == "Kepala Income") { ?>
+                        Fadhila Amelia Putri
+
+                        <?php } else { ?>
+                        Titi Sugianti
+                        <?php } ?>
+                    </td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tgl_pengajuan'])); ?></td>

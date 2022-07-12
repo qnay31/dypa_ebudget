@@ -40,7 +40,7 @@
     <link href="https://cdn.datatables.net/rowgroup/1.0.2/css/rowGroup.dataTables.min.css" rel="stylesheet"
         type="text/css" />
 
-    <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income") { ?>
+    <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income" || $_SESSION["id_pengurus"] == "kepala_pengajuan") { ?>
     <link rel="stylesheet" href="../assets/css/splide.min.css">
     <?php } ?>
 

@@ -149,7 +149,14 @@
                     <td style="text-align: center;"><?= ucwords($r['kategori']) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['jenis']) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['posisi']) ?></td>
+                    <td style="text-align: center;">
+                        <?php if ($r['posisi'] == "Kepala Income") { ?>
+                        Fadhila Amelia Putri
+
+                        <?php } else { ?>
+                        Titi Sugianti
+                        <?php } ?>
+                    </td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tgl_dibuat'])); ?></td>
                     <td><?= ucwords($r['deskripsi']) ?></td>
@@ -228,7 +235,14 @@
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td style="text-align: center;"><?= ucwords($r['kategori']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['posisi']) ?></td>
+                    <td style="text-align: center;">
+                        <?php if ($r['posisi'] == "Kepala Income") { ?>
+                        Fadhila Amelia Putri
+
+                        <?php } else { ?>
+                        Titi Sugianti
+                        <?php } ?>
+                    </td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tgl_dibuat'])); ?></td>
                     <td><?= ucwords($r['deskripsi']) ?></td>
@@ -238,10 +252,11 @@
                     <td><?= ucwords($r['pemakaian']) ?></td>
                     <td style="text-align: center;"><a class="btn btn-primary"
                             href="../admin/<?= $_SESSION["username"] ?>.php?id_dataManagement=<?= $id_management ?>&id_forms=edit_laporan&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin laporan ini mau diedit?!')">Edit</a> || <a
-                            class="btn btn-danger"
+                            onclick="return confirm('Yakin laporan ini mau diedit?!')"><i
+                                class="bi bi-pencil text-white"></i></a> || <a class="btn btn-danger"
                             href="../models/forms/hapus_laporan/hapus_lapManagement.php?id_dataManagement=<?= $id_management ?>&id_unik=<?= $r['id'] ?>&id_p=<?= $bln ?>"
-                            onclick="return confirm('Yakin anggaran ini mau dihapus?!')">Hapus</a>
+                            onclick="return confirm('Yakin anggaran ini mau dihapus?!')"><i
+                                class="bi bi-trash text-white"></i></a>
 
                     </td>
                     <td>Rp. <?= number_format($terpakai,0,"." , ".") ?></td>

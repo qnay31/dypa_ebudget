@@ -13,9 +13,9 @@ $SESSION = [];
 session_destroy();
 session_unset();
 
-setcookie('login', '', time() - 3600);
+setcookie('login', '', time() + (10 * 365 * 24 * 60 * 60));
 
 header("Location: index.php");
 exit;
 
- ?>
+?>

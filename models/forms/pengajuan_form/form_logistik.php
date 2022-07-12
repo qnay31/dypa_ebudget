@@ -14,7 +14,13 @@
             <div class="form-text mb-2">
                 Cabang
             </div>
-            <input type="text" class="form-control" name="cabang" value="Depok" readonly>
+            <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+            <input type="text" class="form-control" name="cabang" value="Tajur" readonly>
+
+            <?php } else { ?>
+            <input type="text" class="form-control" name="cabang" value="Bogor" readonly>
+
+            <?php } ?>
         </div>
 
         <div class="form-group mb-3">

@@ -39,7 +39,14 @@
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td style="text-align: center;"><?= ucwords($r['kategori']) ?></td>
                     <td><?= ucwords($r['jenis']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['posisi']) ?></td>
+                    <td>
+                        <?php if ($r['posisi'] == "Kepala Income") { ?>
+                        Fadhila Amelia Putri
+
+                        <?php } else { ?>
+                        Titi Sugianti
+                        <?php } ?>
+                    </td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
                     <td style="text-align: center;"><?= $bulan ?></td>
                     <td style="text-align: center;">
@@ -117,7 +124,14 @@
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td style="text-align: center;"><?= ucwords($r['kategori']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['posisi']) ?></td>
+                    <td>
+                        <?php if ($r['posisi'] == "Kepala Income") { ?>
+                        Fadhila Amelia Putri
+
+                        <?php } else { ?>
+                        Titi Sugianti
+                        <?php } ?>
+                    </td>
                     <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
                     <td style="text-align: center;"><?= $bulan ?></td>
                     <td style="text-align: center;">

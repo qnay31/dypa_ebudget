@@ -1,20 +1,58 @@
 <?php
 
-if ($_GET["id_periode"] == "") {
-    $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' ORDER BY `tgl_pengajuan` DESC");
-    $pProgram = "Global";
-    $nums = $q->num_rows;
+if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") {
+    if ($_GET["id_periode"] == "") {
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' ORDER BY `tgl_pengajuan` DESC");
+        $pProgram = "Global";
+        $nums = $q->num_rows;
+        
+    } else {
+        $periode = $_GET["id_periode"];
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' ORDER BY `tgl_pengajuan` DESC");
+    
+        $q2  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' ORDER BY `tgl_pengajuan` DESC");
+        
+        $nums = $q->num_rows;
+        $data = mysqli_fetch_assoc($q2);
+        $convert    = convertDateDBtoIndo($data['tgl_pemakaian']);
+        $pProgram     = substr($convert, 2, -5);
+    }
+
+} elseif ($_SESSION["id_pengurus"] == "kepala_pengajuan") {
+    if ($_GET["id_periode"] == "") {
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND cabang = 'Bogor' ORDER BY `tgl_pengajuan` DESC");
+        $pProgram = "Global";
+        $nums = $q->num_rows;
+        
+    } else {
+        $periode = $_GET["id_periode"];
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' AND cabang = 'Bogor' ORDER BY `tgl_pengajuan` DESC");
+    
+        $q2  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' AND cabang = 'Bogor' ORDER BY `tgl_pengajuan` DESC");
+        
+        $nums = $q->num_rows;
+        $data = mysqli_fetch_assoc($q2);
+        $convert    = convertDateDBtoIndo($data['tgl_pemakaian']);
+        $pProgram     = substr($convert, 2, -5);
+    }
     
 } else {
-    $periode = $_GET["id_periode"];
-    $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' ORDER BY `tgl_pengajuan` DESC");
-
-    $q2  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' ORDER BY `tgl_pengajuan` DESC");
+    if ($_GET["id_periode"] == "") {
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND cabang = 'Tajur' ORDER BY `tgl_pengajuan` DESC");
+        $pProgram = "Global";
+        $nums = $q->num_rows;
+        
+    } else {
+        $periode = $_GET["id_periode"];
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' AND cabang = 'Tajur' ORDER BY `tgl_pengajuan` DESC");
     
-    $nums = $q->num_rows;
-    $data = mysqli_fetch_assoc($q2);
-    $convert    = convertDateDBtoIndo($data['tgl_pemakaian']);
-    $pProgram     = substr($convert, 2, -5);
+        $q2  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Terverifikasi' AND MONTH(tgl_pemakaian) = '$periode' AND cabang = 'Tajur' ORDER BY `tgl_pengajuan` DESC");
+        
+        $nums = $q->num_rows;
+        $data = mysqli_fetch_assoc($q2);
+        $convert    = convertDateDBtoIndo($data['tgl_pemakaian']);
+        $pProgram     = substr($convert, 2, -5);
+    }
 }
 // die(var_dump($s));
 ?>

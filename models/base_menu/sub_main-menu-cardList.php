@@ -4,7 +4,7 @@ $bln       = substr($bulan, 5,-3);
 $convert   = convertDateDBtoIndo($bulan);
 $bulanan   = substr($convert, 3, -5);
 
-if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income") {
+if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan") {
     // program
     $q = mysqli_query($conn, "SELECT * FROM 2022_data_program");
     $i = 1;
@@ -343,6 +343,737 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
     // tahun
     $pemasukanMediaT = $hasil_income+$hasil_resi1;
     $pemasukanYayasanGlobal = $pemasukanMediaT+$cashback_global;
+
+} elseif ($_SESSION["id_pengurus"] == "kepala_income") {
+    // program
+    $q = mysqli_query($conn, "SELECT * FROM 2022_data_program");
+    $i = 1;
+    $sql = $q;
+    while($r = mysqli_fetch_array($sql))
+    {
+        $i++;   
+        $d_anggaran = $r['anggaran_program_tajur'];
+        $total_anggaran[$i] = $d_anggaran;
+
+        $hasil_anggaran = array_sum($total_anggaran);
+
+        $d_terpakai = $r['terpakai_program_tajur'];
+        $total_terpakai[$i] = $d_terpakai;
+
+        $hasil_terpakai = array_sum($total_terpakai);
+    }
+
+    // logistik
+    $q2 = mysqli_query($conn, "SELECT * FROM 2022_data_logistik");
+    $sql2 = $q2;
+    while($r2 = mysqli_fetch_array($sql2))
+    {
+        $i++;   
+        $d_anggaran2 = $r2['anggaran_logistik_tajur'];
+        $total_anggaran2[$i] = $d_anggaran2;
+
+        $hasil_anggaran2 = array_sum($total_anggaran2);
+
+        $d_terpakai2 = $r2['terpakai_logistik_tajur'];
+        $total_terpakai2[$i] = $d_terpakai2;
+
+        $hasil_terpakai2 = array_sum($total_terpakai2);
+    }
+
+    // aset
+    $q3 = mysqli_query($conn, "SELECT * FROM 2022_data_aset_yayasan");
+    $sql3 = $q3;
+    while($r3 = mysqli_fetch_array($sql3))
+    {
+        $i++;   
+        $d_anggaran3 = $r3['anggaran_pembangunan_tajur'];
+        $total_anggaran3[$i] = $d_anggaran3;
+        
+        $hasil_anggaran3 = array_sum($total_anggaran3);
+        $d_anggaran3_1 = $r3['anggaran_pembelian_tajur'];
+        $total_anggaran3_1[$i] = $d_anggaran3_1;
+        
+        $hasil_anggaran3_1 = array_sum($total_anggaran3_1);
+
+        $d_terpakai3 = $r3['terpakai_pembangunan_tajur'];
+        $total_terpakai3[$i] = $d_terpakai3;
+
+        $hasil_terpakai3 = array_sum($total_terpakai3);
+
+        $d_terpakai3_1 = $r3['terpakai_pembelian_tajur'];
+        $total_terpakai3_1[$i] = $d_terpakai3_1;
+
+        $hasil_terpakai3_1 = array_sum($total_terpakai3_1);
+    }
+ 
+
+    // aset yayasan
+    $q4 = mysqli_query($conn, "SELECT * FROM 2022_data_uang_makan");
+    $sql4 = $q4;
+    while($r4 = mysqli_fetch_array($sql4))
+    {
+        $i++;   
+        $d_anggaran4 = $r4['anggaran_uang_makan_tajur'];
+        $total_anggaran4[$i] = $d_anggaran4;
+
+        $hasil_anggaran4 = array_sum($total_anggaran4);
+
+        $d_terpakai4 = $r4['terpakai_uang_makan_tajur'];
+        $total_terpakai4[$i] = $d_terpakai4;
+
+        $hasil_terpakai4 = array_sum($total_terpakai4);
+    }
+
+    $q5 = mysqli_query($conn, "SELECT * FROM 2022_data_gaji_karyawan");
+    $sql5 = $q5;
+    while($r5 = mysqli_fetch_array($sql5))
+    {
+        $i++;   
+        $d_anggaran5 = $r5['anggaran_gaji_karyawan_tajur'];
+        $total_anggaran5[$i] = $d_anggaran5;
+
+        $hasil_anggaran5 = array_sum($total_anggaran5);
+
+        $d_terpakai5 = $r5['terpakai_gaji_karyawan_tajur'];
+        $total_terpakai5[$i] = $d_terpakai5;
+
+        $hasil_terpakai5 = array_sum($total_terpakai5);
+    }
+
+    $q6 = mysqli_query($conn, "SELECT * FROM 2022_data_anggaran_lain");
+    $sql6 = $q6;
+    while($r6 = mysqli_fetch_array($sql6))
+    {
+        $i++;   
+        $d_anggaran6 = $r6['anggaran_anggaran_lain_tajur'];
+        $total_anggaran6[$i] = $d_anggaran6;
+
+        $hasil_anggaran6 = array_sum($total_anggaran6);
+
+        $d_terpakai6 = $r6['terpakai_anggaran_lain_tajur'];
+        $total_terpakai6[$i] = $d_terpakai6;
+
+        $hasil_terpakai6 = array_sum($total_terpakai6);
+    }
+
+    $q7 = mysqli_query($conn, "SELECT * FROM 2022_data_maintenance");
+    $sql7 = $q7;
+    while($r7 = mysqli_fetch_array($sql7))
+    {
+        $i++;   
+        $d_anggaran7 = $r7['anggaran_maintenance_aset_tajur'];
+        $total_anggaran7[$i] = $d_anggaran7;
+
+        $hasil_anggaran7 = array_sum($total_anggaran7);
+
+        $d_anggaran7_1 = $r7['anggaran_maintenance_gedung_tajur'];
+        $total_anggaran7_1[$i] = $d_anggaran7_1;
+
+        $hasil_anggaran7_1 = array_sum($total_anggaran7_1);
+
+        $d_terpakai7 = $r7['terpakai_maintenance_aset_tajur'];
+        $total_terpakai7[$i] = $d_terpakai7;
+
+        $hasil_terpakai7 = array_sum($total_terpakai7);
+
+        $d_terpakai7_1 = $r7['terpakai_maintenance_gedung_tajur'];
+        $total_terpakai7_1[$i] = $d_terpakai7_1;
+
+        $hasil_terpakai7_1 = array_sum($total_terpakai7_1);
+    }
+
+    $q8 = mysqli_query($conn, "SELECT * FROM 2022_data_operasional_yayasan");
+    $sql8 = $q8;
+    while($r8 = mysqli_fetch_array($sql8))
+    {
+        $i++;   
+        $d_anggaran8 = $r8['anggaran_operasional_yayasan_tajur'];
+        $total_anggaran8[$i] = $d_anggaran8;
+
+        $hasil_anggaran8 = array_sum($total_anggaran8);
+
+        $d_terpakai8 = $r8['terpakai_operasional_yayasan_tajur'];
+        $total_terpakai8[$i] = $d_terpakai8;
+
+        $hasil_terpakai8 = array_sum($total_terpakai8);
+    }
+
+
+    $anggaran_global = $hasil_anggaran+$hasil_anggaran2+$hasil_anggaran3+$hasil_anggaran4+$hasil_anggaran5+$hasil_anggaran6+$hasil_anggaran7+$hasil_anggaran8;
+
+    $terpakai_global = $hasil_terpakai+$hasil_terpakai2+$hasil_terpakai3+$hasil_terpakai4+$hasil_terpakai5+$hasil_terpakai6+$hasil_terpakai7+$hasil_terpakai8;
+
+    $cashback_global = $anggaran_global-$terpakai_global;
+    // die(var_dump($terpakai_global));
+    
+    // bulanan
+    // program
+    $k = mysqli_query($conn, "SELECT * FROM 2022_data_program WHERE bulan = '$bulanan'");
+    $skl = $k;
+    while($dBulanan = mysqli_fetch_array($skl))
+    {
+        $i++;   
+        $d_anggaranBulanan = $dBulanan['anggaran_program_tajur'];
+        $total_anggaranBulanan[$i] = $d_anggaranBulanan;
+
+        $hasil_anggaranBulanan = array_sum($total_anggaranBulanan);
+
+        $d_terpakaiBulanan = $dBulanan['terpakai_program_tajur'];
+        $total_terpakaiBulanan[$i] = $d_terpakaiBulanan;
+
+        $hasil_terpakaiBulanan = array_sum($total_terpakaiBulanan);
+        // die(var_dump($d_anggaranBulanan));
+        $cashbackBulanan = $hasil_anggaranBulanan-$hasil_terpakaiBulanan;
+    }
+
+    // logistik
+    $k2 = mysqli_query($conn, "SELECT * FROM 2022_data_logistik WHERE bulan = '$bulanan'");
+    $skl2 = $k2;
+    while($dBulanan2 = mysqli_fetch_array($skl2))
+    {
+        $i++;   
+        $d_anggaranBulanan2 = $dBulanan2['anggaran_logistik_tajur'];
+        $total_anggaranBulanan2[$i] = $d_anggaranBulanan2;
+
+        $hasil_anggaranBulanan2 = array_sum($total_anggaranBulanan2);
+
+        $d_terpakaiBulanan2 = $dBulanan2['terpakai_logistik_tajur'];
+        $total_terpakaiBulanan2[$i] = $d_terpakaiBulanan2;
+
+        $hasil_terpakaiBulanan2 = array_sum($total_terpakaiBulanan2);
+        $cashbackBulanan2 = $hasil_anggaranBulanan2-$hasil_terpakaiBulanan2;
+    }
+
+    // aset
+    $k3 = mysqli_query($conn, "SELECT * FROM 2022_data_aset_yayasan WHERE bulan = '$bulanan'");
+    $skl3 = $k3;
+    while($dBulanan3 = mysqli_fetch_array($skl3))
+    {
+        $i++;   
+        $d_anggaranBulanan3 = $dBulanan3['anggaran_pembangunan_tajur'];
+        $total_anggaranBulanan3[$i] = $d_anggaranBulanan3;
+
+        $hasil_anggaranBulanan3 = array_sum($total_anggaranBulanan3);
+
+        $d_anggaranBulanan3_1 = $dBulanan3['anggaran_pembelian_tajur'];
+        $total_anggaranBulanan3_1[$i] = $d_anggaranBulanan3_1;
+
+        $hasil_anggaranBulanan3_1 = array_sum($total_anggaranBulanan3_1);
+
+        $d_terpakaiBulanan3 = $dBulanan3['terpakai_pembangunan_tajur'];
+        $total_terpakaiBulanan3[$i] = $d_terpakaiBulanan3;
+
+        $hasil_terpakaiBulanan4 = array_sum($total_terpakaiBulanan3);
+
+        $d_terpakaiBulanan3_1 = $dBulanan3['terpakai_pembelian_tajur'];
+        $total_terpakaiBulanan3_1[$i] = $d_terpakaiBulanan3_1;
+
+        $hasil_terpakaiBulanan3_1 = array_sum($total_terpakaiBulanan3_1);
+
+        $anggaran_aset  = $hasil_anggaranBulanan3+$hasil_anggaranBulanan3_1;
+        $terpakai_aset  = $hasil_terpakaiBulanan3+$hasil_terpakaiBulanan3_1;
+
+        $cashbackBulanan3 = $anggaran_aset-$terpakai_aset;
+    }
+
+    // uang makan
+    $k4 = mysqli_query($conn, "SELECT * FROM 2022_data_uang_makan WHERE bulan = '$bulanan'");
+    $skl4 = $k4;
+    while($dBulanan4 = mysqli_fetch_array($skl4))
+    {
+        $i++;   
+        $d_anggaranBulanan4 = $dBulanan4['anggaran_uang_makan_tajur'];
+        $total_anggaranBulanan4[$i] = $d_anggaranBulanan4;
+
+        $hasil_anggaranBulanan4 = array_sum($total_anggaranBulanan4);
+
+        $d_terpakaiBulanan4 = $dBulanan4['terpakai_uang_makan_tajur'];
+        $total_terpakaiBulanan4[$i] = $d_terpakaiBulanan4;
+
+        $hasil_terpakaiBulanan4 = array_sum($total_terpakaiBulanan4);
+        $cashbackBulanan4 = $hasil_anggaranBulanan4-$hasil_terpakaiBulanan4;
+        
+    }
+
+
+    // gaji karyawan
+    $k5 = mysqli_query($conn, "SELECT * FROM 2022_data_gaji_karyawan WHERE bulan = '$bulanan'");
+    $skl5 = $k5;
+    while($dBulanan5 = mysqli_fetch_array($skl5))
+    {
+        $i++;   
+        $d_anggaranBulanan5 = $dBulanan5['anggaran_gaji_karyawan_tajur'];
+        $total_anggaranBulanan5[$i] = $d_anggaranBulanan5;
+
+        $hasil_anggaranBulanan5 = array_sum($total_anggaranBulanan5);
+
+        $d_terpakaiBulanan5 = $dBulanan5['terpakai_gaji_karyawan_tajur'];
+        $total_terpakaiBulanan5[$i] = $d_terpakaiBulanan5;
+
+        $hasil_terpakaiBulanan5 = array_sum($total_terpakaiBulanan5);
+        $cashbackBulanan5 = $hasil_anggaranBulanan5-$hasil_terpakaiBulanan5;
+    }
+
+    $k6 = mysqli_query($conn, "SELECT * FROM 2022_data_anggaran_lain WHERE bulan = '$bulanan'");
+    $skl6 = $k6;
+    while($dBulanan6 = mysqli_fetch_array($skl6))
+    {
+        $i++;   
+        $d_anggaranBulanan6 = $dBulanan6['anggaran_anggaran_lain_tajur'];
+        $total_anggaranBulanan6[$i] = $d_anggaranBulanan6;
+
+        $hasil_anggaranBulanan6 = array_sum($total_anggaranBulanan6);
+
+        $d_terpakaiBulanan6 = $dBulanan6['terpakai_anggaran_lain_tajur'];
+        $total_terpakaiBulanan6[$i] = $d_terpakaiBulanan6;
+
+        $hasil_terpakaiBulanan6 = array_sum($total_terpakaiBulanan6);
+        $cashbackBulanan6 = $hasil_anggaranBulanan6-$hasil_terpakaiBulanan6;
+    }
+
+    $k7 = mysqli_query($conn, "SELECT * FROM 2022_data_maintenance WHERE bulan = '$bulanan'");
+    $skl7 = $k7;
+    while($dBulanan7 = mysqli_fetch_array($skl7))
+    {
+        $i++;   
+        $d_anggaranBulanan7 = $dBulanan7['anggaran_maintenance_aset_tajur'];
+        $total_anggaranBulanan7[$i] = $d_anggaranBulanan7;
+
+        $hasil_anggaranBulanan7 = array_sum($total_anggaranBulanan7);
+
+        $d_anggaranBulanan7_1 = $dBulanan7['anggaran_maintenance_gedung_tajur'];
+        $total_anggaranBulanan7_1[$i] = $d_anggaranBulanan7_1;
+
+        $hasil_anggaranBulanan7_1 = array_sum($total_anggaranBulanan7_1);
+
+        $d_terpakaiBulanan7 = $dBulanan7['terpakai_maintenance_aset_tajur'];
+        $total_terpakaiBulanan7[$i] = $d_terpakaiBulanan7;
+
+        $hasil_terpakaiBulanan7 = array_sum($total_terpakaiBulanan7);
+
+        $d_terpakaiBulanan7_1 = $dBulanan7['terpakai_maintenance_gedung_tajur'];
+
+        $total_terpakaiBulanan7_1[$i] = $d_terpakaiBulanan7_1;
+
+        $hasil_terpakaiBulanan7_1 = array_sum($total_terpakaiBulanan7_1);
+
+        $anggaran_aset  = $hasil_anggaranBulanan7+$hasil_anggaranBulanan7_1;
+        $terpakai_aset  = $hasil_terpakaiBulanan7+$hasil_terpakaiBulanan7_1;
+        
+        $cashbackBulanan7 = $anggaran_aset-$terpakai_aset;
+    }
+
+    $k8 = mysqli_query($conn, "SELECT * FROM 2022_data_operasional_yayasan WHERE bulan = '$bulanan'");
+    $skl8 = $k8;
+    while($dBulanan8 = mysqli_fetch_array($skl8))
+    {
+        $i++;   
+        $d_anggaranBulanan8 = $dBulanan8['anggaran_operasional_yayasan_tajur'];
+        $total_anggaranBulanan8[$i] = $d_anggaranBulanan8;
+
+        $hasil_anggaranBulanan8 = array_sum($total_anggaranBulanan8);
+
+        $d_terpakaiBulanan8 = $dBulanan8['terpakai_operasional_yayasan_tajur'];
+        $total_terpakaiBulanan8[$i] = $d_terpakaiBulanan8;
+
+        $hasil_terpakaiBulanan8 = array_sum($total_terpakaiBulanan8);
+        $cashbackBulanan8 = $hasil_anggaranBulanan8-$hasil_terpakaiBulanan8;
+    }
+
+    $anggaran_globalBulanan = $hasil_anggaranBulanan+$hasil_anggaranBulanan2+$hasil_anggaranBulanan3+$hasil_anggaranBulanan4+$hasil_anggaranBulanan5+$hasil_anggaranBulanan6+$hasil_anggaranBulanan7+$hasil_anggaranBulanan8;
+
+    $terpakai_globalBulanan = $hasil_terpakaiBulanan+$hasil_terpakaiBulanan2+$hasil_terpakaiBulanan3+$hasil_terpakaiBulanan4+$hasil_terpakaiBulanan5+$hasil_terpakaiBulanan6+$hasil_terpakaiBulanan7+$hasil_terpakaiBulanan8;
+
+    $cashback_globalBulananan = $anggaran_globalBulanan-$terpakai_globalBulanan;
+    
+    // PEMASUKAN
+
+    // media sosial
+    $incBulanan = mysqli_query($conn, "SELECT * FROM income_media WHERE MONTH(tanggal_tf) = '$bln' AND status = 'OK'");
+    while($data_incBulanan = mysqli_fetch_array($incBulanan))
+    {
+        $i++;   
+        $d_incomeBulanan = $data_incBulanan['jumlah_tf'];
+        $total_incomeBulanan[$i] = $d_incomeBulanan;
+        $hasil_incomeBulanan = array_sum($total_incomeBulanan);
+    }
+
+    $incB = mysqli_query($conn, "SELECT * FROM 2022_data_income WHERE bulan = '$bulanan'");
+    while($data_incB = mysqli_fetch_array($incB))
+    {
+        $i++;   
+        $d_resiB = $data_incB['income_tanpaResi'];
+        $total_resiB[$i] = $d_resiB;
+
+        $hasil_resiB = array_sum($total_resiB);
+        
+    }
+
+    $inc = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'OK'");
+    while($data_inc = mysqli_fetch_array($inc))
+    {
+        $i++;   
+        $d_income = $data_inc['jumlah_tf'];
+        $total_income[$i] = $d_income;
+        $hasil_income = array_sum($total_income);
+    }
+
+    $inc1 = mysqli_query($conn, "SELECT * FROM 2022_data_income");
+    while($data_inc1 = mysqli_fetch_array($inc1))
+    {
+        $i++;   
+        $d_resi1 = $data_inc1['income_tanpaResi'];
+        $total_resi1[$i] = $d_resi1;
+
+        $hasil_resi1 = array_sum($total_resi1);
+    }
+
+    $pemasukanMedia     = $hasil_incomeBulanan+$hasil_resiB;
+
+    $pemasukanYayasanBulanan = $hasil_incomeBulanan+$hasil_resiB+$cashback_globalBulananan;
+    // tahun
+    $pemasukanMediaT = $hasil_income+$hasil_resi1;
+    $pemasukanYayasanGlobal = $pemasukanMediaT+$cashback_global;
+
+
+} elseif ($_SESSION["id_pengurus"] == "kepala_pengajuan") {
+    // program
+    $q = mysqli_query($conn, "SELECT * FROM 2022_data_program");
+    $i = 1;
+    $sql = $q;
+    while($r = mysqli_fetch_array($sql))
+    {
+        $i++;   
+        $d_anggaran = $r['anggaran_program_bogor'];
+        $total_anggaran[$i] = $d_anggaran;
+
+        $hasil_anggaran = array_sum($total_anggaran);
+
+        $d_terpakai = $r['terpakai_program_bogor'];
+        $total_terpakai[$i] = $d_terpakai;
+
+        $hasil_terpakai = array_sum($total_terpakai);
+    }
+
+    // logistik
+    $q2 = mysqli_query($conn, "SELECT * FROM 2022_data_logistik");
+    $sql2 = $q2;
+    while($r2 = mysqli_fetch_array($sql2))
+    {
+        $i++;   
+        $d_anggaran2 = $r2['anggaran_logistik_bogor'];
+        $total_anggaran2[$i] = $d_anggaran2;
+
+        $hasil_anggaran2 = array_sum($total_anggaran2);
+
+        $d_terpakai2 = $r2['terpakai_logistik_bogor'];
+        $total_terpakai2[$i] = $d_terpakai2;
+
+        $hasil_terpakai2 = array_sum($total_terpakai2);
+    }
+
+    // aset
+    $q3 = mysqli_query($conn, "SELECT * FROM 2022_data_aset_yayasan");
+    $sql3 = $q3;
+    while($r3 = mysqli_fetch_array($sql3))
+    {
+        $i++;   
+        $d_anggaran3 = $r3['anggaran_pembangunan_bogor'];
+        $total_anggaran3[$i] = $d_anggaran3;
+        
+        $hasil_anggaran3 = array_sum($total_anggaran3);
+
+        $d_anggaran4 = $r3['anggaran_pembelian_bogor'];
+        $total_anggaran3_1[$i] = $d_anggaran3_1;
+        
+        $hasil_anggaran3_1 = array_sum($total_anggaran3_1);
+
+        $d_terpakai3 = $r3['terpakai_pembangunan_bogor'];
+        $total_terpakai3[$i] = $d_terpakai3;
+
+        $hasil_terpakai3 = array_sum($total_terpakai3);
+
+        $d_terpakai3_1 = $r3['terpakai_pembelian_bogor'];
+        $total_terpakai3_1[$i] = $d_terpakai3_1;
+
+        $hasil_terpakai3_1 = array_sum($total_terpakai3_1);
+    }
+
+    // uang makan
+    $q4 = mysqli_query($conn, "SELECT * FROM 2022_data_uang_makan");
+    $sql4 = $q4;
+    while($r4 = mysqli_fetch_array($sql4))
+    {
+        $i++;   
+        $d_anggaran4 = $r4['anggaran_uang_makan_bogor'];
+        $total_anggaran4[$i] = $d_anggaran4;
+
+        $hasil_anggaran4 = array_sum($total_anggaran4);
+
+        $d_terpakai4 = $r4['terpakai_uang_makan_bogor'];
+        $total_terpakai4[$i] = $d_terpakai4;
+
+        $hasil_terpakai4 = array_sum($total_terpakai4);
+    }
+
+    $q5 = mysqli_query($conn, "SELECT * FROM 2022_data_gaji_karyawan");
+    $sql5 = $q5;
+    while($r5 = mysqli_fetch_array($sql5))
+    {
+        $i++;   
+        $d_anggaran5 = $r5['anggaran_gaji_karyawan_bogor'];
+        $total_anggaran5[$i] = $d_anggaran5;
+
+        $hasil_anggaran5 = array_sum($total_anggaran5);
+
+        $d_terpakai5 = $r5['terpakai_gaji_karyawan_bogor'];
+        $total_terpakai5[$i] = $d_terpakai5;
+
+        $hasil_terpakai5 = array_sum($total_terpakai5);
+    }
+
+    $q6 = mysqli_query($conn, "SELECT * FROM 2022_data_anggaran_lain");
+    $sql6 = $q6;
+    while($r6 = mysqli_fetch_array($sql6))
+    {
+        $i++;   
+        $d_anggaran6 = $r6['anggaran_anggaran_lain_bogor'];
+        $total_anggaran6[$i] = $d_anggaran6;
+
+        $hasil_anggaran6 = array_sum($total_anggaran6);
+
+        $d_terpakai6 = $r6['terpakai_anggaran_lain_bogor'];
+        $total_terpakai6[$i] = $d_terpakai6;
+
+        $hasil_terpakai6 = array_sum($total_terpakai6);
+    }
+
+    $q7 = mysqli_query($conn, "SELECT * FROM 2022_data_maintenance");
+    $sql7 = $q7;
+    while($r7 = mysqli_fetch_array($sql7))
+    {
+        $i++;   
+        $d_anggaran7 = $r7['anggaran_maintenance_aset_bogor'];
+        $total_anggaran7[$i] = $d_anggaran7;
+
+        $hasil_anggaran7 = array_sum($total_anggaran7);
+
+        $d_anggaran7_1 = $r7['anggaran_maintenance_gedung_bogor'];
+        $total_anggaran7_1[$i] = $d_anggaran7_1;
+
+        $hasil_anggaran7_1 = array_sum($total_anggaran7_1);
+
+        $d_terpakai7 = $r7['terpakai_maintenance_aset_bogor'];
+        $total_terpakai7[$i] = $d_terpakai7;
+
+        $hasil_terpakai7 = array_sum($total_terpakai7);
+
+        $d_terpakai7_1 = $r7['terpakai_maintenance_gedung_bogor'];
+        $total_terpakai7_1[$i] = $d_terpakai7_1;
+
+        $hasil_terpakai7_1 = array_sum($total_terpakai7_1);
+    }
+
+    $q8 = mysqli_query($conn, "SELECT * FROM 2022_data_operasional_yayasan");
+    $sql8 = $q8;
+    while($r8 = mysqli_fetch_array($sql8))
+    {
+        $i++;   
+        $d_anggaran8 = $r8['anggaran_operasional_yayasan_bogor'];
+        $total_anggaran8[$i] = $d_anggaran8;
+
+        $hasil_anggaran8 = array_sum($total_anggaran8);
+
+        $d_terpakai8 = $r8['terpakai_operasional_yayasan_bogor'];
+        $total_terpakai8[$i] = $d_terpakai8;
+
+        $hasil_terpakai8 = array_sum($total_terpakai8);
+    }
+
+
+    $anggaran_global = $hasil_anggaran+$hasil_anggaran2+$hasil_anggaran3+$hasil_anggaran4+$hasil_anggaran5+$hasil_anggaran6+$hasil_anggaran7+$hasil_anggaran8;
+
+    $terpakai_global = $hasil_terpakai+$hasil_terpakai2+$hasil_terpakai3+$hasil_terpakai4+$hasil_terpakai5+$hasil_terpakai6+$hasil_terpakai7+$hasil_terpakai8;
+
+    $cashback_global = $anggaran_global-$terpakai_global;
+    // die(var_dump($terpakai_global));
+    
+    // bulanan
+    // program
+    $k = mysqli_query($conn, "SELECT * FROM 2022_data_program WHERE bulan = '$bulanan'");
+    $skl = $k;
+    while($dBulanan = mysqli_fetch_array($skl))
+    {
+        $i++;   
+        $d_anggaranBulanan = $dBulanan['anggaran_program_bogor'];
+        $total_anggaranBulanan[$i] = $d_anggaranBulanan;
+
+        $hasil_anggaranBulanan = array_sum($total_anggaranBulanan);
+
+        $d_terpakaiBulanan = $dBulanan['terpakai_program_bogor'];
+        $total_terpakaiBulanan[$i] = $d_terpakaiBulanan;
+
+        $hasil_terpakaiBulanan = array_sum($total_terpakaiBulanan);
+        // die(var_dump($d_anggaranBulanan));
+        $cashbackBulanan = $hasil_anggaranBulanan-$hasil_terpakaiBulanan;
+    }
+
+    // logistik
+    $k2 = mysqli_query($conn, "SELECT * FROM 2022_data_logistik WHERE bulan = '$bulanan'");
+    $skl2 = $k2;
+    while($dBulanan2 = mysqli_fetch_array($skl2))
+    {
+        $i++;   
+        $d_anggaranBulanan2 = $dBulanan2['anggaran_logistik_bogor'];
+        $total_anggaranBulanan2[$i] = $d_anggaranBulanan2;
+
+        $hasil_anggaranBulanan2 = array_sum($total_anggaranBulanan2);
+
+        $d_terpakaiBulanan2 = $dBulanan2['terpakai_logistik_bogor'];
+        $total_terpakaiBulanan2[$i] = $d_terpakaiBulanan2;
+
+        $hasil_terpakaiBulanan2 = array_sum($total_terpakaiBulanan2);
+        $cashbackBulanan2 = $hasil_anggaranBulanan2-$hasil_terpakaiBulanan2;
+    }
+
+    // aset
+    $k3 = mysqli_query($conn, "SELECT * FROM 2022_data_aset_yayasan WHERE bulan = '$bulanan'");
+    $skl3 = $k3;
+    while($dBulanan3 = mysqli_fetch_array($skl3))
+    {
+        $i++;   
+        $d_anggaranBulanan3 = $dBulanan3['anggaran_pembangunan_bogor'];
+        $total_anggaranBulanan3[$i] = $d_anggaranBulanan3;
+
+        $hasil_anggaranBulanan3 = array_sum($total_anggaranBulanan3);
+
+        $d_anggaranBulanan3_1 = $dBulanan3['anggaran_pembelian_bogor'];
+        $total_anggaranBulanan3_1[$i] = $d_anggaranBulanan3_1;
+
+        $hasil_anggaranBulanan3_1 = array_sum($total_anggaranBulanan3_1);
+
+        $d_terpakaiBulanan3 = $dBulanan3['terpakai_pembangunan_bogor'];
+        $total_terpakaiBulanan3[$i] = $d_terpakaiBulanan3;
+
+        $hasil_terpakaiBulanan3_1 = array_sum($total_terpakaiBulanan3);
+
+        $d_terpakaiBulanan3_1 = $dBulanan3['terpakai_pembelian_bogor'];
+        $total_terpakaiBulanan3_1[$i] = $d_terpakaiBulanan3_1;
+
+        $hasil_terpakaiBulanan3_1 = array_sum($total_terpakaiBulanan3_1);
+
+        $anggaran_aset  = $hasil_anggaranBulanan3+$hasil_anggaranBulanan3_1;
+        $terpakai_aset  = $hasil_terpakaiBulanan3+$hasil_terpakaiBulanan3_1;
+
+        $cashbackBulanan3 = $anggaran_aset-$terpakai_aset;
+    }
+
+    // uang makan
+    $k4 = mysqli_query($conn, "SELECT * FROM 2022_data_uang_makan WHERE bulan = '$bulanan'");
+    $skl4 = $k4;
+    while($dBulanan4 = mysqli_fetch_array($skl4))
+    {
+        $i++;   
+        $d_anggaranBulanan4 = $dBulanan4['anggaran_uang_makan_bogor'];
+        $total_anggaranBulanan4[$i] = $d_anggaranBulanan4;
+
+        $hasil_anggaranBulanan4 = array_sum($total_anggaranBulanan4);
+
+        $d_terpakaiBulanan4 = $dBulanan4['terpakai_uang_makan_bogor'];
+        $total_terpakaiBulanan4[$i] = $d_terpakaiBulanan4;
+
+        $hasil_terpakaiBulanan4 = array_sum($total_terpakaiBulanan4);
+        $cashbackBulanan4 = $hasil_anggaranBulanan4-$hasil_terpakaiBulanan4;
+    }
+    // gaji karyawan
+    $k5 = mysqli_query($conn, "SELECT * FROM 2022_data_gaji_karyawan WHERE bulan = '$bulanan'");
+    $skl5 = $k5;
+    while($dBulanan5 = mysqli_fetch_array($skl5))
+    {
+        $i++;   
+        $d_anggaranBulanan5 = $dBulanan5['anggaran_gaji_karyawan_bogor'];
+        $total_anggaranBulanan5[$i] = $d_anggaranBulanan5;
+
+        $hasil_anggaranBulanan5 = array_sum($total_anggaranBulanan5);
+
+        $d_terpakaiBulanan5 = $dBulanan5['terpakai_gaji_karyawan_bogor'];
+        $total_terpakaiBulanan5[$i] = $d_terpakaiBulanan5;
+
+        $hasil_terpakaiBulanan5 = array_sum($total_terpakaiBulanan5);
+        $cashbackBulanan5 = $hasil_anggaranBulanan5-$hasil_terpakaiBulanan5;
+    }
+
+    $k6 = mysqli_query($conn, "SELECT * FROM 2022_data_anggaran_lain WHERE bulan = '$bulanan'");
+    $skl6 = $k6;
+    while($dBulanan6 = mysqli_fetch_array($skl6))
+    {
+        $i++;   
+        $d_anggaranBulanan6 = $dBulanan6['anggaran_anggaran_lain_bogor'];
+        $total_anggaranBulanan6[$i] = $d_anggaranBulanan6;
+
+        $hasil_anggaranBulanan6 = array_sum($total_anggaranBulanan6);
+
+        $d_terpakaiBulanan6 = $dBulanan6['terpakai_anggaran_lain_bogor'];
+        $total_terpakaiBulanan6[$i] = $d_terpakaiBulanan6;
+
+        $hasil_terpakaiBulanan6 = array_sum($total_terpakaiBulanan6);
+        $cashbackBulanan6 = $hasil_anggaranBulanan6-$hasil_terpakaiBulanan6;
+    }
+
+    $k7 = mysqli_query($conn, "SELECT * FROM 2022_data_maintenance WHERE bulan = '$bulanan'");
+    $skl7 = $k7;
+    while($dBulanan7 = mysqli_fetch_array($skl7))
+    {
+        $i++;   
+        $d_anggaranBulanan7 = $dBulanan7['anggaran_maintenance_aset_bogor'];
+        $total_anggaranBulanan7[$i] = $d_anggaranBulanan7;
+
+        $hasil_anggaranBulanan7 = array_sum($total_anggaranBulanan7);
+
+        $d_anggaranBulanan7_1 = $dBulanan7['anggaran_maintenance_gedung_bogor'];
+        $total_anggaranBulanan7_1[$i] = $d_anggaranBulanan7_1;
+
+        $hasil_anggaranBulanan7_1 = array_sum($total_anggaranBulanan7_1);
+
+        $d_terpakaiBulanan7 = $dBulanan7['terpakai_maintenance_aset_bogor'];
+        $total_terpakaiBulanan7[$i] = $d_terpakaiBulanan7;
+
+        $hasil_terpakaiBulanan7 = array_sum($total_terpakaiBulanan7);
+
+        $d_terpakaiBulanan7_1 = $dBulanan7['terpakai_maintenance_gedung_bogor'];
+        
+        $total_terpakaiBulanan7_1[$i] = $d_terpakaiBulanan7_1;
+
+        $hasil_terpakaiBulanan7_1 = array_sum($total_terpakaiBulanan7_1);
+
+        $anggaran_aset  = $hasil_anggaranBulanan7+$hasil_anggaranBulanan7_1;
+        $terpakai_aset  = $hasil_terpakaiBulanan7+$hasil_terpakaiBulanan7_1;
+
+        $cashbackBulanan7 = $anggaran_aset-$terpakai_aset;
+    }
+
+    $k8 = mysqli_query($conn, "SELECT * FROM 2022_data_operasional_yayasan WHERE bulan = '$bulanan'");
+    $skl8 = $k8;
+    while($dBulanan8 = mysqli_fetch_array($skl8))
+    {
+        $i++;   
+        $d_anggaranBulanan8 = $dBulanan8['anggaran_operasional_yayasan_bogor'];
+        $total_anggaranBulanan8[$i] = $d_anggaranBulanan8;
+
+        $hasil_anggaranBulanan8 = array_sum($total_anggaranBulanan8);
+
+        $d_terpakaiBulanan8 = $dBulanan8['terpakai_operasional_yayasan_bogor'];
+        $total_terpakaiBulanan8[$i] = $d_terpakaiBulanan8;
+
+        $hasil_terpakaiBulanan8 = array_sum($total_terpakaiBulanan8);
+        $cashbackBulanan8 = $hasil_anggaranBulanan8-$hasil_terpakaiBulanan8;
+    }
+
+    $anggaran_globalBulanan = $hasil_anggaranBulanan+$hasil_anggaranBulanan2+$hasil_anggaranBulanan3+$hasil_anggaranBulanan4+$hasil_anggaranBulanan5+$hasil_anggaranBulanan6+$hasil_anggaranBulanan7+$hasil_anggaranBulanan8;
+
+    $terpakai_globalBulanan = $hasil_terpakaiBulanan+$hasil_terpakaiBulanan2+$hasil_terpakaiBulanan3+$hasil_terpakaiBulanan4+$hasil_terpakaiBulanan5+$hasil_terpakaiBulanan6+$hasil_terpakaiBulanan7+$hasil_terpakaiBulanan8;
+
+    $cashback_globalBulananan = $anggaran_globalBulanan-$terpakai_globalBulanan;
 
 } elseif ($_SESSION["id_pengurus"] == "manager_facebook") {
     $i = 1;
@@ -875,7 +1606,7 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
     </div>
 </div><!-- End Card -->
 
-<?php } elseif ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+<?php } elseif ($_SESSION["id_pengurus"] == "kepala_income" || $_SESSION["id_pengurus"] == "kepala_pengajuan") { ?>
 <!-- Card -->
 <div class="col-xxl-12">
     <div class="splide" id="splide">
@@ -964,10 +1695,10 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
                                 </div>
                                 <div class="ps-3">
                                     <h6 data-bs-toggle="tooltip" data-bs-placement="right" title="Anggaran">Rp.
-                                        <?= number_format($hasil_anggaranBulanan3,0,"." , ".") ?></h6>
+                                        <?= number_format($anggaran_aset,0,"." , ".") ?></h6>
                                     <h6 class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right"
                                         title="Terpakai">Rp.
-                                        <?= number_format($hasil_terpakaiBulanan3,0,"." , ".") ?> - </h6>
+                                        <?= number_format($terpakai_aset,0,"." , ".") ?> - </h6>
                                     <h6 class="text-success" data-bs-toggle="tooltip" data-bs-placement="right"
                                         title="Cashback">Rp.
                                         <?= number_format($cashbackBulanan3,0,"." , ".") ?></h6>
@@ -1092,10 +1823,10 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
                                 </div>
                                 <div class="ps-3">
                                     <h6 data-bs-toggle="tooltip" data-bs-placement="right" title="Anggaran">Rp.
-                                        <?= number_format($hasil_anggaranBulanan7,0,"." , ".") ?></h6>
+                                        <?= number_format($anggaran_aset,0,"." , ".") ?></h6>
                                     <h6 class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right"
                                         title="Terpakai">Rp.
-                                        <?= number_format($hasil_terpakaiBulanan7,0,"." , ".") ?> - </h6>
+                                        <?= number_format($terpakai_aset,0,"." , ".") ?> - </h6>
                                     <h6 class="text-success" data-bs-toggle="tooltip" data-bs-placement="right"
                                         title="Cashback">Rp.
                                         <?= number_format($cashbackBulanan7,0,"." , ".") ?></h6>
@@ -1141,6 +1872,8 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
         </div>
     </div>
 </div>
+
+<?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
 <!-- Card -->
 <div class="col-xxl-6 col-md-6">
     <div class="card info-card customers-card">
@@ -1181,6 +1914,7 @@ if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "
         </div>
     </div>
 </div><!-- End Card -->
+<?php } ?>
 
 <?php } else { ?>
 <!-- Card -->

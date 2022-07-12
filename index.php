@@ -62,7 +62,7 @@ if (isset($_POST["login"]) ) {
         $_SESSION["password"]     = $row["password"];
         $_SESSION["posisi"]       = $row["posisi"];
         
-        setcookie('login', $_SESSION['username'], time() + 43200 );
+        setcookie('login', $_SESSION['username'], time() + (10 * 365 * 24 * 60 * 60) );
 
         mysqli_query($conn, "INSERT INTO 2022_log_aktivity VALUES('', '$_SESSION[nama]', '$_SESSION[posisi]', '$ip', '$date', '$_SESSION[nama] Telah Login Halaman $_SESSION[posisi]')");
 		header("Location: admin/$_SESSION[username].php");

@@ -36,7 +36,7 @@
 <!-- owl corosel -->
 <script src="../owlcarousel/owl.carousel.js"></script>
 
-<?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income" ) { ?>
+<?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income" || $_SESSION["id_pengurus"] == "kepala_pengajuan") { ?>
 <script src="../assets/js/splide.js"></script>
 <?php } ?>
 

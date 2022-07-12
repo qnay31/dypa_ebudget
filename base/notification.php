@@ -56,46 +56,80 @@ if ($_SESSION["id_pengurus"] == "management_keuangan") {
     $n_oy2        = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Menunggu Verifikasi' ORDER BY `tgl_dibuat` DESC");
     $operasional_yayasan2   = $n_oy2->num_rows;
 } else {
-    // program
-    $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_pengajuan` DESC");
-    $s = $q->num_rows;
+    if ($_SESSION["id_pengurus"] == "kepala_income") {
+        // program
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_pengajuan` DESC");
+        $s = $q->num_rows;
 
-    // logistik
-    $n_log  = mysqli_query($conn, "SELECT * FROM 2022_logistik WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_pengajuan` DESC");
-    $logistik = $n_log->num_rows;
+        // logistik
+        $n_log  = mysqli_query($conn, "SELECT * FROM 2022_logistik WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_pengajuan` DESC");
+        $logistik = $n_log->num_rows;
 
-    // aset yayasan
-    $n_as   = mysqli_query($conn, "SELECT * FROM 2022_aset_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
-    $aset   = $n_as->num_rows;
+        // aset yayasan
+        $n_as   = mysqli_query($conn, "SELECT * FROM 2022_aset_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_dibuat` DESC");
+        $aset   = $n_as->num_rows;
 
-    // uang makan
-    $n_uang     = mysqli_query($conn, "SELECT * FROM 2022_uang_makan WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
-    $uang_makan = $n_uang->num_rows;
+        // uang makan
+        $n_uang     = mysqli_query($conn, "SELECT * FROM 2022_uang_makan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_dibuat` DESC");
+        $uang_makan = $n_uang->num_rows;
 
-    // gaji karyawan
-    $n_gaji         = mysqli_query($conn, "SELECT * FROM 2022_gaji_karyawan WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
-    $gaji_karyawan  = $n_gaji->num_rows;
+        // gaji karyawan
+        $n_gaji         = mysqli_query($conn, "SELECT * FROM 2022_gaji_karyawan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_dibuat` DESC");
+        $gaji_karyawan  = $n_gaji->num_rows;
 
-    // biaya lainnya
-    $n_lain         = mysqli_query($conn, "SELECT * FROM 2022_anggaran_lain WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
-    $anggaran_lain  = $n_lain->num_rows;
+        // biaya lainnya
+        $n_lain         = mysqli_query($conn, "SELECT * FROM 2022_anggaran_lain WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_dibuat` DESC");
+        $anggaran_lain  = $n_lain->num_rows;
 
-    // Maintenance
-    $n_main         = mysqli_query($conn, "SELECT * FROM 2022_maintenance WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
-    $maintenance    = $n_main->num_rows;
+        // Maintenance
+        $n_main         = mysqli_query($conn, "SELECT * FROM 2022_maintenance WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_dibuat` DESC");
+        $maintenance    = $n_main->num_rows;
 
-    // operasional yayasan
-    $n_oy         = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' ORDER BY `tgl_dibuat` DESC");
-    $operasional_yayasan    = $n_oy->num_rows;
+        // operasional yayasan
+        $n_oy         = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Tajur' ORDER BY `tgl_dibuat` DESC");
+        $operasional_yayasan    = $n_oy->num_rows;
 
-    $n_in      = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC");
-    $income    = $n_in->num_rows;
+        $n_in      = mysqli_query($conn, "SELECT * FROM income_media WHERE status = 'Menunggu Verifikasi' ORDER BY `tanggal_tf` DESC");
+        $income    = $n_in->num_rows;
+    } else {
+       // program
+        $q  = mysqli_query($conn, "SELECT * FROM 2022_program WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_pengajuan` DESC");
+        $s = $q->num_rows;
+
+        // logistik
+        $n_log  = mysqli_query($conn, "SELECT * FROM 2022_logistik WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_pengajuan` DESC");
+        $logistik = $n_log->num_rows;
+
+        // aset yayasan
+        $n_as   = mysqli_query($conn, "SELECT * FROM 2022_aset_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_dibuat` DESC");
+        $aset   = $n_as->num_rows;
+
+        // uang makan
+        $n_uang     = mysqli_query($conn, "SELECT * FROM 2022_uang_makan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_dibuat` DESC");
+        $uang_makan = $n_uang->num_rows;
+
+        // gaji karyawan
+        $n_gaji         = mysqli_query($conn, "SELECT * FROM 2022_gaji_karyawan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_dibuat` DESC");
+        $gaji_karyawan  = $n_gaji->num_rows;
+
+        // biaya lainnya
+        $n_lain         = mysqli_query($conn, "SELECT * FROM 2022_anggaran_lain WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_dibuat` DESC");
+        $anggaran_lain  = $n_lain->num_rows;
+
+        // Maintenance
+        $n_main         = mysqli_query($conn, "SELECT * FROM 2022_maintenance WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_dibuat` DESC");
+        $maintenance    = $n_main->num_rows;
+
+        // operasional yayasan
+        $n_oy         = mysqli_query($conn, "SELECT * FROM 2022_operasional_yayasan WHERE laporan = 'Belum Laporan' AND status = 'OK' AND cabang = 'Bogor' ORDER BY `tgl_dibuat` DESC");
+        $operasional_yayasan    = $n_oy->num_rows;
+    }
     
 }
 
 ?>
 
-<?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
+<?php if ($_SESSION["id_pengurus"] == "kepala_income" || $_SESSION["id_pengurus"] == "kepala_pengajuan") { ?>
 <li class="nav-item dropdown">
     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
         <i class="bi bi-bell"></i>
