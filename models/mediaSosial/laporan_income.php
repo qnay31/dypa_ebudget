@@ -27,6 +27,7 @@
                                 </div>
                                 <input type="hidden" name="id" value="<?= $_SESSION["id"] ?>">
                                 <input type="hidden" name="link" value="<?= $_SESSION["id_pengurus"] ?>">
+                                <input type="hidden" name="team" value="<?= $team ?>">
                                 <input type="text" class="form-control" name="nama" value="<?= $_SESSION["nama"] ?>"
                                     readonly>
                             </div>
@@ -178,7 +179,7 @@
                 <tr style="text-align: center;">
                     <th scope="col">No</th>
                     <th scope="col">Pengurus</th>
-                    <th scope="col">Keterangan</th>
+                    <th scope="col">Team</th>
                     <th scope="col">Akun</th>
                     <th scope="col">Tgl Laporan</th>
                     <th scope="col">Menu</th>
@@ -207,7 +208,7 @@
                 <tr>
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td style="text-align: center;"><?= ucwords($r['pemegang']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['posisi']) ?></td>
+                    <td style="text-align: center;"><?= ucwords($r['team']) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['nama_akun']) ?></td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tgl_laporan'])); ?></td>

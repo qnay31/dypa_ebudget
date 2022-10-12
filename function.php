@@ -215,6 +215,7 @@ global $conn;
 
 $id = $data["id"];
 $link = $data["link"];
+$team = $data["team"];
 $akun = htmlspecialchars(mysqli_real_escape_string($conn, $data["akun"]));
 $namaDonatur = htmlspecialchars(mysqli_real_escape_string($conn, $data["namaDonatur"]));
 $tanggal = $data["tanggal"];
@@ -228,7 +229,7 @@ $date = date("Y-m-d H:i:s");
 
 $result = mysqli_query($conn, "INSERT INTO income_media VALUES('', '$link', '$id', '$_SESSION[nama]',
 '$akun', '$_SESSION[cabang]', '$namaDonatur', '$tanggal', '$jam', '$bank', '$income', 'Menunggu Verifikasi',
-'Pending')");
+'Pending', '$team')");
 
 $today = date('d-m-Y', strtotime($tanggal));
 
@@ -289,6 +290,7 @@ global $conn;
 
 $id = $data["id"];
 $link = $data["link"];
+$team = $data["team"];
 $nama = htmlspecialchars($data["nama"]);
 $akun = htmlspecialchars(mysqli_real_escape_string($conn, $data["akun"]));
 $tanggal = $data["tanggal"];
@@ -361,18 +363,18 @@ if ($keterangan == "Tambah Teman") {
 $temanBaru = $dataTemanBaru - $dataTeman;
 $result = mysqli_query($conn, "INSERT INTO laporan_media VALUES('', '$link', '$id', '$_SESSION[posisi]',
 '$nama', '$akun', '$tanggal', '$keterangan', '$dataTemanBaru', '$temanAdd', '$temanBaru', '', '$serangan', '$donatur',
-'$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income')");
+'$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income', '$team')");
 
 } elseif ($keterangan == "Hapus Teman") {
 $hapusTeman = $dataTemanBaru-$dataTeman;
 $result = mysqli_query($conn, "INSERT INTO laporan_media VALUES('', '$link', '$id', '$_SESSION[posisi]',
 '$nama', '$akun', '$tanggal', '$keterangan', '$dataTemanBaru', '', '', '$hapusTeman', '$serangan', '$donatur',
-'$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income')");
+'$respon', '$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income', '$team')");
 // die(var_dump($result));
 } else {
 $result = mysqli_query($conn, "INSERT INTO laporan_media VALUES('', '$link', '$id', '$_SESSION[posisi]',
 '$nama', '$akun', '$tanggal', '', '$dataTeman', '', '', '', '$serangan', '$donatur', '$respon',
-'$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income')");
+'$alamat', '$insya_allah', '$norek', '$bbBantu', '$tRespon', '$income', '$team')");
 }
 
 // input data ke database
@@ -1314,12 +1316,14 @@ if ($nAkunName === 1 && $dataTeam == $team) {
 // update_target
 $update = mysqli_query($conn, "UPDATE `income_media` SET
 nomor_id = '$changeID',
-`pemegang` ='$namaChange'
+`pemegang` ='$namaChange',
+team = '$team'
 WHERE nama_akun = '$namaAkun' ");
 
 $update2 = mysqli_query($conn, "UPDATE `laporan_media` SET
 nomor_id = '$changeID',
-`pemegang` ='$namaChange'
+`pemegang` ='$namaChange',
+team = '$team'
 WHERE nama_akun = '$namaAkun' ");
 
 $update3 = mysqli_query($conn, "UPDATE `data_akun` SET
@@ -1367,6 +1371,56 @@ return false;
 }
 $result = mysqli_query($conn,
 "UPDATE data_akun SET
+`team` = '$team'
+WHERE `pemegang` = '$listName'");
+
+$result2 = mysqli_query($conn,
+"UPDATE income_media SET
+`team` = '$team'
+WHERE `pemegang` = '$listName'");
+
+$result3 = mysqli_query($conn,
+"UPDATE laporan_media SET
+`team` = '$team'
+WHERE `pemegang` = '$listName'");
+}
+
+return mysqli_affected_rows($conn);
+
+}
+
+function createListTeam($data) {
+global $conn;
+
+$team = htmlspecialchars(mysqli_real_escape_string($conn, $data["team"]));
+$nama = $data["namaList"];
+
+foreach ($nama as $listName) {
+
+$qdataTeam = mysqli_query($conn, "SELECT * FROM data_akun WHERE pemegang = '$listName'");
+$dataTeam = mysqli_fetch_assoc($qdataTeam);
+$id_pengurus = $dataTeam["id_pengurus"];
+$pemegang = $dataTeam["pemegang"];
+$dataTeam = $dataTeam["team"];
+
+if ($dataTeam == "") {
+} else {
+if ($dataTeam !== $team) {
+echo "<script>
+alert('Data tim sudah ada, harap pilih $dataTeam');
+</script>";
+
+return false;
+}
+}
+
+$result = mysqli_query($conn,
+"UPDATE income_media SET
+`team` = '$team'
+WHERE `pemegang` = '$listName'");
+
+$result2 = mysqli_query($conn,
+"UPDATE laporan_media SET
 `team` = '$team'
 WHERE `pemegang` = '$listName'");
 }

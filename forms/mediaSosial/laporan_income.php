@@ -1,6 +1,10 @@
 <?php
 $query   = mysqli_query($conn, "SELECT * FROM data_akun WHERE nomor_id = '$_SESSION[id]' ORDER BY `nama_akun` ASC ");
 
+$query2   = mysqli_query($conn, "SELECT * FROM data_akun WHERE nomor_id = '$_SESSION[id]' ORDER BY `nama_akun` ASC ");
+$data2 = mysqli_fetch_assoc($query2);
+$team = $data2['team'];
+
 if (isset($_POST["laporan"]) ) {
     $link = $_SESSION["username"];
         if(laporan_akun($_POST) > 0 ) {

@@ -387,3 +387,36 @@
     justify-content: center;
     display: flex;
 }
+
+.income-tim span {
+    font-size: 14px;
+}
+
+.detail-box .bg-hariIni {
+    background-color: #4154f1;
+}
+
+.detail-box .bg-arrow-right {
+    color: black;
+}
+
+.detail-box .kotak {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+}
+
+.detail-box .text-box {
+    margin-right: 10px;
+}
+
+.btn-back {
+    font-size: .8em;
+    text-decoration: underline;
+    color: grey;
+}
+
+.btn-back:hover {
+    color: grey;
+    text-decoration: underline;
+}

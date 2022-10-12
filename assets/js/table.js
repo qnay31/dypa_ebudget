@@ -16,7 +16,18 @@ $(document).ready(function () {
         reverse: true
     });
 
-    if (readCookie("login") == "leader_2" || readCookie("login") == "leader_fb") {
+    $(".maintenance").click(function (e) {
+        Swal.fire({
+            type: 'error',
+            title: 'Maintenance',
+            text: 'Masih dalam tahap pengembangan',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        e.preventDefault();
+    });
+
+    if (readCookie("login") == "income_media") {
         $('#namaPengurus').select2({
             placeholder: "- Pilih nama pengurus -",
             allowClear: true,
@@ -3580,6 +3591,7 @@ $(document).ready(function () {
     });
 
     var collapsedGroups = {};
+    var collapsedGroups2 = {};
     var table = $('#tabel-data_databaseIncomeMedia').DataTable({
         "scrollX": true,
         "scrollCollapse": true,
@@ -3706,6 +3718,14 @@ $(document).ready(function () {
                     i : 0;
             };
 
+            // Total over all pages
+            total = api
+                .column(9)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
             // Total over this page
             pageTotal = api
                 .column(9, {
@@ -3716,6 +3736,16 @@ $(document).ready(function () {
                     return intVal(a) + intVal(b);
                 }, 0);
 
+            var number_string2 = total.toString(),
+                sisa2 = number_string2.length % 3,
+                rupiah2 = number_string2.substr(0, sisa2),
+                ribuan2 = number_string2.substr(sisa2).match(/\d{3}/g);
+
+            if (ribuan2) {
+                separator2 = sisa2 ? '.' : '';
+                rupiah2 += separator2 + ribuan2.join('.');
+            }
+
             var number_string = pageTotal.toString(),
                 sisa = number_string.length % 3,
                 rupiah = number_string.substr(0, sisa),
@@ -3725,18 +3755,313 @@ $(document).ready(function () {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
             }
+
             // Update footer
             $(api.column(9).footer()).html(
-                'Rp. ' + rupiah + ''
+                'Rp. ' + rupiah + '<br> (Total : Rp. ' + rupiah2 + ')'
             );
 
         }
     });
 
-    $('#tabel-data_databaseIncomeMedia tbody').on('click', 'tr.group-end', function () {
+    var table2 = $('#tabel-data_databaseTimIncome').DataTable({
+        "scrollX": true,
+        "scrollCollapse": true,
+        "processing": true,
+        "serverSide": false,
+        "ajax": "../ajax/data_incomeTim.php",
+        "lengthMenu": [
+            [10, 25, 50, 100, -1],
+            [10, 25, 50, 100, "All"]
+        ],
+        dom: 'PBlfrtip',
+        buttons: [{
+            extend: 'excelHtml5',
+            'footer': true,
+            exportOptions: {
+                customizeData: function (d) {
+
+                    var columns = table2.columns().count();
+                    var body = d.body;
+                    var rowData = table2.rows().data().toArray();
+                    console.log(rowData);
+                    var grouped_array_index = rowData[1][9];
+
+
+                    if (!(grouped_array_index == undefined)) { //don't run grouping logic if rows aren't grouped
+
+                        var row_data_array = table2.rows().data();
+                        var iColspan = columns;
+                        var sLastGroup = "";
+                        var no_of_splices = 0;
+                        var ageArray = [];
+
+                        for (var i = 0, row_length = row_data_array.length; i < row_length; i++)
+
+                        {
+
+                            var sGroup = row_data_array[i][1];
+
+                            var age = row_data_array[i][9];
+                            if (sGroup !== sLastGroup) {
+                                // console.log(sGroup);
+
+                                ageArray = [];
+                                //
+                                var table_data = [];
+
+                                for (var $column_index = 0; $column_index < iColspan; $column_index++) {
+
+                                    if ($column_index === 0) {
+
+                                        table_data[$column_index] = sGroup;
+
+                                    } else {
+                                        table_data[$column_index] = '';
+                                    }
+                                }
+
+                                body.splice(i + no_of_splices, 0, table_data);
+                                no_of_splices++;
+                                sLastGroup = sGroup;
+
+
+                            }
+
+                            if (sGroup == '') {
+
+                                var intVal = function (i) {
+                                    return typeof i === 'string' ?
+                                        i.replace(/[\Rp,.]/g, '') * 1 :
+                                        typeof i === 'number' ?
+                                        i : 0;
+                                };
+
+                                var ageParse = intVal(age)
+                                ageArray.push(parseInt(ageParse));
+                                var sum_ages = ageArray.reduce(function (a, b) {
+                                    return a + b;
+                                }, 0);
+
+                                bilangan = sum_ages;
+
+                                var number_string = bilangan.toString(),
+                                    sisa = number_string.length % 3,
+                                    rupiah = number_string.substr(0, sisa),
+                                    ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                                if (ribuan) {
+                                    separator = sisa ? '.' : '';
+                                    rupiah += separator + ribuan.join('.');
+                                }
+
+                                for (var $column_index = 0; $column_index < iColspan; $column_index++) {
+                                    if ($column_index === 1) {
+                                        table_data[$column_index] = 'Rp. ' + rupiah;
+                                    }
+                                }
+
+                            } else {
+                                var intVal = function (i) {
+                                    return typeof i === 'string' ?
+                                        i.replace(/[\Rp,.]/g, '') * 1 :
+                                        typeof i === 'number' ?
+                                        i : 0;
+                                };
+
+                                var ageParse = intVal(age)
+                                ageArray.push(parseInt(ageParse));
+                                var sum_ages = ageArray.reduce(function (a, b) {
+                                    return a + b;
+                                }, 0);
+
+                                bilangan = sum_ages;
+
+                                var number_string = bilangan.toString(),
+                                    sisa = number_string.length % 3,
+                                    rupiah = number_string.substr(0, sisa),
+                                    ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                                if (ribuan) {
+                                    separator = sisa ? '.' : '';
+                                    rupiah += separator + ribuan.join('.');
+                                }
+
+                                for (var $column_index = 0; $column_index < iColspan; $column_index++) {
+                                    if ($column_index === 1) {
+                                        table_data[$column_index] = 'Rp. ' + rupiah;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }],
+
+        order: [
+            [1, 'asc']
+        ],
+        rowGroup: {
+            // Uses the 'row group' plugin
+            dataSrc: 1,
+            startRender: null,
+            endRender: function (rows, group) {
+                var collapsed = !!collapsedGroups[group];
+
+                rows.nodes().each(function (r) {
+                    r.style.display = collapsed ? 'none' : '';
+                });
+
+                var intVal = function (i) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\Rp,.]/g, '') * 1 :
+                        typeof i === 'number' ?
+                        i : 0;
+                };
+
+                var salary = rows
+                    .data()
+                    .pluck(9)
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                salary = $.fn.dataTable.render.number('.', '', 0).display(salary);
+
+
+                // Add category name to the <tr>. NOTE: Hardcoded colspan
+                return $('<tr/>')
+                    .append('<td> </td>')
+                    .append('<td colspan="8">' + group + ' (' + rows.count() + ') ' + '/ Income: ' + ' ' + salary + '</td>')
+                    .append('<td> ' + salary + ' </td>')
+                    .attr('data-name', group)
+                    .toggleClass('collapsed', collapsed);
+            }
+        },
+        searchPanes: {
+            orderable: false
+        },
+        columnDefs: [{
+            "targets": 0,
+            "render": function (data, type, row, meta) {
+                var no = meta.row + meta.settings._iDisplayStart + 1
+                return "<center>" + no + "</center>";
+            }
+        }, {
+            width: 150,
+            targets: 1,
+            "render": function (data) {
+                return Capitalize(data);
+            }
+        }, {
+            width: 200,
+            targets: 2
+        }, {
+            width: 200,
+            targets: 3,
+            "render": function (data) {
+                return Capitalize(data);
+            }
+        }, {
+            width: 100,
+            targets: 4
+        }, {
+            width: 150,
+            targets: 5
+        }, {
+            width: 200,
+            targets: 6,
+            "render": function (data) {
+                return Capitalize(data);
+            }
+        }, {
+            width: 150,
+            targets: 7
+        }, {
+            width: 100,
+            targets: 8
+        }, {
+            width: 150,
+            targets: 9
+        }, {
+            searchPanes: {
+                show: true,
+                initCollapsed: true
+            },
+            targets: [1, 2, 3, 5, 6, 7, 8]
+        }, {
+            searchPanes: {
+                show: false
+            },
+            targets: [4, 9]
+        }],
+        "footerCallback": function (row, data, start, end, display) {
+            var api = this.api(),
+                data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function (i) {
+                return typeof i === 'string' ?
+                    i.replace(/[\Rp,.]/g, '') * 1 :
+                    typeof i === 'number' ?
+                    i : 0;
+            };
+
+            // Total over all pages
+            total = api
+                .column(9)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            // Total over this page
+            pageTotal = api
+                .column(9, {
+                    page: 'current'
+                })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            var number_string2 = total.toString(),
+                sisa2 = number_string2.length % 3,
+                rupiah2 = number_string2.substr(0, sisa2),
+                ribuan2 = number_string2.substr(sisa2).match(/\d{3}/g);
+
+            if (ribuan2) {
+                separator2 = sisa2 ? '.' : '';
+                rupiah2 += separator2 + ribuan2.join('.');
+            }
+
+            var number_string = pageTotal.toString(),
+                sisa = number_string.length % 3,
+                rupiah = number_string.substr(0, sisa),
+                ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            // Update footer
+            $(api.column(9).footer()).html(
+                'Rp. ' + rupiah + '<br> (Total : Rp. ' + rupiah2 + ')'
+            );
+
+        }
+    });
+
+    $('.table-income tbody').on('click', 'tr.group-end', function () {
         var name = $(this).data('name');
         collapsedGroups[name] = !collapsedGroups[name];
         table.draw(false);
+
+        var name2 = $(this).data('name');
+        collapsedGroups2[name2] = !collapsedGroups2[name2];
+        table2.draw(false);
     });
 
     // tabel akun pengurus
@@ -4314,7 +4639,7 @@ $(document).ready(function () {
         }],
     });
 
-    if (readCookie("login") == "leader_2" || readCookie("login") == "leader_fb") {
+    if (readCookie("login") == "income_media") {
         $("#tabel-dataTeamMedia").DataTable({
             scrollX: true,
             processing: true,

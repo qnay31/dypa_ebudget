@@ -43,7 +43,7 @@ if ($_SESSION["id_pengurus"] == "manager_facebook") {
                         <th scope="col">Cabang</th>
                         <th scope="col">Posisi</th>
                         <th scope="col">Team</th>
-                        <?php if ($_SESSION["id_pengurus"] == "manager_facebook") { ?>
+                        <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
                         <th scope="col"><input type="checkbox" class="form-check-input check_all" /></th>
 
                         <?php } ?>
@@ -54,7 +54,7 @@ if ($_SESSION["id_pengurus"] == "manager_facebook") {
                 </tbody>
             </table>
 
-            <?php if ($_SESSION["id_pengurus"] == "manager_facebook") { ?>
+            <?php if ($_SESSION["id_pengurus"] == "kepala_income") { ?>
             <div align="left">
                 <button type="button" name="btn_delete" id="btn_delete" class="btn btn-danger mb-4">Delete
                     Selected</button>

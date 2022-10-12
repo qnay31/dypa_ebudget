@@ -41,7 +41,7 @@ if ($_SESSION["id_pengurus"] == "manager_facebook") {
 // The `db` parameter represents the column name in the database, while the `dt`
 // parameter represents the DataTables column identifier. In this case simple
 // indexes
-if ($_SESSION["id_pengurus"] == "manager_facebook") {
+if ($_SESSION["id_pengurus"] == "kepala_income") {
     $columns = array(
         array(
             'db' => 'nomor_id',

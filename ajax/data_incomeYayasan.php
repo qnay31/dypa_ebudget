@@ -28,7 +28,12 @@ if ($_SESSION["id_pengurus"] == "facebook_depok") {
     $where = "nomor_id = '$_SESSION[id]' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
 
 } elseif ($_SESSION["id_pengurus"] == "manager_facebook") {
-    $where = "cabang = '$_SESSION[cabang]' AND id_pengurus = 'facebook_depok' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
+    if ($_SESSION["username"] == "leader_fb") {
+        $where = "cabang = '$_SESSION[cabang]' AND team = 'Facebook Tajur' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
+    } else {
+        $where = "cabang = '$_SESSION[cabang]' AND team = 'Facebook Bogor' AND status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
+    }
+    
 
 } else {
     $where = "status = 'OK' ORDER BY pemegang ASC, `tanggal_tf` DESC";
@@ -48,14 +53,7 @@ $columns = array(
         }
     ),
     array( 'db' => 'pemegang', 'dt' => 1 ),
-    array( 
-        'db'        => 'id_pengurus', 
-        'dt'        => 2,
-        'formatter' => function( $d, $row ) {
-            return  $d == "facebook_depok" ? "Facebook Depok" :( 
-                    $d == "facebook_bogor" ? "Facebook Bogor" : "Instagram");
-        }
-    ),
+    array( 'db' => 'team', 'dt' => 2 ),
     array( 'db' => 'nama_akun',  'dt' => 3 ),
     array( 'db' => 'cabang',   'dt' => 4 ),
     array(

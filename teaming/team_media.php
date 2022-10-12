@@ -16,6 +16,10 @@ if (isset($_POST["createTeam"]) ) {
 
 }
 
+$_SESSION["idTable"]    = $_GET["id_table"];
+$_SESSION["idDate"]     = $_GET["id_date"];
+$_SESSION["id_periode"] = $_GET["id_periode"];
+
 ?>
 
 <main id="main" class="main">

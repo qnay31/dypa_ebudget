@@ -3,19 +3,19 @@
 
     <div class="table-responsive">
         <h5 class="card-title text-center">Laporan Pemasukan Global</h5>
-        <table id="tabel-data_databaseIncomeMedia" class="table table-bordered">
+        <table id="tabel-data_databaseIncomeMedia" class="table table-bordered table-income">
             <thead>
                 <tr style="text-align: center;">
                     <th scope="col">No</th>
                     <th scope="col">Dipegang Oleh</th>
-                    <th scope="col">Income</th>
+                    <th scope="col">Team</th>
                     <th scope="col">Nama Akun</th>
                     <th scope="col">Cabang</th>
                     <th scope="col">Periode</th>
                     <th scope="col">Nama Donatur</th>
                     <th scope="col">Tanggal Transfer</th>
                     <th scope="col">Bank</th>
-                    <th scope="col">Jumlah Income</th>
+                    <th scope="col">Income</th>
                 </tr>
             </thead>
             <tbody>

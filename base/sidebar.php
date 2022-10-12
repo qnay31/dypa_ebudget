@@ -70,12 +70,17 @@
 
         <?php if (
             $_SESSION["id_pengurus"] == "facebook_depok" || $_SESSION["id_pengurus"] == "admin_web" || $_SESSION["id_pengurus"] == "kepala_pengajuan"
-            ) { ?>
+            ) {
+            
+            ?>
 
-        <?php } else { ?>
+        <?php } else {
+            $pToday = date("Y-m-d");
+            $cToday = substr($pToday, 5, -3);
+            ?>
         <?php if ($_GET["idTeam"] == "teamMedia" || $_GET["idTeam"] == "changeMedia") { ?>
         <li class="nav-item">
-            <a class="nav-link" href="<?= $_SESSION["username"] ?>.php?idTeam=teamMedia">
+            <a class="nav-link" href="<?= $_SESSION["username"] ?>.php?idTeam=teamMedia&id_periode=<?= $cToday; ?>">
                 <i class="bi bi-people"></i><span class="badge badge-danger badge-counter">New</span>
                 <span>Team Media</span>
             </a>
@@ -83,7 +88,8 @@
 
         <?php } else { ?>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?= $_SESSION["username"] ?>.php?idTeam=teamMedia">
+            <a class="nav-link collapsed"
+                href="<?= $_SESSION["username"] ?>.php?idTeam=teamMedia&id_periode=<?= $cToday; ?>">
                 <i class="bi bi-people"></i><span class="badge badge-danger badge-counter">New</span>
                 <span>Team Media</span>
             </a>

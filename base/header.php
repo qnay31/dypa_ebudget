@@ -42,9 +42,10 @@
 
     <?php if ($_SESSION["id_pengurus"] == "ketua_yayasan" || $_SESSION["id_pengurus"] == "management_keuangan" || $_SESSION["id_pengurus"] == "kepala_income" || $_SESSION["id_pengurus"] == "kepala_pengajuan") { ?>
     <link rel="stylesheet" href="../assets/css/splide.min.css">
+    <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
     <?php } ?>
 
-    <?php if ($_GET["idTeam"] == "teamMedia") { ?>
+    <?php if ($_GET["idTeam"] == "teamMedia" && $_SESSION["id_pengurus"] == "kepala_income") { ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css">
     <?php } ?>
 

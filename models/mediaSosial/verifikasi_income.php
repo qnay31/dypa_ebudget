@@ -16,7 +16,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Dilaporkan Oleh</th>
                     <th scope="col">Nama Akun</th>
-                    <th scope="col">Cabang</th>
+                    <th scope="col">Team</th>
                     <th scope="col">Nama Donatur</th>
                     <th scope="col">Tanggal Transfer</th>
                     <th scope="col">Bank</th>
@@ -40,7 +40,7 @@
                     <td style="text-align: center;"><?= $no++ ?></td>
                     <td style="text-align: center;"><?= ucwords($nama) ?></td>
                     <td style="text-align: center;"><?= ucwords($r['nama_akun']) ?></td>
-                    <td style="text-align: center;"><?= ucwords($r['cabang']) ?></td>
+                    <td style="text-align: center;"><?= ucwords($r['team']) ?></td>
                     <td><?= ucwords($donatur) ?></td>
                     <td style="text-align: center;">
                         <?= date('d-m-Y', strtotime($r['tanggal_tf'])); ?> <?= $r["jam_tf"] ?></td>
