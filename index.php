@@ -153,6 +153,9 @@ if(isset($_GET['pesan'])){
                                         <input type="submit" name="login" class="btn btn-success btn-user btn-block"
                                             value="MASUK">
                                     </form>
+                                    <div class="text-right">
+                                        <a class="small" href="forget-password.php">Lupa Sandi</a>
+                                    </div>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="register.php">Buat Akun Baru!</a>

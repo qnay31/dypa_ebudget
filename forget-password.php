@@ -33,11 +33,6 @@ require 'function.php';
         $resultData = mysqli_fetch_assoc($queryData);
 
         if ($password_baru !== $konfirmasi_password) {
-
-            echo "<script>
-                alert('Konfirmasi Password Tidak Sama');
-            </script>";
-
             $username   = $_POST["username"];
             $searchquery= mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE username = '$username'");
             $datasearch = mysqli_fetch_assoc($searchquery);
@@ -51,12 +46,10 @@ require 'function.php';
             
             $nums       = mysqli_num_rows($result) === 1;
             $data       = mysqli_fetch_assoc($result);
+
+            $errorPwTdkSama = true;
 
         } elseif ($password_lama === true) {
-            echo "<script>
-                alert('Sandi tidak bisa sama dengan sandi saat ini!');
-            </script>";
-
             $username   = $_POST["username"];
             $searchquery= mysqli_query($conn, "SELECT * FROM akun_pengurus WHERE username = '$username'");
             $datasearch = mysqli_fetch_assoc($searchquery);
@@ -70,6 +63,8 @@ require 'function.php';
             
             $nums       = mysqli_num_rows($result) === 1;
             $data       = mysqli_fetch_assoc($result);
+
+            $errorPwSamaLama = true;
             
         } else {
             $newPassword = password_hash($password_baru, PASSWORD_DEFAULT);
@@ -170,8 +165,15 @@ require 'function.php';
                                                 name="konfirmasi_password" id="password-field2"
                                                 placeholder="Konfirmasi Password" aria-label="Password"
                                                 aria-describedby="basic-addon1">
-
                                         </div>
+                                        <?php if (isset ($errorPwTdkSama) ) { ?>
+                                        <span style="color: red; font-style: italic;">Konfirmasi password tidak sama !
+                                        </span>
+                                        <?php } elseif (isset ($errorPwSamaLama)) { ?>
+                                        <span style="color: red; font-style: italic;">Password baru masih sama dengan
+                                            yang lama !
+                                        </span>
+                                        <?php } ?>
 
                                         <input type="submit" name="newPassword"
                                             class="btn btn-success btn-user btn-block" value="Ubah Password">
@@ -184,14 +186,13 @@ require 'function.php';
                                                 oninvalid="this.setCustomValidity('Harap masukan username')"
                                                 oninput="this.setCustomValidity('')">
                                         </div>
+                                        <?php if (isset ($error) ) { ?>
+                                        <p style="color: red; font-style: italic;">Username tidak ditemukan!
+                                        </p>
+                                        <?php } ?>
 
                                         <input type="submit" name="forgetPassword"
                                             class="btn btn-success btn-user btn-block" value="Cek Username">
-
-                                        <?php if (isset ($error) ) : ?>
-                                        <p style="color: red; font-style: italic;">Username tidak ditemukan!
-                                        </p>
-                                        <?php endif ?>
 
                                         <?php } ?>
 

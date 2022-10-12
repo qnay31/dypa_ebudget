@@ -12158,6 +12158,12 @@ a:focus {
     background-size: cover
 }
 
+.bg-password-image {
+    background: url(https://thumbs.dreamstime.com/b/forgot-password-computer-concept-unhappy-man-near-account-login-flat-vector-male-character-design-landing-page-web-poster-184010038.jpg);
+    background-position: center;
+    background-size: cover
+}
+
 form.user .custom-checkbox.small label {
     line-height: 1.5rem
 }
