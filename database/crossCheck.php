@@ -1,3 +1,7 @@
+<?php
+$_SESSION["id_periode"] = $_GET["id_periode"];
+?>
+
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Database</h1>

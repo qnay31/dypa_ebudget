@@ -3336,9 +3336,6 @@ $(document).ready(function () {
             [10, 25, 50, 100, "All"]
         ],
         dom: 'Plfrtip',
-        order: [
-            [7, 'desc']
-        ],
         rowGroup: {
             // Uses the 'row group' plugin
             dataSrc: 7,
@@ -3379,10 +3376,9 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 0,
-            "sortable": false,
             "render": function (data, type, row, meta) {
                 var no = meta.row + meta.settings._iDisplayStart + 1
-                return "<center>-</center>";
+                return "<center>" + no + "</center>";
             }
         }, {
             width: 150,
@@ -3485,7 +3481,7 @@ $(document).ready(function () {
     $('#tabel-data_databaseIncomeMedia2').DataTable({
         "scrollX": true,
         "processing": true,
-        "serverSide": true,
+        "serverSide": false,
         "scrollCollapse": true,
         deferRender: true,
         dom: 'lfrtip',
@@ -3504,7 +3500,8 @@ $(document).ready(function () {
         columnDefs: [{
             "targets": 0,
             "render": function (data, type, row, meta) {
-                return meta.row + meta.settings._iDisplayStart + 1;
+                var no = meta.row + meta.settings._iDisplayStart + 1
+                return "<center>" + no + "</center>";
             }
         }, {
             width: 150,
@@ -3529,7 +3526,14 @@ $(document).ready(function () {
             }
         }, {
             width: 100,
-            targets: 4
+            targets: 4,
+            "render": function (data) {
+                var success = "<center><span class=\"badge bg-success\">" + data + "</span></center>"
+                var pending = "<center><span class=\"badge bg-warning\">" + data + "</span></center>"
+                var batal = "<center><span class=\"badge bg-danger\">" + data + "</span></center>"
+                return data == "OK" ? success : (
+                    data == "Dibatalkan" ? batal : pending);
+            }
         }, {
             width: 150,
             targets: 5
@@ -3546,7 +3550,10 @@ $(document).ready(function () {
             orderData: [0, 7]
         }, {
             width: 100,
-            targets: 8
+            targets: 8,
+            "render": function (data) {
+                return "<center> " + data + "</center>"
+            }
         }, {
             width: 150,
             targets: 9

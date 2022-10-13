@@ -201,7 +201,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -290,7 +291,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -379,7 +381,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -468,7 +471,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -557,7 +561,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -646,7 +651,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -735,7 +741,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -821,7 +828,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -906,7 +914,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -991,7 +1000,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -1076,7 +1086,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck" class="active">
+                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>"
+                        class="active">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -1165,7 +1176,8 @@
 
                 <?php if($_SESSION["id_pengurus"] == "kepala_income") { ?>
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
@@ -1445,7 +1457,8 @@
                 </li>
 
                 <li>
-                    <a href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck">
+                    <a
+                        href="<?= $_SESSION["username"] ?>.php?id_database=database_crossCheck&id_periode=<?= $cToday; ?>">
                         <i class="bi bi-circle"></i><span>Crosscheck Income</span>
                     </a>
                 </li>
